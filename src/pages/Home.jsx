@@ -403,6 +403,75 @@ function AquaTight() {
   );
 }
 
+// ─── Combined expertise ───────────────────────────────────────────────────────
+
+function CombinedExpertise() {
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <motion.div {...fadeUp(0.1)}>
+            <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>
+              The Complete Solution
+            </span>
+            <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
+              A complete, one-stop solution for all your water damage rectification needs.
+            </RevealText>
+          </motion.div>
+
+          <motion.div {...fadeUp(0.2)} className="space-y-5">
+            <p className="text-neutral-600 leading-relaxed">
+              By combining a fully licensed builder with a master waterproofer, Cherry Builds and Aqua Tight
+              Waterproofing offer a seamless, end-to-end service. From identifying the source of damage and
+              assessing the required repairs, through to quoting, project management, and completion of all
+              works — we handle everything.
+            </p>
+            <p className="text-neutral-600 leading-relaxed">
+              With over 30 years of building experience and more than 20 years of specialised waterproofing
+              expertise, we pride ourselves on delivering exceptional workmanship and meticulous attention
+              to detail.
+            </p>
+
+            <div className="pt-2 grid grid-cols-2 gap-4">
+              {[
+                { val: "30+", label: "Years building experience" },
+                { val: "20+", label: "Years waterproofing expertise" },
+              ].map((s) => (
+                <div key={s.label} className="rounded-2xl p-5 text-center" style={{ backgroundColor: "#ededed" }}>
+                  <CountUp value={s.val} className="font-serif text-3xl font-bold" style={{ color: "#a3343e" }} />
+                  <div className="text-xs text-neutral-500 mt-1.5 leading-snug">{s.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+                style={{ backgroundColor: "#a3343e" }}
+                onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#8a2b34")}
+                onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#a3343e")}
+              >
+                Get a Quote
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.aquatightwaterproofing.au/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-neutral-300 text-neutral-700 hover:border-neutral-400 font-semibold px-6 py-3 rounded-xl transition-colors"
+              >
+                Visit Aqua Tight
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ─── FAQ ─────────────────────────────────────────────────────────────────────
 
 function FAQ() {
@@ -611,6 +680,7 @@ export default function Home() {
       <Projects />
       <Testimonials />
       <AquaTight />
+      <CombinedExpertise />
       <FAQ />
       <Contact />
       <FloatingCall />
