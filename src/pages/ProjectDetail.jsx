@@ -1,10 +1,11 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import {
   MapPin, Clock, DollarSign, ArrowLeft, ArrowRight,
   CheckCircle, Phone,
 } from "lucide-react";
-import { PROJECTS } from "../data/index.js";
+import { PROJECTS, TESTIMONIALS } from "../data/index.js";
 import ScrollProgress from "../components/ScrollProgress.jsx";
 import RevealText from "../components/RevealText.jsx";
 
@@ -36,16 +37,33 @@ export default function ProjectDetail() {
   const prev = PROJECTS[currentIndex - 1] ?? null;
   const next = PROJECTS[currentIndex + 1] ?? null;
 
+  const projectTestimonials = TESTIMONIALS.filter((t) => t.project === project.slug);
+
+  const metaTitle = `${project.title} | Melbourne Home Renovations | Cherry Builds`;
+  const metaDesc = `${project.summary} By Cherry Builds — Melbourne's renovation specialists. VBA Licensed. 30+ years experience.`.slice(0, 160);
+
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDesc} />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDesc} />
+        <meta property="og:url" content={`https://cherrybuilds.com.au/projects/${project.slug}`} />
+        <link rel="canonical" href={`https://cherrybuilds.com.au/projects/${project.slug}`} />
+      </Helmet>
       <ScrollProgress />
       {/* Hero banner */}
       <section className="relative h-[55vh] min-h-[400px] overflow-hidden" style={{ backgroundColor: "#1a1a1a" }}>
-        <PlaceholderImage className="absolute inset-0 w-full h-full opacity-30" />
+        {project.image ? (
+          <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-40" />
+        ) : (
+          <PlaceholderImage className="absolute inset-0 w-full h-full opacity-30" />
+        )}
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #1a1a1a 0%, rgba(26,26,26,0.5) 50%, rgba(26,26,26,0.2) 100%)" }} />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 h-full flex flex-col justify-end pb-12 pt-24">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.1 }}>
             <Link to="/#projects" className="inline-flex items-center gap-1.5 text-neutral-400 hover:text-white text-sm mb-6 transition-colors">
               <ArrowLeft className="w-4 h-4" />
               Back to Projects
@@ -96,15 +114,47 @@ export default function ProjectDetail() {
 
             <motion.div {...fadeUp(0.15)}>
               <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-4">Gallery</RevealText>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <div className="col-span-2 sm:col-span-2 row-span-2">
-                  <PlaceholderImage className="w-full h-64 sm:h-72 rounded-2xl" />
+              {project.images?.length > 0 ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="col-span-2 sm:col-span-2">
+                    <img src={project.images[0]} alt={project.title} className="w-full h-64 sm:h-72 rounded-2xl object-cover" />
+                  </div>
+                  {project.images.slice(1).map((img, i) => (
+                    <img key={i} src={img} alt={`${project.title} ${i + 2}`} className="w-full h-32 sm:h-[8.5rem] rounded-xl object-cover" />
+                  ))}
                 </div>
-                {Array.from({ length: Math.min(4, (project.imageCount ?? 4) - 1) }).map((_, i) => (
-                  <PlaceholderImage key={i} className="w-full h-32 sm:h-[8.5rem] rounded-xl" />
-                ))}
-              </div>
+              ) : (
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div className="col-span-2 sm:col-span-2 row-span-2">
+                    <PlaceholderImage className="w-full h-64 sm:h-72 rounded-2xl" />
+                  </div>
+                  {Array.from({ length: Math.min(4, (project.imageCount ?? 4) - 1) }).map((_, i) => (
+                    <PlaceholderImage key={i} className="w-full h-32 sm:h-[8.5rem] rounded-xl" />
+                  ))}
+                </div>
+              )}
             </motion.div>
+            {projectTestimonials.length > 0 && (
+              <motion.div {...fadeUp(0.2)}>
+                <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-5">Client Review</RevealText>
+                <div className="space-y-4">
+                  {projectTestimonials.slice(0, 1).map((t) => (
+                    <div key={t.name} className="rounded-2xl p-5 border" style={{ backgroundColor: "#1a1a1a", borderColor: "rgba(255,255,255,0.08)" }}>
+                      <div className="flex gap-0.5 mb-3">
+                        {Array.from({ length: t.rating }).map((_, j) => (
+                          <svg key={j} className="w-4 h-4 text-amber-400 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        ))}
+                      </div>
+                      <p className="text-neutral-300 text-sm leading-relaxed mb-4">"{t.text}"</p>
+                      <div>
+                        <div className="font-semibold text-white text-sm">{t.name}</div>
+                        <div className="text-xs text-neutral-500 mt-0.5">{t.suburb}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </div>
 
           <div className="space-y-6">

@@ -1,12 +1,14 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import {
-  ArrowLeft, ArrowRight, CheckCircle, Phone, ChevronDown, MapPin,
+  ArrowLeft, ArrowRight, CheckCircle, Phone, ChevronDown, MapPin, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import React from "react";
-import { SERVICES, PROJECTS } from "../data/index.js";
+import { SERVICES, PROJECTS, TESTIMONIALS } from "../data/index.js";
 import ScrollProgress from "../components/ScrollProgress.jsx";
 import RevealText from "../components/RevealText.jsx";
+import TestimonialsCarousel from "../components/TestimonialsCarousel.jsx";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -19,6 +21,93 @@ function PlaceholderBanner() {
   return (
     <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: "#2a2a2a" }}>
       <div className="text-neutral-700 text-6xl opacity-30">🏗</div>
+    </div>
+  );
+}
+
+function RelatedProjectsCarousel({ projects }) {
+  const trackRef = React.useRef(null);
+  const [canLeft, setCanLeft] = React.useState(false);
+  const [canRight, setCanRight] = React.useState(false);
+
+  const sync = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 4);
+    setCanRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+  };
+
+  React.useEffect(() => {
+    sync();
+    window.addEventListener("resize", sync);
+    return () => window.removeEventListener("resize", sync);
+  }, [projects]);
+
+  const nudge = (dir) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector("[data-pc]");
+    el.scrollBy({ left: dir * ((card?.offsetWidth ?? 260) + 20), behavior: "smooth" });
+  };
+
+  return (
+    <div className="relative">
+      <div style={{ overflow: "hidden" }}>
+        <div
+          ref={trackRef}
+          onScroll={sync}
+          className="flex gap-5"
+          style={{ overflowX: "scroll", scrollSnapType: "x mandatory", paddingBottom: 20, marginBottom: -20 }}
+        >
+          {projects.map((p) => (
+            <Link
+              key={p.slug}
+              data-pc
+              to={`/projects/${p.slug}`}
+              className="group flex-shrink-0 bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-md transition-all"
+              style={{ width: "clamp(220px, 65vw, 260px)", scrollSnapAlign: "start" }}
+            >
+              <div className="h-36 relative overflow-hidden" style={{ backgroundColor: "#ededed" }}>
+                {p.image ? (
+                  <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-neutral-400">
+                    <div className="text-center">
+                      <div className="text-2xl mb-1">🏗</div>
+                      <div className="text-xs">Photo coming soon</div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="p-4">
+                <h3 className="font-semibold text-neutral-900 text-sm group-hover:transition-colors">{p.title}</h3>
+                <div className="flex items-center gap-1 text-xs mt-0.5" style={{ color: "#a3343e" }}>
+                  <MapPin className="w-3 h-3" />
+                  {p.location}
+                </div>
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {p.tags.map((t) => (
+                    <span key={t} className="text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: "#fdf2f3", color: "#a3343e", border: "1px solid #fce4e5" }}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {canLeft && (
+        <button onClick={() => nudge(-1)} aria-label="Previous" className="absolute -left-4 top-[72px] -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-neutral-200 shadow-md flex items-center justify-center hover:bg-neutral-50 transition-colors z-10">
+          <ChevronLeft className="w-4 h-4 text-neutral-700" />
+        </button>
+      )}
+      {canRight && (
+        <button onClick={() => nudge(1)} aria-label="Next" className="absolute -right-4 top-[72px] -translate-y-1/2 w-9 h-9 rounded-full bg-white border border-neutral-200 shadow-md flex items-center justify-center hover:bg-neutral-50 transition-colors z-10">
+          <ChevronRight className="w-4 h-4 text-neutral-700" />
+        </button>
+      )}
     </div>
   );
 }
@@ -38,21 +127,38 @@ export default function ServiceDetail() {
   const prev = SERVICES[currentIndex - 1] ?? null;
   const next = SERVICES[currentIndex + 1] ?? null;
 
+  const serviceTestimonials = TESTIMONIALS.filter((t) => t.service === service.slug);
+
+  const metaTitle = `${service.title} Melbourne | Cherry Builds`;
+  const metaDesc = service.seoDesc ?? `${service.desc} Servicing Melbourne's Bayside and Mornington Peninsula. VBA Licensed. 30+ years experience.`;
+
   return (
     <div className="min-h-screen bg-white">
+      <Helmet>
+        <title>{metaTitle}</title>
+        <meta name="description" content={metaDesc} />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDesc} />
+        <meta property="og:url" content={`https://cherrybuilds.com.au/services/${service.slug}`} />
+        <link rel="canonical" href={`https://cherrybuilds.com.au/services/${service.slug}`} />
+      </Helmet>
       <ScrollProgress />
       {/* Hero */}
       <section className="relative h-[50vh] min-h-[380px] overflow-hidden" style={{ backgroundColor: "#1a1a1a" }}>
-        <PlaceholderBanner />
+        {service.heroImage ? (
+          <img src={service.heroImage} alt={service.title} className="absolute inset-0 w-full h-full object-cover opacity-40" />
+        ) : (
+          <PlaceholderBanner />
+        )}
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #1a1a1a 0%, rgba(26,26,26,0.65) 50%, rgba(26,26,26,0.3) 100%)" }} />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 h-full flex flex-col justify-end pb-12 pt-24">
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.1 }}>
             <Link to="/#services" className="inline-flex items-center gap-1.5 text-neutral-400 hover:text-white text-sm mb-6 transition-colors">
               <ArrowLeft className="w-4 h-4" />
               All Services
             </Link>
-            <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold mb-4 border" style={{ backgroundColor: "rgba(163,52,62,0.25)", borderColor: "rgba(163,52,62,0.4)", color: "#f49ba0" }}>
+            <div className="flex w-fit items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold mb-4 border" style={{ backgroundColor: "rgba(163,52,62,0.25)", borderColor: "rgba(163,52,62,0.4)", color: "#f49ba0" }}>
               Cherry Builds Service
             </div>
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight">
@@ -72,7 +178,7 @@ export default function ServiceDetail() {
 
             {/* Overview */}
             <motion.div {...fadeUp(0.1)}>
-              <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-4">Overview</RevealText>
+              <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-4">{service.overviewHeading ?? "Overview"}</RevealText>
               {service.overview.split("\n\n").map((para, i) => (
                 <p key={i} className="text-neutral-600 leading-relaxed text-[1.05rem] mb-4 last:mb-0">{para}</p>
               ))}
@@ -80,7 +186,7 @@ export default function ServiceDetail() {
 
             {/* What's included */}
             <motion.div {...fadeUp(0.15)}>
-              <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-5">What's Included</RevealText>
+              <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-5">{service.includesHeading ?? "What's Included"}</RevealText>
               <div className="grid sm:grid-cols-2 gap-3">
                 {service.includes.map((item) => (
                   <div key={item} className="flex items-start gap-2.5 text-sm text-neutral-700">
@@ -135,40 +241,19 @@ export default function ServiceDetail() {
               </motion.div>
             )}
 
+            {/* Testimonials */}
+            {serviceTestimonials.length > 0 && (
+              <motion.div {...fadeUp(0.28)}>
+                <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-5">What Our Clients Say</RevealText>
+                <TestimonialsCarousel testimonials={serviceTestimonials.slice(0, 3)} cardBg="#1a1a1a" />
+              </motion.div>
+            )}
+
             {/* Related projects */}
             {related.length > 0 && (
               <motion.div {...fadeUp(0.3)}>
                 <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-5">Related Projects</RevealText>
-                <div className="grid sm:grid-cols-2 gap-5">
-                  {related.map((p) => (
-                    <Link
-                      key={p.slug}
-                      to={`/projects/${p.slug}`}
-                      className="group bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-md transition-all"
-                    >
-                      <div className="h-36 flex items-center justify-center text-neutral-400" style={{ backgroundColor: "#ededed" }}>
-                        <div className="text-center">
-                          <div className="text-2xl mb-1">🏗</div>
-                          <div className="text-xs">Photo coming soon</div>
-                        </div>
-                      </div>
-                      <div className="p-4">
-                        <h3 className="font-semibold text-neutral-900 text-sm group-hover:text-cherry-600 transition-colors">{p.title}</h3>
-                        <div className="flex items-center gap-1 text-xs mt-0.5" style={{ color: "#a3343e" }}>
-                          <MapPin className="w-3 h-3" />
-                          {p.location}
-                        </div>
-                        <div className="flex flex-wrap gap-1.5 mt-2">
-                          {p.tags.map((t) => (
-                            <span key={t} className="text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: "#fdf2f3", color: "#a3343e", border: "1px solid #fce4e5" }}>
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+                <RelatedProjectsCarousel projects={related} />
               </motion.div>
             )}
           </div>
@@ -176,7 +261,7 @@ export default function ServiceDetail() {
           {/* Sidebar */}
           <div className="space-y-5">
             {/* CTA */}
-            <motion.div {...fadeUp(0.15)} className="rounded-2xl p-6 text-white sticky top-24" style={{ backgroundColor: "#a3343e" }}>
+            <motion.div {...fadeUp(0.15)} className="rounded-2xl p-6 text-white" style={{ backgroundColor: "#a3343e" }}>
               <service.icon className="w-7 h-7 text-red-200 mb-3" />
               <h3 className="font-serif text-xl font-bold mb-2">Get a Quote</h3>
               <p className="text-red-100 text-sm leading-relaxed mb-5">

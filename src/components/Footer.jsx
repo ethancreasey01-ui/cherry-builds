@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, ExternalLink, Hammer } from "lucide-react";
+import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -6,11 +6,13 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
           <div>
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg bg-cherry-600 flex items-center justify-center">
-                <Hammer className="w-3.5 h-3.5 text-white" />
-              </div>
-              <span className="font-bold text-white">Cherry Builds</span>
+            <div className="mb-4">
+              <img
+                src="/logos/cherry-builds-footer.png"
+                alt="Cherry Builds"
+                className="h-16 w-auto"
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
             </div>
             <p className="text-xs leading-relaxed mb-3">
               Melbourne's trusted renovation specialists — kitchens, bathrooms, full home renovations,

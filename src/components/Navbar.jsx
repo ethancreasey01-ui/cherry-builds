@@ -1,12 +1,13 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Menu, X, Hammer } from "lucide-react";
+import { Phone, Menu, X } from "lucide-react";
 import { NAV_LINKS } from "../data/index.js";
 
 export default function Navbar() {
   const [open, setOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [hovered, setHovered] = React.useState(null);
   const location = useLocation();
   const isHome = location.pathname === "/";
 
@@ -29,25 +30,34 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16 sm:h-18">
-        <Link to="/" className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-cherry-600 flex items-center justify-center">
-            <Hammer className="w-4 h-4 text-white" />
-          </div>
-          <span className={`font-bold text-lg tracking-tight transition-colors ${transparent ? "text-white" : "text-neutral-900"}`}>
-            Cherry Builds
-          </span>
+        <Link to="/" className="flex items-center">
+          <img
+            src="/logos/cherry-builds-navbar.png"
+            alt="Cherry Builds"
+            className="h-12 w-auto transition-all duration-300"
+            style={transparent ? { filter: "brightness(0) invert(1)" } : {}}
+          />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-6" onMouseLeave={() => setHovered(null)}>
           {NAV_LINKS.map((l) => (
             <a
               key={l.label}
               href={isHome ? l.href : `/${l.href}`}
-              className={`text-sm font-medium transition-colors ${
+              onMouseEnter={() => setHovered(l.label)}
+              className={`relative text-sm font-medium transition-colors ${
                 transparent ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-cherry-600"
               }`}
             >
               {l.label}
+              {hovered === l.label && (
+                <motion.span
+                  layoutId="nav-underline"
+                  className="absolute -bottom-0.5 left-0 right-0 h-0.5 rounded-full"
+                  style={{ backgroundColor: transparent ? "rgba(255,255,255,0.7)" : "#a3343e" }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                />
+              )}
             </a>
           ))}
           <a

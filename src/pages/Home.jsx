@@ -1,13 +1,17 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
   Phone, Mail, MapPin, ChevronDown, ChevronRight,
   Award, Check, ArrowRight, ExternalLink, Droplets, Shield,
+  Hammer, SlidersHorizontal, LayoutGrid, Eye, ThumbsUp,
 } from "lucide-react";
 import { SERVICES, PROJECTS, TESTIMONIALS, FAQS, CREDENTIALS } from "../data/index.js";
 import RevealText from "../components/RevealText.jsx";
 import CountUp from "../components/CountUp.jsx";
+import TrustBar from "../components/TrustBar.jsx";
+import TestimonialsCarousel from "../components/TestimonialsCarousel.jsx";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -19,14 +23,27 @@ const fadeUp = (delay = 0) => ({
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
 function Hero() {
+  const { scrollY } = useScroll();
+  const bgY = useTransform(scrollY, [0, 700], [0, 180]);
+  const gridY = useTransform(scrollY, [0, 700], [0, 80]);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: "#1a1a1a" }}>
-      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%)", opacity: 0.98 }} />
-      <div
-        className="absolute inset-0 opacity-[0.03]"
+      {/* Hero photo with parallax */}
+      <motion.img
+        src="/images/melbourne-home-renovations-cherry-builds.jpg"
+        alt="Cherry Builds renovation"
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        style={{ y: bgY, scale: 1.08 }}
+      />
+      {/* Dark overlay so text stays readable */}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(26,26,26,0.62) 0%, rgba(26,26,26,0.52) 50%, rgba(26,26,26,0.62) 100%)" }} />
+      <motion.div
+        className="absolute inset-0 opacity-[0.025]"
         style={{
           backgroundImage:
             "repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(255,255,255,1) 60px,rgba(255,255,255,1) 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(255,255,255,1) 60px,rgba(255,255,255,1) 61px)",
+          y: gridY,
         }}
       />
 
@@ -183,6 +200,79 @@ function About() {
   );
 }
 
+// ─── Why Choose ──────────────────────────────────────────────────────────────
+
+const WHY_ITEMS = [
+  {
+    icon: Hammer,
+    title: "Expert Craftsmanship",
+    desc: "Our team of seasoned professionals brings years of experience and expertise to every project, ensuring impeccable results that exceed your expectations. From concept to completion, trust Cherry Builds to deliver excellence at every step.",
+  },
+  {
+    icon: SlidersHorizontal,
+    title: "Tailored Solutions for Every Budget",
+    desc: "At Cherry Builds, we believe that exceptional quality should be accessible to all. We offer personalised renovation solutions designed to accommodate a range of budgets — whether a modest update or a full-scale transformation.",
+  },
+  {
+    icon: LayoutGrid,
+    title: "Comprehensive Services",
+    desc: "From full home renovations to custom kitchen and bathroom remodels, Cherry Builds offers a comprehensive range of services. We handle every aspect of your project with precision and care, ensuring a seamless experience from start to finish.",
+  },
+  {
+    icon: Eye,
+    title: "Unmatched Attention to Detail",
+    desc: "We understand that the difference is in the details. That's why we take pride in our meticulous approach to every aspect of your project, ensuring that every corner is crafted to perfection. No detail is overlooked.",
+  },
+  {
+    icon: ThumbsUp,
+    title: "Customer Satisfaction Guaranteed",
+    desc: "Your satisfaction is our top priority. We go above and beyond to ensure that you're thrilled with the results of your renovation, providing unparalleled service and support every step of the way.",
+  },
+];
+
+function WhyChoose() {
+  return (
+    <section className="py-24" style={{ backgroundColor: "#1a1a1a" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>
+            Why Cherry Builds
+          </span>
+          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">
+            Why Choose Cherry Builds?
+          </RevealText>
+        </motion.div>
+
+        <motion.div
+          className="grid sm:grid-cols-2 gap-5"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09 } } }}
+        >
+          {WHY_ITEMS.map((item, i) => (
+            <motion.div
+              key={item.title}
+              variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
+              className={`rounded-2xl p-6 border${i === WHY_ITEMS.length - 1 ? " sm:col-span-2 flex flex-col items-center text-center" : ""}`}
+              style={{ backgroundColor: "#2a2a2a", borderColor: "rgba(255,255,255,0.07)" }}
+            >
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                style={{ backgroundColor: "rgba(163,52,62,0.2)", border: "1px solid rgba(163,52,62,0.3)" }}
+              >
+                <item.icon className="w-5 h-5" style={{ color: "#f49ba0" }} />
+              </div>
+              <h3 className="font-semibold text-white mb-2">{item.title}</h3>
+              <p className={`text-sm text-neutral-400 leading-relaxed${i === WHY_ITEMS.length - 1 ? " max-w-xl" : ""}`}>{item.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 // ─── Services ────────────────────────────────────────────────────────────────
 
 function Services() {
@@ -197,30 +287,53 @@ function Services() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {SERVICES.map((svc, i) => (
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
+        >
+          {SERVICES.map((svc) => (
             <motion.div
               key={svc.title}
-              {...fadeUp(0.05 + i * 0.04)}
+              variants={{ hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
               whileHover={{ y: -4 }}
-              className="group bg-white border border-neutral-200 rounded-2xl p-6 hover:shadow-md hover:border-cherry-100 transition-all"
+              className="group"
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: "#fdf2f3", border: "1px solid #fce4e5" }}>
-                <svc.icon className="w-5 h-5" style={{ color: "#a3343e" }} />
-              </div>
-              <h3 className="font-semibold text-neutral-900 mb-2 text-sm">{svc.title}</h3>
-              <p className="text-xs text-neutral-500 leading-relaxed mb-4">{svc.desc}</p>
               <Link
                 to={`/services/${svc.slug}`}
-                className="inline-flex items-center gap-1 text-xs font-semibold transition-colors group-hover:gap-1.5"
-                style={{ color: "#a3343e" }}
+                className="flex flex-col h-full bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-md hover:border-cherry-100 transition-shadow transition-colors"
               >
-                Learn More
-                <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                {/* Photo / icon header */}
+                <div className="h-36 relative overflow-hidden flex-shrink-0" style={{ backgroundColor: "#fdf2f3" }}>
+                  {svc.heroImage ? (
+                    <img src={svc.heroImage} alt={svc.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: "#fdf2f3" }}>
+                      <svc.icon className="w-10 h-10" style={{ color: "#a3343e", opacity: 0.35 }} />
+                    </div>
+                  )}
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 55%)" }} />
+                  <div className="absolute bottom-3 left-3">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#a3343e" }}>
+                      <svc.icon className="w-4 h-4 text-white" />
+                    </div>
+                  </div>
+                </div>
+                {/* Content */}
+                <div className="flex flex-col flex-1 p-5">
+                  <h3 className="font-semibold text-neutral-900 mb-2 text-sm">{svc.title}</h3>
+                  <p className="text-xs text-neutral-500 leading-relaxed mb-4 flex-1">{svc.desc}</p>
+                  <div className="inline-flex items-center gap-1 text-xs font-semibold group-hover:gap-1.5 transition-all" style={{ color: "#a3343e" }}>
+                    Learn More
+                    <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </div>
+                </div>
               </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -240,56 +353,77 @@ function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map((p, i) => (
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+        >
+          {PROJECTS.map((p) => (
             <motion.div
               key={p.slug}
-              {...fadeUp(0.05 + i * 0.06)}
-              className="group bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-lg transition-all"
+              variants={{ hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                e.currentTarget.style.transform = `perspective(800px) rotateY(${x * 7}deg) rotateX(${y * -7}deg) translateZ(4px)`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0px)";
+              }}
+              className="group"
+              style={{ transformStyle: "preserve-3d", transition: "transform 0.2s ease, box-shadow 0.2s ease" }}
             >
-              <div className="h-48 relative overflow-hidden" style={{ backgroundColor: "#ededed" }}>
-                <div className="absolute inset-0 flex items-center justify-center text-neutral-400">
-                  <div className="text-center">
-                    <div className="text-3xl mb-1">🏗</div>
-                    <div className="text-xs">Photo coming soon</div>
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-2">
-                  <div>
-                    <h3 className="font-semibold text-neutral-900">{p.title}</h3>
-                    <div className="flex items-center gap-1 text-xs mt-0.5" style={{ color: "#a3343e" }}>
-                      <MapPin className="w-3 h-3" />
-                      {p.location}
+              <Link
+                to={`/projects/${p.slug}`}
+                className="flex flex-col h-full bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-lg transition-shadow"
+              >
+                <div className="h-48 relative overflow-hidden" style={{ backgroundColor: "#ededed" }}>
+                  {p.image ? (
+                    <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-neutral-400">
+                      <div className="text-center">
+                        <div className="text-3xl mb-1">🏗</div>
+                        <div className="text-xs">Photo coming soon</div>
+                      </div>
                     </div>
-                  </div>
-                  {p.value && (
-                    <span className="text-xs text-neutral-400 font-medium whitespace-nowrap">{p.value}</span>
                   )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <p className="text-xs text-neutral-500 leading-relaxed mb-4">{p.summary}</p>
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {p.tags.map((t) => (
-                    <span key={t} className="text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: "#fdf2f3", color: "#a3343e", border: "1px solid #fce4e5" }}>
-                      {t}
-                    </span>
-                  ))}
+
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h3 className="font-semibold text-neutral-900">{p.title}</h3>
+                      <div className="flex items-center gap-1 text-xs mt-0.5" style={{ color: "#a3343e" }}>
+                        <MapPin className="w-3 h-3" />
+                        {p.location}
+                      </div>
+                    </div>
+                    {p.value && (
+                      <span className="text-xs text-neutral-400 font-medium whitespace-nowrap">{p.value}</span>
+                    )}
+                  </div>
+                  <p className="text-xs text-neutral-500 leading-relaxed mb-4 flex-1">{p.summary}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {p.tags.map((t) => (
+                      <span key={t} className="text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: "#fdf2f3", color: "#a3343e", border: "1px solid #fce4e5" }}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="inline-flex items-center gap-1.5 text-xs font-semibold group-hover:gap-2 transition-all" style={{ color: "#a3343e" }}>
+                    View Project
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
                 </div>
-                <Link
-                  to={`/projects/${p.slug}`}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors group/link"
-                  style={{ color: "#a3343e" }}
-                >
-                  View Project
-                  <ChevronRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
-                </Link>
-              </div>
+              </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -306,27 +440,13 @@ function Testimonials() {
           <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">What Our Clients Say</RevealText>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {TESTIMONIALS.map((t, i) => (
-            <motion.div
-              key={t.name}
-              {...fadeUp(0.05 + i * 0.07)}
-              className="rounded-2xl p-6 border"
-              style={{ backgroundColor: "#2a2a2a", borderColor: "rgba(255,255,255,0.08)" }}
-            >
-              <div className="flex gap-0.5 mb-4">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <svg key={j} className="w-4 h-4 text-amber-400 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                ))}
-              </div>
-              <p className="text-neutral-300 text-sm leading-relaxed mb-5">"{t.text}"</p>
-              <div>
-                <div className="font-semibold text-white text-sm">{t.name}</div>
-                <div className="text-xs text-neutral-500 mt-0.5">{t.suburb}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+        <motion.div {...fadeUp(0.15)}>
+          <TestimonialsCarousel
+            testimonials={TESTIMONIALS.slice(0, 4)}
+            cardBg="#2a2a2a"
+            cardWidth="clamp(280px, 70vw, 340px)"
+          />
+        </motion.div>
       </div>
     </section>
   );
@@ -344,6 +464,12 @@ function AquaTight() {
 
           <div className="relative z-10 grid md:grid-cols-2 gap-10 items-center">
             <motion.div {...fadeUp(0.1)}>
+              <img
+                src="/logos/aqua-tight.png"
+                alt="Aqua Tight"
+                className="h-16 w-auto mb-5"
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
               <div className="inline-flex items-center gap-2 bg-white/15 border border-white/20 rounded-full px-3 py-1 text-sm font-medium mb-5">
                 <Droplets className="w-4 h-4" />
                 Certified Division
@@ -417,6 +543,11 @@ function CombinedExpertise() {
             <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
               A complete, one-stop solution for all your water damage rectification needs.
             </RevealText>
+            <div className="flex items-center gap-6 mt-8 pt-6 border-t border-neutral-200">
+              <img src="/logos/cherry-builds-navbar.png" alt="Cherry Builds" className="h-14 w-auto" />
+              <span className="text-neutral-300 text-lg font-light">×</span>
+              <img src="/logos/aqua-tight.png" alt="Aqua Tight" className="h-14 w-auto" />
+            </div>
           </motion.div>
 
           <motion.div {...fadeUp(0.2)} className="space-y-5">
@@ -559,7 +690,6 @@ function Contact() {
             <div className="mt-8 space-y-4">
               {[
                 { icon: Phone, label: "Phone", value: "0438 499 146", href: "tel:0438499146" },
-                { icon: Phone, label: "Alt Phone", value: "0400 210 105", href: "tel:0400210105" },
                 { icon: Mail, label: "Email", value: "info@cherrybuilds.com.au", href: "mailto:info@cherrybuilds.com.au" },
                 { icon: MapPin, label: "Postal", value: "PO BOX 3109, Mentone East VIC 3194", href: null },
               ].map(({ icon: Icon, label, value, href }) => (
@@ -674,8 +804,18 @@ function FloatingCall() {
 export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>Cherry Builds | VBA Licensed Renovation Builder Melbourne</title>
+        <meta name="description" content="VBA Licensed renovation builder in Melbourne — kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
+        <meta property="og:title" content="Cherry Builds | VBA Licensed Renovation Builder Melbourne" />
+        <meta property="og:description" content="VBA Licensed renovation builder in Melbourne — kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
+        <meta property="og:url" content="https://cherrybuilds.com.au/" />
+        <link rel="canonical" href="https://cherrybuilds.com.au/" />
+      </Helmet>
       <Hero />
+      <TrustBar />
       <About />
+      <WhyChoose />
       <Services />
       <Projects />
       <Testimonials />

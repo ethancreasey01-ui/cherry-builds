@@ -25,8 +25,12 @@ export const SERVICES = [
   {
     icon: Home,
     slug: "full-home-renovations",
+    heroImage: "/images/melbourne-full-home-renovation-living-wide.jpg",
     title: "Full Home Renovations",
     desc: "Complete home transformations from structural work through to final finishes. We manage every trade, on time and on budget.",
+    overviewHeading: "Melbourne Home and Heritage Renovation Specialists",
+    includesHeading: "Our Home Renovation Services",
+    seoDesc: "VBA Licensed renovation builder in Melbourne — full home, heritage, period, and investment property renovations. Bayside, Mornington Peninsula and inner suburbs. Fixed prices, 30+ years experience. Free quote.",
     overview: "A full home renovation is the single biggest investment you can make in your property — and the single biggest test of a builder's skill. Cherry Builds has delivered complete home transformations across Melbourne's Bayside and Mornington Peninsula for over 30 years, managing every trade from demolition to final clean-up under one roof.\n\nWe handle the complexity so you don't have to. From structural work, rewiring, and replumbing through to kitchens, bathrooms, flooring, painting, and landscaping — every element is coordinated by our team, on one contract, with one point of contact throughout.\n\nWhether you're modernising a 1940s character home, transforming an investment property, or rebuilding a coastal holiday house, we deliver results that hold their value for decades.",
     includes: [
       "Full project management — one point of contact",
@@ -50,14 +54,19 @@ export const SERVICES = [
       { q: "Do you handle council permits?", a: "Yes. Where building permits are required, we manage the application and inspection process on your behalf." },
       { q: "Can we stay in the home during the renovation?", a: "It depends on the scope. For major works we'll advise you upfront — and we always aim to minimise disruption where possible." },
       { q: "How long does a full home renovation take?", a: "Typically 8–16 weeks depending on scope. We provide a project timeline before any work begins." },
+      { q: "How much does a full home renovation cost in Melbourne?", a: "Costs range from around $80,000 for a focused scope to $250,000+ for a comprehensive whole-home transformation. Scope, structural work, and material selections are the main drivers. We provide a detailed fixed-price quote after a site visit — no surprises once work begins." },
     ],
     relatedProjects: ["point-leo-holiday-home", "burnett-st-apartment", "moorabbin-1940s-home"],
   },
   {
     icon: Bath,
     slug: "bathroom-renovations",
+    heroImage: "/images/melbourne-bathroom-renovation-shower.jpg",
     title: "Bathroom Renovations",
     desc: "Luxury bathroom rebuilds with full waterproofing, tiling, fixtures, and custom finishes to suit any style.",
+    overviewHeading: "Melbourne Bathroom Renovations",
+    includesHeading: "Our Bathroom Renovation Services",
+    seoDesc: "Bathroom renovation cost Melbourne: $15,000–$35,000+. Complete rebuilds with AS3740 waterproofing, custom tiling and quality fixtures across Bayside, Mornington Peninsula and inner Melbourne. VBA Licensed. Free quote.",
     overview: "The bathroom is one of the most-used rooms in any home — and one of the most complex to renovate properly. Done right, it adds significant value and transforms your daily routine. Done wrong, it leads to leaks, mould, and expensive rectification work down the track.\n\nCherry Builds approaches every bathroom renovation as a complete rebuild from the waterproofing membrane up. We hold our own VBA licence and operate our certified Aqua Tight waterproofing division in-house, meaning we never cut corners on the most critical element of any wet area.\n\nFrom compact ensuite upgrades to full master bathroom transformations with freestanding baths, heated floors, and custom cabinetry — we design and build bathrooms that look exceptional and hold up for the long term.",
     includes: [
       "Full demolition and disposal",
@@ -81,14 +90,19 @@ export const SERVICES = [
       { q: "How long does a bathroom renovation take?", a: "Most bathroom renovations take 2–4 weeks from demolition to handover, depending on size and complexity." },
       { q: "Do you supply the tiles and fixtures?", a: "We can supply everything, or work with products you've already selected — whichever suits you." },
       { q: "Is a waterproofing certificate included?", a: "Yes. Every bathroom we complete includes a waterproofing certificate issued by our Aqua Tight division." },
+      { q: "How much does a bathroom renovation cost in Melbourne?", a: "Most bathroom renovations in Melbourne fall between $15,000 and $35,000, with premium rebuilds — freestanding bath, heated floors, custom cabinetry — reaching $50,000+. Our quotes are fixed-price so you know the full cost before any work begins." },
     ],
     relatedProjects: ["point-leo-holiday-home", "burnett-st-apartment", "fitzroy-art-deco-apartment"],
   },
   {
     icon: UtensilsCrossed,
     slug: "kitchen-renovations",
+    heroImage: "/images/melbourne-kitchen-renovation-island-bench.jpg",
     title: "Kitchen Renovations",
     desc: "Custom kitchens with butler pantries, new appliances, cabinetry, and benchtops — designed around how you live.",
+    overviewHeading: "Melbourne Kitchen Renovations",
+    includesHeading: "Our Kitchen Renovation Services",
+    seoDesc: "Kitchen renovation cost Melbourne: $20,000–$60,000+. Custom kitchens with stone benchtops, butler pantries and cabinetry across Bayside, Mornington Peninsula and inner Melbourne. VBA Licensed builder. Free quote.",
     overview: "The kitchen is the heart of the home and the first thing buyers look at when assessing value. A well-executed kitchen renovation delivers both daily enjoyment and measurable returns at sale or rental.\n\nCherry Builds has completed kitchens across Melbourne ranging from compact apartment reconfigures to full butler pantry builds and open-plan living transformations. We work with your brief, your budget, and your space — whether that means preserving a period layout or knocking down walls to open everything up.\n\nWe manage the full scope: cabinetry, benchtops, splashbacks, appliances, plumbing, electrical, and lighting. Every kitchen we deliver is built to the same standard we'd want in our own homes.",
     includes: [
       "Full demolition and disposal",
@@ -112,6 +126,7 @@ export const SERVICES = [
       { q: "Can you move walls to open up the kitchen?", a: "Yes. We handle all structural work in-house, including load-bearing wall removal where engineering permits." },
       { q: "How long does a kitchen renovation take?", a: "Typically 3–5 weeks depending on the scope. We build a timeline before work begins so you can plan accordingly." },
       { q: "Do you work with a kitchen designer?", a: "We can bring in a designer if needed, or work directly from your brief and selected product specifications." },
+      { q: "How much does a kitchen renovation cost in Melbourne?", a: "Kitchen renovations in Melbourne typically range from $20,000 for a mid-range update to $60,000+ for a full custom kitchen with butler pantry, structural changes, and premium finishes. We provide itemised fixed-price quotes so there are no hidden costs." },
     ],
     relatedProjects: ["point-leo-holiday-home", "moorabbin-1940s-home", "fitzroy-art-deco-apartment"],
   },
@@ -120,6 +135,9 @@ export const SERVICES = [
     slug: "decking-landscaping",
     title: "Decking & Landscaping",
     desc: "Outdoor living spaces including composite and timber decking, pergolas, synthetic lawn, garden beds, and lighting.",
+    overviewHeading: "Melbourne Decking & Outdoor Living",
+    includesHeading: "Our Decking & Landscaping Services",
+    seoDesc: "Melbourne decking and outdoor living — composite and timber decking, synthetic lawn, pergolas and garden lighting. Servicing Hampton, Brighton, Cheltenham, Bayside and Mornington Peninsula. VBA Licensed. Free quote.",
     overview: "Outdoor living has become one of the most sought-after features in Melbourne homes. A well-designed deck and garden transforms unused backyard space into a genuine extension of your living area — and adds real dollars to your property value.\n\nCherry Builds designs and builds outdoor spaces that are low-maintenance, beautifully finished, and built to handle Melbourne's climate. We work with composite and hardwood timber decking, synthetic and natural lawn, granitic pathways, raised garden beds, pergolas, and integrated lighting to create spaces that feel considered and cohesive.\n\nEvery outdoor project starts with understanding how you actually want to use the space — then we build it to last.",
     includes: [
       "Composite or hardwood timber decking",
@@ -149,8 +167,12 @@ export const SERVICES = [
   {
     icon: Layers,
     slug: "tiling-flooring",
+    heroImage: "/images/melbourne-home-renovation-entry.jpg",
     title: "Tiling & Flooring",
     desc: "All types of tiling — from heritage mosaic to large-format porcelain, timber, and polished concrete.",
+    overviewHeading: "Melbourne Tiling & Flooring Specialists",
+    includesHeading: "Our Tiling & Flooring Services",
+    seoDesc: "Melbourne tiling and flooring specialists — large-format porcelain, heritage mosaic, timber floors and polished concrete. Wet area waterproofing included. Servicing Bayside, Mornington Peninsula and inner suburbs. Free quote.",
     overview: "Flooring and tiling are the finishes that set the tone for every room in a home. Get them right and the whole space feels cohesive, considered, and quality. Get them wrong and no amount of paint or furniture fixes it.\n\nCherry Builds has been laying tiles and flooring across Melbourne for over 30 years. We work with every format and material — from delicate heritage mosaic and encaustic tiles through to large-format porcelain slabs, polished timber, floating boards, and polished concrete. We also carry our own waterproofing licence, meaning tiled wet areas are completed to the correct standard every time.\n\nWhether it's a single bathroom, a full home retile, or new flooring throughout a multi-bedroom property, we bring the same care and precision to every square metre.",
     includes: [
       "All tile formats — mosaic, standard, large-format, rectified",
@@ -182,6 +204,9 @@ export const SERVICES = [
     slug: "waterproofing",
     title: "Waterproofing",
     desc: "AS3740-compliant waterproofing for showers, balconies, and wet areas through our Aqua Tight certified division.",
+    overviewHeading: "Melbourne Waterproofing Services",
+    includesHeading: "Our Waterproofing Services",
+    seoDesc: "Leaking shower or balcony in Melbourne? Cherry Builds' Aqua Tight division provides AS3740-certified shower waterproofing and balcony waterproofing. Certificates issued on every job. Free inspections — Bayside and Mornington Peninsula.",
     overview: "Waterproofing failure is one of the most expensive and disruptive building defects a homeowner can face. Water finds its way into structures slowly and silently — often going undetected for years until the damage is severe.\n\nCherry Builds operates Aqua Tight, our dedicated certified waterproofing division, applying AS3740-compliant systems to all domestic wet areas — new builds, renovations, and rectification of failed waterproofing. Every job is completed by licensed waterproofers and issued with a certificate on completion.\n\nWe waterproof showers, bathrooms, laundries, balconies, and outdoor wet areas — and we offer free inspections for homeowners concerned about existing waterproofing.",
     includes: [
       "Shower recesses and bathroom floors",
@@ -213,6 +238,9 @@ export const SERVICES = [
     slug: "plastering-painting",
     title: "Plastering & Painting",
     desc: "Plaster repairs, full replastering, and professional interior/exterior painting for a flawless finish.",
+    overviewHeading: "Melbourne Plastering, Painting and Heritage Restoration",
+    includesHeading: "Our Plastering and Painting Services",
+    seoDesc: "Melbourne plastering and painting specialists — heritage plaster restoration, cornicing, ceiling roses, and premium interior and exterior painting. Period and modern homes. Bayside, Mornington Peninsula and inner suburbs. Free quote.",
     overview: "A fresh coat of paint is one of the highest-ROI investments you can make in a property — but only when it's done properly. Poor preparation, the wrong products, or sloppy application produces a result that looks flat within months.\n\nCherry Builds brings the same attention to detail to plastering and painting that we bring to every other trade. We handle plaster repairs, full replastering of damaged or period walls, and professional interior and exterior painting for residential properties across Melbourne.\n\nWe always prepare thoroughly — filling, sanding, priming, and caulking before any paint goes on — and we use premium products suited to each surface. The result is a finish that looks exceptional and holds up for years.",
     includes: [
       "Plaster crack and hole repairs",
@@ -244,6 +272,9 @@ export const SERVICES = [
     slug: "property-preparation",
     title: "Property Preparation",
     desc: "Pre-sale and pre-rental spruce-ups: repairs, fresh paint, floor polishing, and staging to maximise your property value.",
+    overviewHeading: "Melbourne Pre-Sale Property Preparation",
+    includesHeading: "Our Property Preparation Services",
+    seoDesc: "Pre-sale property preparation and renovation across Melbourne — repairs, fresh paint, floor polishing. Cherry Builds maximises your sale or rental result fast. Bayside, Brighton, Sandringham, Mornington Peninsula. Free quote.",
     overview: "First impressions sell properties. Whether you're preparing for an auction campaign, a rental listing, or simply want your investment property looking its best between tenancies, the right preparation work can meaningfully shift your result.\n\nCherry Builds specialises in rapid, high-impact property preparation — the repairs, cosmetic upgrades, and finishing touches that make a home photograph well, inspect well, and sell or lease quickly. We work to tight timelines, respect the constraints of occupied or partially occupied properties, and focus our effort where it will have the most impact.\n\nFrom a quick repaint and floor polish through to a full pre-sale renovation, we'll advise you honestly on what's worth spending and what isn't.",
     includes: [
       "Condition report and priority assessment",
@@ -275,6 +306,8 @@ export const SERVICES = [
 export const PROJECTS = [
   {
     slug: "point-leo-holiday-home",
+    image: "/images/melbourne-bathroom-renovation-vanity.jpg",
+    images: ["/images/melbourne-bathroom-renovation-vanity.jpg", "/images/melbourne-bathroom-renovation-shower.jpg"],
     title: "Point Leo Holiday Home",
     location: "Point Leo",
     summary: "13-year-old holiday home renovation: kitchen with butler pantry, primary bathroom with mosaic tiling, bedroom conversion, structural water damage repairs, timber flooring restoration, and complete interior painting.",
@@ -294,6 +327,8 @@ export const PROJECTS = [
   },
   {
     slug: "burnett-st-apartment",
+    image: "/images/melbourne-kitchen-renovation-island-bench.jpg",
+    images: ["/images/melbourne-kitchen-renovation-island-bench.jpg", "/images/melbourne-kitchen-renovation-open-plan.jpg", "/images/melbourne-kitchen-renovation-dining.jpg", "/images/melbourne-kitchen-renovation-cabinetry.jpg"],
     title: "Burnett St Apartment",
     location: "St Kilda",
     summary: "Full two-bedroom apartment renovation including rewiring, replumbing, kitchen reconfiguration, complete bathroom rebuild, split-system air conditioning, floating floorboards, and furnishing staging.",
@@ -314,6 +349,8 @@ export const PROJECTS = [
   },
   {
     slug: "moorabbin-1940s-home",
+    image: "/images/melbourne-full-home-renovation-living-room.jpg",
+    images: ["/images/melbourne-full-home-renovation-living-room.jpg", "/images/melbourne-full-home-renovation-living-wide.jpg"],
     title: "Moorabbin 1940s Home",
     location: "Moorabbin",
     summary: "Comprehensive overhaul of a 1940s property: new kitchen, bathrooms, full rewiring and replumbing, heating/cooling, carport construction, floor polishing, and landscaping.",
@@ -373,6 +410,8 @@ export const PROJECTS = [
   },
   {
     slug: "fitzroy-art-deco-apartment",
+    image: "/images/melbourne-bathroom-renovation-frameless-shower.jpg",
+    images: ["/images/melbourne-bathroom-renovation-frameless-shower.jpg"],
     title: "Fitzroy Art Deco Apartment",
     location: "Fitzroy",
     summary: "Art deco kitchen and bathroom modernisation with full rewiring, replumbing, and interior painting — preserving original character.",
@@ -393,29 +432,178 @@ export const PROJECTS = [
 ];
 
 export const TESTIMONIALS = [
+  // ── Home page (first 4 shown) ─────────────────────────────────────────────
   {
     name: "Sarah M.",
     suburb: "Hampton",
     text: "Cherry Builds completely transformed our bathroom. Finished on time, on budget, and the quality of work was outstanding. Couldn't be happier.",
     rating: 5,
+    service: "bathroom-renovations",
   },
   {
     name: "James T.",
     suburb: "Moorabbin",
     text: "Professional from start to finish. They managed every trade, kept us informed throughout, and delivered a result that exceeded our expectations.",
     rating: 5,
+    service: "full-home-renovations",
   },
   {
     name: "Rebecca L.",
     suburb: "St Kilda",
     text: "The team renovated our entire apartment. The attention to detail was incredible and they left the place spotless every day. Highly recommend.",
     rating: 5,
+    service: "full-home-renovations",
   },
   {
     name: "David K.",
     suburb: "Brighton",
     text: "Excellent communication and workmanship. Our new deck looks amazing and was completed without any fuss. Will definitely use Cherry Builds again.",
     rating: 5,
+    service: "decking-landscaping",
+  },
+
+  // ── Kitchen renovations ───────────────────────────────────────────────────
+  {
+    name: "Michelle P.",
+    suburb: "Bayside",
+    text: "The new kitchen is everything we wanted. The island bench is perfect for our family and the stone benchtops are a real statement piece. Cherry Builds nailed the brief.",
+    rating: 5,
+    service: "kitchen-renovations",
+  },
+  {
+    name: "Chris & Amy N.",
+    suburb: "Hampton",
+    text: "From brief to handover, the kitchen renovation was handled perfectly. Cherry Builds helped us choose every element — the Caesarstone benchtop and handleless cabinetry are exactly the look we were after.",
+    rating: 5,
+    service: "kitchen-renovations",
+  },
+  {
+    name: "Steve R.",
+    suburb: "Frankston",
+    text: "We had two walls knocked out to open the kitchen to the living area. Cherry Builds managed the structural work and the rebuild as one seamless job — transformed the whole ground floor.",
+    rating: 5,
+    service: "kitchen-renovations",
+  },
+
+  // ── Waterproofing ─────────────────────────────────────────────────────────
+  {
+    name: "Mark D.",
+    suburb: "Cheltenham",
+    text: "Our shower had been leaking for two years and two other tradespeople had failed to fix it. Cherry Builds stripped it back, applied the correct membrane, and issued a certificate. Completely dry ever since.",
+    rating: 5,
+    service: "waterproofing",
+  },
+  {
+    name: "Sandra K.",
+    suburb: "Mount Eliza",
+    text: "Aqua Tight handled our balcony waterproofing professionally and cleanly. They explained every step of the process and the certificate gave us real peace of mind. Would highly recommend.",
+    rating: 5,
+    service: "waterproofing",
+  },
+
+  // ── Plastering and painting ───────────────────────────────────────────────
+  {
+    name: "Peter & Claire O.",
+    suburb: "Brighton",
+    text: "Cherry Builds repainted our entire home inside and out. The preparation was meticulous — every crack filled, every surface primed properly. Two years later it still looks like day one.",
+    rating: 5,
+    service: "plastering-painting",
+  },
+  {
+    name: "Diane W.",
+    suburb: "Sandringham",
+    text: "We had significant plaster damage from an old roof leak. Cherry Builds replastered the entire ceiling and repainted — you'd never know anything had happened. Clean, professional, and exactly on time.",
+    rating: 5,
+    service: "plastering-painting",
+  },
+
+  // ── Tiling and flooring ───────────────────────────────────────────────────
+  {
+    name: "Nick D.",
+    suburb: "Moorabbin",
+    text: "The original 1940s floorboards polished up to an absolute shine. Cherry Builds treated them with real care — the whole renovation was managed perfectly from start to finish.",
+    rating: 5,
+    service: "tiling-flooring",
+  },
+  {
+    name: "Greg T.",
+    suburb: "Sandringham",
+    text: "The large-format porcelain tiling throughout our renovation is flawless. Perfectly level, fine grout lines, no lippage. A proper tradesman's finish — every visitor comments on it.",
+    rating: 5,
+    service: "tiling-flooring",
+  },
+
+  // ── Property preparation ──────────────────────────────────────────────────
+  {
+    name: "Julia M.",
+    suburb: "Brighton East",
+    text: "Used Cherry Builds to prepare our home for sale — fresh paint, polished floors, and a garden tidy-up. Our agent said it was one of the best-presented properties she'd listed all year.",
+    rating: 5,
+    service: "property-preparation",
+  },
+  {
+    name: "Michael T.",
+    suburb: "Mentone",
+    text: "Cherry Builds came in, assessed everything, and focused on exactly the right things ahead of our auction. Fresh paint and polished floors — the property sold $45k above reserve.",
+    rating: 5,
+    service: "property-preparation",
+  },
+  {
+    name: "Fiona & Brendan L.",
+    suburb: "Moorabbin",
+    text: "Between tenancies our rental needed a proper refresh. Cherry Builds did the paint, floors, and kitchen tidy-up in under two weeks. The place re-let immediately at a higher rate.",
+    rating: 5,
+    service: "property-preparation",
+  },
+
+  // ── Project testimonials (1 per project, personal narrative) ─────────────
+  {
+    name: "Tom & Melissa W.",
+    suburb: "Point Leo",
+    text: "We'd been putting off this renovation for three years. Cherry Builds made it effortless — the new kitchen is stunning and the mosaic bathroom is the first thing every guest comments on. We finally have the holiday house we always imagined.",
+    rating: 5,
+    service: "bathroom-renovations",
+    project: "point-leo-holiday-home",
+  },
+  {
+    name: "Mark & Claire L.",
+    suburb: "St Kilda",
+    text: "We bought the Burnett St apartment knowing it needed everything. Cherry Builds replaced every system, rebuilt the kitchen and bathroom, and staged it perfectly. It re-let above suburb median within a week of listing.",
+    rating: 5,
+    service: "full-home-renovations",
+    project: "burnett-st-apartment",
+  },
+  {
+    name: "Dan & Karen T.",
+    suburb: "Moorabbin",
+    text: "Our 1940s home was falling apart when Cherry Builds got started. Fourteen weeks later we had a brand-new house that still felt like ours. The original floorboards polished up better than we ever dared hope.",
+    rating: 5,
+    service: "full-home-renovations",
+    project: "moorabbin-1940s-home",
+  },
+  {
+    name: "Paul & Karen B.",
+    suburb: "Beaumaris",
+    text: "Two builders had failed to fix our leaking balcony before we called Aqua Tight. They found the problem immediately, fixed it properly, and our insurance company was satisfied with the certificate. Complete lifesavers.",
+    rating: 5,
+    service: "waterproofing",
+    project: "beaumaris-balcony",
+  },
+  {
+    name: "Andrew & Sarah S.",
+    suburb: "Cheltenham",
+    text: "We gave Cherry Builds a simple brief — low maintenance, kid-friendly, great for entertaining. They delivered on every point. The deck is our favourite room in the house now, and the LED lighting at night is a lovely touch.",
+    rating: 5,
+    service: "decking-landscaping",
+    project: "cheltenham-backyard",
+  },
+  {
+    name: "Louise & James H.",
+    suburb: "Fitzroy",
+    text: "We were nervous about renovating our art deco apartment — so many builders just gut everything. Cherry Builds understood immediately what we wanted to preserve. The cornicing and ceiling roses look like they were never touched.",
+    rating: 5,
+    service: "plastering-painting",
+    project: "fitzroy-art-deco-apartment",
   },
 ];
 
