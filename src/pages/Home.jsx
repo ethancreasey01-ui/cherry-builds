@@ -153,9 +153,7 @@ function About() {
               that Melbourne homeowners have relied on for decades.
             </p>
             <p className="mt-4 text-neutral-600 leading-relaxed">
-              With over 30 years of industry experience, our portfolio spans hundreds of bathroom
-              renovations, custom kitchens, and outdoor living projects across Melbourne's Bayside,
-              inner city, and the Mornington Peninsula.
+              With over 30 years of industry experience, our portfolio spans hundreds of full renovations from period homes to architectural homes, bathroom renovations, custom kitchens, and outdoor living projects across Melbourne's Bayside, inner city, and the Mornington Peninsula.
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-3">
@@ -216,7 +214,7 @@ const WHY_ITEMS = [
   {
     icon: LayoutGrid,
     title: "Comprehensive Services",
-    desc: "From full home renovations to custom kitchen and bathroom remodels, Cherry Builds offers a comprehensive range of services. We handle every aspect of your project with precision and care, ensuring a seamless experience from start to finish.",
+    desc: "From full home renovations to custom kitchen and bathroom remodels, Cherry Builds offers a comprehensive range of services, including full project management. We handle every aspect of your project with precision and care, ensuring a seamless experience from start to finish.",
   },
   {
     icon: Eye,
@@ -447,6 +445,56 @@ function Testimonials() {
             cardWidth="clamp(280px, 70vw, 340px)"
           />
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// ─── One Stop ────────────────────────────────────────────────────────────────
+
+function OneStop() {
+  return (
+    <section id="one-stop" className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)" }}>
+          <div className="absolute top-0 right-0 w-72 h-72 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-56 h-56 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+          <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+            <motion.div {...fadeUp(0.1)}>
+              <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>One Stop Service</span>
+              <h2 className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white leading-tight">
+                One team. Every trade. Start to finish.
+              </h2>
+              <p className="mt-5 text-neutral-400 leading-relaxed">
+                Cherry Builds manages every aspect of your renovation under one roof — no coordinating multiple contractors, no gaps between trades. From your first consultation through to final handover, one experienced team handles it all.
+              </p>
+              <a
+                href="#contact"
+                className="mt-8 inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+                style={{ backgroundColor: "#a3343e" }}
+                onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#8a2b34")}
+                onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#a3343e")}
+              >
+                Get a Quote
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </motion.div>
+            <motion.div {...fadeUp(0.2)} className="grid grid-cols-2 gap-4">
+              {[
+                { icon: Hammer, title: "Full Renovations", desc: "Kitchens, bathrooms, and complete home transformations" },
+                { icon: LayoutGrid, title: "Project Management", desc: "One point of contact coordinating every trade" },
+                { icon: Droplets, title: "Waterproofing", desc: "Certified AS3740 waterproofing in-house" },
+                { icon: Shield, title: "Licensed Builder", desc: "VBA Licensed with 30+ years industry experience" },
+              ].map(({ icon: Icon, title, desc }) => (
+                <div key={title} className="bg-white/10 border border-white/20 rounded-xl p-4">
+                  <Icon className="w-5 h-5 mb-2" style={{ color: "#f49ba0" }} />
+                  <div className="font-semibold text-white text-sm mb-0.5">{title}</div>
+                  <div className="text-xs text-neutral-400">{desc}</div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -819,6 +867,7 @@ export default function Home() {
       <Services />
       <Projects />
       <Testimonials />
+      <OneStop />
       <AquaTight />
       <CombinedExpertise />
       <FAQ />
