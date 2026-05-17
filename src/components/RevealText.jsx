@@ -18,20 +18,22 @@ export default function RevealText({ children, as: Tag = "h2", className = "", o
       <motion.span
         initial="hidden"
         whileInView="visible"
-        viewport={{ once, amount: 0.6 }}
+        viewport={{ once, amount: 0.2 }}
         aria-label={children}
         style={{ display: "inline" }}
       >
         {words.map((word, i) => (
-          <span key={i} style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}>
-            <motion.span
-              custom={i}
-              variants={wordVariant}
-              style={{ display: "inline-block" }}
-            >
-              {word}
-              {i < words.length - 1 ? " " : ""}
-            </motion.span>
+          <span key={i} style={{ display: "inline" }}>
+            <span style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}>
+              <motion.span
+                custom={i}
+                variants={wordVariant}
+                style={{ display: "inline-block" }}
+              >
+                {word}
+              </motion.span>
+            </span>
+            {i < words.length - 1 ? " " : ""}
           </span>
         ))}
       </motion.span>
