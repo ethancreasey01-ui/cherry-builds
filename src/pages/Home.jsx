@@ -75,7 +75,7 @@ function Hero() {
           transition={{ duration: 0.7, delay: 0.3 }}
           className="text-lg sm:text-xl text-neutral-300 max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          From full home renovations to kitchens, bathrooms, decking, and landscaping —
+          From full home renovations to kitchens, bathrooms, decking, and landscaping.
           Cherry Builds delivers expert craftsmanship across Melbourne's Bayside and Mornington Peninsula.
         </motion.p>
 
@@ -149,7 +149,7 @@ function About() {
             </h2>
             <p className="mt-5 text-neutral-600 leading-relaxed">
               Originally established as Cherry Properties in 2007, we rebranded to Cherry Building and
-              Construction Services in 2020 — bringing the same trusted team and quality workmanship
+              Construction Services in 2020, bringing the same trusted team and quality workmanship
               that Melbourne homeowners have relied on for decades.
             </p>
             <p className="mt-4 text-neutral-600 leading-relaxed">
@@ -209,7 +209,7 @@ const WHY_ITEMS = [
   {
     icon: SlidersHorizontal,
     title: "Tailored Solutions for Every Budget",
-    desc: "At Cherry Builds, we believe that exceptional quality should be accessible to all. We offer personalised renovation solutions designed to accommodate a range of budgets — whether a modest update or a full-scale transformation.",
+    desc: "At Cherry Builds, we believe that exceptional quality should be accessible to all. We offer personalised renovation solutions designed to accommodate a range of budgets, whether a modest update or a full-scale transformation.",
   },
   {
     icon: LayoutGrid,
@@ -281,7 +281,7 @@ function Services() {
           <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>What We Do</span>
           <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900">Our Services</RevealText>
           <p className="mt-4 text-neutral-500 max-w-xl mx-auto">
-            From a single bathroom through to a full home renovation — we manage every trade in-house.
+            From a single bathroom through to a full home renovation. We manage every trade in-house.
           </p>
         </motion.div>
 
@@ -466,7 +466,7 @@ function OneStop() {
                 One team. Every trade. Start to finish.
               </h2>
               <p className="mt-5 text-neutral-400 leading-relaxed">
-                Cherry Builds manages every aspect of your renovation under one roof — no coordinating multiple contractors, no gaps between trades. From your first consultation through to final handover, one experienced team handles it all.
+                Cherry Builds manages every aspect of your renovation under one roof. No coordinating multiple contractors, no gaps between trades. From your first consultation through to final handover, one experienced team handles it all.
               </p>
               <a
                 href="#contact"
@@ -526,7 +526,7 @@ function AquaTight() {
                 Aqua Tight Waterproofing
               </h2>
               <p className="text-red-100 leading-relaxed mb-5">
-                Our certified waterproofing division — Aqua Tight — provides AS3740-compliant waterproofing
+                Our certified waterproofing division, Aqua Tight, provides AS3740-compliant waterproofing
                 for showers, bathrooms, balconies, and all domestic wet areas. All work comes with
                 certificates and warranties on completion.
               </p>
@@ -603,7 +603,7 @@ function CombinedExpertise() {
               By combining a fully licensed builder with a master waterproofer, Cherry Builds and Aqua Tight
               Waterproofing offer a seamless, end-to-end service. From identifying the source of damage and
               assessing the required repairs, through to quoting, project management, and completion of all
-              works — we handle everything.
+              works. We handle everything.
             </p>
             <p className="text-neutral-600 leading-relaxed">
               With over 30 years of building experience and more than 20 years of specialised waterproofing
@@ -764,7 +764,7 @@ function Contact() {
 
             <div className="mt-6 pt-6 border-t border-neutral-300 text-xs text-neutral-400 space-y-0.5">
               <div>ABN: 60 122 151 679</div>
-              <div>VBA Licence: DB – 71349</div>
+              <div>VBA Licence: DB-71349</div>
             </div>
           </motion.div>
 
@@ -775,7 +775,7 @@ function Contact() {
                   <Check className="w-7 h-7" style={{ color: "#a3343e" }} />
                 </div>
                 <h3 className="text-lg font-semibold text-neutral-900">Enquiry sent!</h3>
-                <p className="text-neutral-500 text-sm">Thanks for reaching out — we'll be in touch shortly with your obligation-free quote.</p>
+                <p className="text-neutral-500 text-sm">Thanks for reaching out. We'll be in touch shortly with your obligation-free quote.</p>
               </div>
             ) : (
               <form action="https://formspree.io/f/placeholder" method="POST" onSubmit={handleSubmit} className="space-y-4 text-sm">
