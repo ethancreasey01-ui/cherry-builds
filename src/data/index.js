@@ -16,7 +16,7 @@ export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
-  { label: "Aqua Tight", href: "#aquatight" },
+  { label: "Aquatight", href: "#aquatight" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ];
@@ -67,7 +67,7 @@ export const SERVICES = [
     overviewHeading: "Melbourne Bathroom Renovations",
     includesHeading: "Our Bathroom Renovation Services",
     seoDesc: "Bathroom renovation cost Melbourne: $15,000–$35,000+. Complete rebuilds with AS3740 waterproofing, custom tiling and quality fixtures across Bayside, Mornington Peninsula and inner Melbourne. VBA Licensed. Free quote.",
-    overview: "The bathroom is one of the most-used rooms in any home, and one of the most complex to renovate properly. Done right, it adds significant value and transforms your daily routine. Done wrong, it leads to leaks, mould, and expensive rectification work down the track.\n\nCherry Builds approaches every bathroom renovation as a complete rebuild from the waterproofing membrane up. We hold our own VBA licence and operate our certified Aqua Tight waterproofing division in-house, meaning we never cut corners on the most critical element of any wet area.\n\nFrom compact ensuite upgrades to full master bathroom transformations with freestanding baths, heated floors, and custom cabinetry, we design and build bathrooms that look exceptional and hold up for the long term.",
+    overview: "The bathroom is one of the most-used rooms in any home, and one of the most complex to renovate properly. Done right, it adds significant value and transforms your daily routine. Done wrong, it leads to leaks, mould, and expensive rectification work down the track.\n\nCherry Builds approaches every bathroom renovation as a complete rebuild from the waterproofing membrane up. We hold our own VBA licence and operate our certified Aquatight waterproofing division in-house, meaning we never cut corners on the most critical element of any wet area.\n\nFrom compact ensuite upgrades to full master bathroom transformations with freestanding baths, heated floors, and custom cabinetry, we design and build bathrooms that look exceptional and hold up for the long term.",
     includes: [
       "Full demolition and disposal",
       "AS3740-compliant waterproofing membrane",
@@ -89,7 +89,7 @@ export const SERVICES = [
     faqs: [
       { q: "How long does a bathroom renovation take?", a: "Most bathroom renovations take 2–4 weeks from demolition to handover, depending on size and complexity." },
       { q: "Do you supply the tiles and fixtures?", a: "We can supply everything, or work with products you've already selected, whichever suits you." },
-      { q: "Is a waterproofing certificate included?", a: "Yes. Every bathroom we complete includes a waterproofing certificate issued by our Aqua Tight division." },
+      { q: "Is a waterproofing certificate included?", a: "Yes. Every bathroom we complete includes a waterproofing certificate issued by our Aquatight division." },
       { q: "How much does a bathroom renovation cost in Melbourne?", a: "Most bathroom renovations in Melbourne fall between $15,000 and $35,000, with premium rebuilds, freestanding bath, heated floors, custom cabinetry, reaching $50,000+. Our quotes are fixed-price so you know the full cost before any work begins." },
     ],
     relatedProjects: ["point-leo-holiday-home", "burnett-st-apartment", "fitzroy-art-deco-apartment"],
@@ -167,7 +167,7 @@ export const SERVICES = [
   {
     icon: Layers,
     slug: "tiling-flooring",
-    heroImage: "/images/melbourne-full-home-renovation-living-wide.jpg",
+    heroImage: "/images/melbourne-home-renovation-entry.jpg",
     title: "Tiling & Flooring",
     desc: "All types of tiling, from heritage mosaic to large-format porcelain, timber, and polished concrete.",
     overviewHeading: "Melbourne Tiling and Flooring",
@@ -203,11 +203,11 @@ export const SERVICES = [
     icon: Droplets,
     slug: "waterproofing",
     title: "Waterproofing",
-    desc: "AS3740-compliant waterproofing for showers, balconies, and wet areas through our Aqua Tight certified division.",
+    desc: "AS3740-compliant waterproofing for showers, balconies, and wet areas through our Aquatight certified division.",
     overviewHeading: "Melbourne Waterproofing Services",
     includesHeading: "Our Waterproofing Services",
-    seoDesc: "Leaking shower or balcony in Melbourne? Cherry Builds' Aqua Tight division provides AS3740-certified shower waterproofing and balcony waterproofing. Certificates issued on every job. Free inspections, Bayside and Mornington Peninsula.",
-    overview: "Waterproofing failure is one of the most expensive and disruptive building defects a homeowner can face. Water finds its way into structures slowly and silently, often going undetected for years until the damage is severe.\n\nCherry Builds operates Aqua Tight, our dedicated certified waterproofing division, applying AS3740-compliant systems to all domestic wet areas, new builds, renovations, and rectification of failed waterproofing. Every job is completed by licensed waterproofers and issued with a certificate on completion.\n\nWe waterproof showers, bathrooms, laundries, balconies, and outdoor wet areas, and we offer free inspections for homeowners concerned about existing waterproofing.",
+    seoDesc: "Leaking shower or balcony in Melbourne? Cherry Builds' Aquatight division provides AS3740-certified shower waterproofing and balcony waterproofing. Certificates issued on every job. Free inspections, Bayside and Mornington Peninsula.",
+    overview: "Waterproofing failure is one of the most expensive and disruptive building defects a homeowner can face. Water finds its way into structures slowly and silently, often going undetected for years until the damage is severe.\n\nCherry Builds operates Aquatight, our dedicated certified waterproofing division, applying AS3740-compliant systems to all domestic wet areas, new builds, renovations, and rectification of failed waterproofing. Every job is completed by licensed waterproofers and issued with a certificate on completion.\n\nWe waterproof showers, bathrooms, laundries, balconies, and outdoor wet areas, and we offer free inspections for homeowners concerned about existing waterproofing.",
     includes: [
       "Shower recesses and bathroom floors",
       "Balconies and terraces",
@@ -372,6 +372,8 @@ export const PROJECTS = [
   },
   {
     slug: "beaumaris-balcony",
+    image: "/images/melbourne-balcony-waterproofing-tiling.jpg",
+    images: ["/images/melbourne-balcony-waterproofing-tiling.jpg"],
     title: "Beaumaris Balcony",
     location: "Beaumaris",
     summary: "Complete balcony restoration with subfloor repairs, waterproofing membrane, new tiling with beveled skirting, and drainage system.",
@@ -386,11 +388,13 @@ export const PROJECTS = [
       "New linear drainage channel installation",
       "Waterproofing certificate issued on completion",
     ],
-    overview: "Failed waterproofing had caused significant water ingress into the structure below this Beaumaris balcony. We stripped everything back, repaired the damaged subfloor structure, and installed a fully compliant AS3740 waterproofing system before retiling with large-format porcelain and a concealed linear drain. The project was completed through our Aqua Tight waterproofing division with a certificate issued on completion.",
+    overview: "Failed waterproofing had caused significant water ingress into the structure below this Beaumaris balcony. We stripped everything back, repaired the damaged subfloor structure, and installed a fully compliant AS3740 waterproofing system before retiling with large-format porcelain and a concealed linear drain. The project was completed through our Aquatight waterproofing division with a certificate issued on completion.",
     imageCount: 4,
   },
   {
     slug: "cheltenham-backyard",
+    image: "/images/melbourne-timber-decking-sandringham.jpg",
+    images: ["/images/melbourne-timber-decking-sandringham.jpg"],
     title: "Cheltenham Backyard",
     location: "Cheltenham",
     summary: "Full backyard transformation: garden bed clean-up, jarrah timber, synthetic lawn, granitic pathways, composite decking with subfloor strengthening, and garden lighting.",
@@ -410,6 +414,8 @@ export const PROJECTS = [
   },
   {
     slug: "fitzroy-art-deco-apartment",
+    image: "/images/melbourne-art-deco-bathroom-renovation.jpg",
+    images: ["/images/melbourne-art-deco-bathroom-renovation.jpg"],
     title: "Fitzroy Art Deco Apartment",
     location: "Fitzroy",
     summary: "Art deco kitchen and bathroom modernisation with full rewiring, replumbing, and interior painting, preserving original character.",
@@ -494,7 +500,7 @@ export const TESTIMONIALS = [
   {
     name: "Sandra K.",
     suburb: "Mount Eliza",
-    text: "Aqua Tight handled our balcony waterproofing professionally and cleanly. They explained every step of the process and the certificate gave us real peace of mind. Would highly recommend.",
+    text: "Aquatight handled our balcony waterproofing professionally and cleanly. They explained every step of the process and the certificate gave us real peace of mind. Would highly recommend.",
     rating: 5,
     service: "waterproofing",
   },
@@ -582,7 +588,7 @@ export const TESTIMONIALS = [
   {
     name: "Paul & Karen B.",
     suburb: "Beaumaris",
-    text: "Two builders had failed to fix our leaking balcony before we called Aqua Tight. They found the problem immediately, fixed it properly, and our insurance company was satisfied with the certificate. Complete lifesavers.",
+    text: "Two builders had failed to fix our leaking balcony before we called Aquatight. They found the problem immediately, fixed it properly, and our insurance company was satisfied with the certificate. Complete lifesavers.",
     rating: 5,
     service: "waterproofing",
     project: "beaumaris-balcony",

@@ -514,7 +514,7 @@ function AquaTight() {
             <motion.div {...fadeUp(0.1)}>
               <img
                 src="/logos/aqua-tight.png"
-                alt="Aqua Tight"
+                alt="Aquatight"
                 className="h-16 w-auto mb-5"
                 style={{ filter: "brightness(0) invert(1)" }}
               />
@@ -523,10 +523,10 @@ function AquaTight() {
                 Certified Division
               </div>
               <h2 className="font-serif text-4xl sm:text-5xl font-bold leading-tight mb-5">
-                Aqua Tight Waterproofing
+                Aquatight Waterproofing
               </h2>
               <p className="text-red-100 leading-relaxed mb-5">
-                Our certified waterproofing division, Aqua Tight, provides AS3740-compliant waterproofing
+                Our certified waterproofing division, Aquatight, provides AS3740-compliant waterproofing
                 for showers, bathrooms, balconies, and all domestic wet areas. All work comes with
                 certificates and warranties on completion.
               </p>
@@ -551,7 +551,7 @@ function AquaTight() {
                 className="inline-flex items-center gap-2 bg-white font-semibold px-6 py-3 rounded-xl hover:bg-red-50 transition-colors shadow-lg"
                 style={{ color: "#a3343e" }}
               >
-                Visit Aqua Tight
+                Visit Aquatight
                 <ExternalLink className="w-4 h-4" />
               </a>
             </motion.div>
@@ -589,24 +589,24 @@ function CombinedExpertise() {
               The Complete Solution
             </span>
             <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
-              A complete, one-stop solution for all your water damage rectification needs.
+              Complete renovations and waterproofing, coordinated by one team.
             </RevealText>
             <div className="flex items-center gap-6 mt-8 pt-6 border-t border-neutral-200">
               <img src="/logos/cherry-builds-navbar.png" alt="Cherry Builds" className="h-14 w-auto" />
               <span className="text-neutral-300 text-lg font-light">×</span>
-              <img src="/logos/aqua-tight.png" alt="Aqua Tight" className="h-14 w-auto" />
+              <img src="/logos/aqua-tight.png" alt="Aquatight" className="h-14 w-auto" />
             </div>
           </motion.div>
 
           <motion.div {...fadeUp(0.2)} className="space-y-5">
             <p className="text-neutral-600 leading-relaxed">
-              By combining a fully licensed builder with a master waterproofer, Cherry Builds and Aqua Tight
+              By combining a fully licensed builder with a master waterproofer, Cherry Builds and Aquatight
               Waterproofing offer a seamless, end-to-end service. From identifying the source of damage and
               assessing the required repairs, through to quoting, project management, and completion of all
               works. We handle everything.
             </p>
             <p className="text-neutral-600 leading-relaxed">
-              With over 30 years of building experience and more than 20 years of specialised waterproofing
+              With over 30 years of building experience and more than 18 years of specialised waterproofing
               expertise, we pride ourselves on delivering exceptional workmanship and meticulous attention
               to detail.
             </p>
@@ -614,7 +614,7 @@ function CombinedExpertise() {
             <div className="pt-2 grid grid-cols-2 gap-4">
               {[
                 { val: "30+", label: "Years building experience" },
-                { val: "20+", label: "Years waterproofing expertise" },
+                { val: "18+", label: "Years waterproofing expertise" },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl p-5 text-center" style={{ backgroundColor: "#ededed" }}>
                   <CountUp value={s.val} className="font-serif text-3xl font-bold" style={{ color: "#a3343e" }} />
@@ -640,7 +640,7 @@ function CombinedExpertise() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border border-neutral-300 text-neutral-700 hover:border-neutral-400 font-semibold px-6 py-3 rounded-xl transition-colors"
               >
-                Visit Aqua Tight
+                Visit Aquatight
                 <ExternalLink className="w-4 h-4" />
               </a>
             </div>
@@ -717,6 +717,10 @@ function Contact() {
     await fetch(e.target.action, { method: "POST", body: data, headers: { Accept: "application/json" } });
     setSubmitting(false);
     setSubmitted(true);
+    // Fire Google Ads "Form Enquiry" conversion
+    if (window.gtag) {
+      window.gtag('event', 'conversion', { send_to: 'AW-17973575816/eCcUCJqgsLQcEIiBvPpC' });
+    }
   };
 
   const inputClass = "w-full rounded-lg border border-neutral-200 bg-white px-3 py-2.5 text-neutral-800 text-sm focus:outline-none focus:ring-2 focus:ring-cherry-600";

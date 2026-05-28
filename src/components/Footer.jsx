@@ -20,7 +20,7 @@ export default function Footer() {
             </p>
             <div className="text-xs space-y-0.5">
               <div>ABN: 60 122 151 679</div>
-              <div>VBA Licence: DB – 71349</div>
+              <div>VBA Licence: DB-71349</div>
             </div>
           </div>
 
@@ -54,7 +54,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-cherry-400 transition-colors"
               >
-                <ExternalLink className="w-3.5 h-3.5" /> Aqua Tight Waterproofing
+                <ExternalLink className="w-3.5 h-3.5" /> Aquatight Waterproofing
               </a>
             </div>
           </div>

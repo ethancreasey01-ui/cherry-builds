@@ -13,10 +13,28 @@ function ScrollToTop() {
   return null;
 }
 
+// Track clicks on any tel: link → Google Ads "Phone Call Click" conversion
+function PhoneClickTracker() {
+  useEffect(() => {
+    const handleClick = (e) => {
+      const link = e.target.closest('a[href^="tel:"]');
+      if (link && window.gtag) {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-17973575816/BcHrCJ2gsLQcEIiBvPpC',
+        });
+      }
+    };
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, []);
+  return null;
+}
+
 export default function App() {
   return (
     <>
       <ScrollToTop />
+      <PhoneClickTracker />
       <Navbar />
       <main>
         <Routes>
