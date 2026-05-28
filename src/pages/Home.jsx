@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
-  Phone, Mail, MapPin, ChevronDown, ChevronRight,
+  Phone, Mail, MapPin, ChevronDown, ChevronRight, ChevronLeft, X,
   Award, Check, ArrowRight, ExternalLink, Droplets, Shield,
   Hammer, SlidersHorizontal, LayoutGrid, Eye, ThumbsUp,
 } from "lucide-react";
@@ -333,6 +333,127 @@ function Services() {
           ))}
         </motion.div>
       </div>
+    </section>
+  );
+}
+
+// ─── Photo Gallery ───────────────────────────────────────────────────────────
+
+const GALLERY_PHOTOS = [
+  { src: "/images/melbourne-bathroom-renovation-shower.jpg",        alt: "Herringbone brass bathroom, Marina Rd renovation" },
+  { src: "/images/melbourne-kitchen-renovation-island-bench.jpg",   alt: "Kitchen island bench with navy stools, Brighton" },
+  { src: "/images/melbourne-full-home-renovation-living-wide.jpg",  alt: "Open plan kitchen and living, Brighton" },
+  { src: "/images/melbourne-bathroom-tiling-mosaic-shower.jpg",     alt: "Mosaic tile shower, Albert Park renovation" },
+  { src: "/images/melbourne-full-home-renovation-living-room.jpg",  alt: "Living room with fireplace, Brighton" },
+  { src: "/images/melbourne-kitchen-renovation-splashback-tiles.jpg", alt: "Kitchen with patchwork splashback tiles, Albert Park" },
+  { src: "/images/melbourne-bathroom-renovation-vanity.jpg",        alt: "Double vanity bathroom, Hampton renovation" },
+  { src: "/images/melbourne-kitchen-renovation-albert-park.jpg",    alt: "White kitchen renovation, Albert Park" },
+  { src: "/images/melbourne-kitchen-renovation-dining.jpg",         alt: "Kitchen and dining area, Brighton" },
+  { src: "/images/melbourne-home-renovation-entry.jpg",             alt: "Herringbone tiling, Mentone renovation" },
+  { src: "/images/melbourne-bathroom-renovation-frameless-shower.jpg", alt: "Frameless glass shower, Hampton renovation" },
+  { src: "/images/melbourne-timber-decking-sandringham.jpg",        alt: "Oiled jarrah timber decking, Sandringham" },
+  { src: "/images/melbourne-living-room-renovation-albert-park.jpg", alt: "Living room renovation, Albert Park" },
+  { src: "/images/melbourne-kitchen-renovation-wide-angle.jpg",     alt: "Kitchen renovation wide view, Brighton" },
+  { src: "/images/melbourne-balcony-waterproofing-tiling.jpg",      alt: "Balcony waterproofing and porcelain tiling, Hampton" },
+  { src: "/images/melbourne-kitchen-renovation-galley-white.jpg",   alt: "White galley kitchen renovation, Toorak" },
+  { src: "/images/melbourne-kitchen-renovation-open-plan.jpg",      alt: "Open plan kitchen, Brighton" },
+  { src: "/images/melbourne-renovation-laundry-white-cabinetry.jpg", alt: "Laundry with white cabinetry, Mentone renovation" },
+];
+
+function PhotoGallery() {
+  const [lightboxIdx, setLightboxIdx] = React.useState(null);
+  const count = GALLERY_PHOTOS.length;
+
+  React.useEffect(() => {
+    if (lightboxIdx === null) return;
+    const onKey = (e) => {
+      if (e.key === "ArrowLeft")  setLightboxIdx((i) => (i - 1 + count) % count);
+      if (e.key === "ArrowRight") setLightboxIdx((i) => (i + 1) % count);
+      if (e.key === "Escape")     setLightboxIdx(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxIdx, count]);
+
+  return (
+    <section id="gallery" className="py-24 bg-neutral-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>Portfolio</span>
+          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">Our Work</RevealText>
+          <p className="mt-4 max-w-xl mx-auto text-neutral-400">
+            Real projects, real results — kitchens, bathrooms, full homes and outdoor living across Melbourne's Bayside and Mornington Peninsula.
+          </p>
+        </motion.div>
+
+        <motion.div {...fadeUp(0.15)} className="columns-2 sm:columns-3 lg:columns-4 gap-2 sm:gap-3">
+          {GALLERY_PHOTOS.map((photo, i) => (
+            <div
+              key={i}
+              className="break-inside-avoid mb-2 sm:mb-3 cursor-pointer group relative overflow-hidden rounded-xl"
+              onClick={() => setLightboxIdx(i)}
+            >
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                className="w-full object-cover block transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-center justify-center">
+                <Eye className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      <AnimatePresence>
+        {lightboxIdx !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+            onClick={() => setLightboxIdx(null)}
+          >
+            <button
+              className="absolute top-4 right-4 text-white/60 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              onClick={(e) => { e.stopPropagation(); setLightboxIdx(null); }}
+              aria-label="Close"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <button
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + count) % count); }}
+              aria-label="Previous"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <motion.img
+              key={lightboxIdx}
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.18 }}
+              src={GALLERY_PHOTOS[lightboxIdx].src}
+              alt={GALLERY_PHOTOS[lightboxIdx].alt}
+              className="max-h-[88vh] max-w-[88vw] object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+              onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % count); }}
+              aria-label="Next"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-neutral-500 text-sm tabular-nums select-none">
+              {lightboxIdx + 1} / {count}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
@@ -870,6 +991,7 @@ export default function Home() {
       <WhyChoose />
       <Services />
       <Projects />
+      <PhotoGallery />
       <Testimonials />
       <OneStop />
       <AquaTight />

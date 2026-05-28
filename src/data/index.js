@@ -16,6 +16,7 @@ export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
+  { label: "Gallery", href: "#gallery" },
   { label: "Aquatight", href: "#aquatight" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
@@ -307,7 +308,7 @@ export const PROJECTS = [
   {
     slug: "point-leo-holiday-home",
     image: "/images/melbourne-bathroom-renovation-vanity.jpg",
-    images: ["/images/melbourne-bathroom-renovation-vanity.jpg", "/images/melbourne-bathroom-renovation-shower.jpg"],
+    images: ["/images/melbourne-bathroom-renovation-vanity.jpg", "/images/melbourne-bathroom-renovation-shower.jpg", "/images/melbourne-bathroom-renovation-frameless-shower.jpg"],
     title: "Point Leo Holiday Home",
     location: "Point Leo",
     summary: "13-year-old holiday home renovation: kitchen with butler pantry, primary bathroom with mosaic tiling, bedroom conversion, structural water damage repairs, timber flooring restoration, and complete interior painting.",
@@ -328,7 +329,7 @@ export const PROJECTS = [
   {
     slug: "burnett-st-apartment",
     image: "/images/melbourne-kitchen-renovation-island-bench.jpg",
-    images: ["/images/melbourne-kitchen-renovation-island-bench.jpg", "/images/melbourne-kitchen-renovation-open-plan.jpg", "/images/melbourne-kitchen-renovation-dining.jpg", "/images/melbourne-kitchen-renovation-cabinetry.jpg"],
+    images: ["/images/melbourne-kitchen-renovation-island-bench.jpg", "/images/melbourne-kitchen-renovation-open-plan.jpg", "/images/melbourne-kitchen-renovation-dining.jpg", "/images/melbourne-kitchen-renovation-wide-angle.jpg", "/images/melbourne-kitchen-renovation-cabinetry.jpg"],
     title: "Burnett St Apartment",
     location: "St Kilda",
     summary: "Full two-bedroom apartment renovation including rewiring, replumbing, kitchen reconfiguration, complete bathroom rebuild, split-system air conditioning, floating floorboards, and furnishing staging.",
@@ -350,7 +351,7 @@ export const PROJECTS = [
   {
     slug: "moorabbin-1940s-home",
     image: "/images/melbourne-full-home-renovation-living-room.jpg",
-    images: ["/images/melbourne-full-home-renovation-living-room.jpg", "/images/melbourne-full-home-renovation-living-wide.jpg"],
+    images: ["/images/melbourne-full-home-renovation-living-room.jpg", "/images/melbourne-full-home-renovation-living-wide.jpg", "/images/melbourne-kitchen-renovation-galley-white.jpg", "/images/melbourne-kitchen-renovation-dining.jpg"],
     title: "Moorabbin 1940s Home",
     location: "Moorabbin",
     summary: "Comprehensive overhaul of a 1940s property: new kitchen, bathrooms, full rewiring and replumbing, heating/cooling, carport construction, floor polishing, and landscaping.",
@@ -373,7 +374,7 @@ export const PROJECTS = [
   {
     slug: "beaumaris-balcony",
     image: "/images/melbourne-balcony-waterproofing-tiling.jpg",
-    images: ["/images/melbourne-balcony-waterproofing-tiling.jpg"],
+    images: ["/images/melbourne-balcony-waterproofing-tiling.jpg", "/images/melbourne-balcony-waterproofing-porcelain-tiles.jpg"],
     title: "Beaumaris Balcony",
     location: "Beaumaris",
     summary: "Complete balcony restoration with subfloor repairs, waterproofing membrane, new tiling with beveled skirting, and drainage system.",
@@ -415,7 +416,7 @@ export const PROJECTS = [
   {
     slug: "fitzroy-art-deco-apartment",
     image: "/images/melbourne-art-deco-bathroom-renovation.jpg",
-    images: ["/images/melbourne-art-deco-bathroom-renovation.jpg"],
+    images: ["/images/melbourne-art-deco-bathroom-renovation.jpg", "/images/melbourne-home-renovation-entry.jpg", "/images/melbourne-bathroom-tiling-mosaic-shower.jpg"],
     title: "Fitzroy Art Deco Apartment",
     location: "Fitzroy",
     summary: "Art deco kitchen and bathroom modernisation with full rewiring, replumbing, and interior painting, preserving original character.",
