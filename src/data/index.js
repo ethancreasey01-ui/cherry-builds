@@ -134,6 +134,7 @@ export const SERVICES = [
   {
     icon: Trees,
     slug: "decking-landscaping",
+    heroImage: "/images/melbourne-timber-decking-sandringham.jpg",
     title: "Decking & Landscaping",
     desc: "Outdoor living spaces including composite and timber decking, pergolas, synthetic lawn, garden beds, and lighting.",
     overviewHeading: "Melbourne Decking and Outdoor Living",
@@ -203,6 +204,7 @@ export const SERVICES = [
   {
     icon: Droplets,
     slug: "waterproofing",
+    heroImage: "/images/melbourne-balcony-waterproofing-tiling.jpg",
     title: "Waterproofing",
     desc: "AS3740-compliant waterproofing for showers, balconies, and wet areas through our Aquatight certified division.",
     overviewHeading: "Melbourne Waterproofing Services",
@@ -237,6 +239,7 @@ export const SERVICES = [
   {
     icon: Hammer,
     slug: "plastering-painting",
+    heroImage: "/images/melbourne-full-home-renovation-living-room.jpg",
     title: "Plastering & Painting",
     desc: "Plaster repairs, full replastering, and professional interior/exterior painting for a flawless finish.",
     overviewHeading: "Melbourne Plastering, Painting and Heritage Restoration",
@@ -271,6 +274,7 @@ export const SERVICES = [
   {
     icon: CheckCircle,
     slug: "property-preparation",
+    heroImage: "/images/melbourne-living-room-renovation-albert-park.jpg",
     title: "Property Preparation",
     desc: "Pre-sale and pre-rental spruce-ups: repairs, fresh paint, floor polishing, and staging to maximise your property value.",
     overviewHeading: "Melbourne Pre-Sale Property Preparation",

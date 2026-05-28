@@ -34,7 +34,7 @@ export default function Navbar() {
           <img
             src="/logos/cherry-builds-navbar.png"
             alt="Cherry Builds"
-            className="h-12 w-auto transition-all duration-300"
+            className="h-16 w-auto transition-all duration-300"
             style={transparent ? { filter: "brightness(0) invert(1)" } : {}}
           />
         </Link>
