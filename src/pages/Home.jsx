@@ -8,7 +8,7 @@ import {
   Hammer, SlidersHorizontal, LayoutGrid, Eye, ThumbsUp,
 } from "lucide-react";
 import { BlossomCarousel } from "@blossom-carousel/react";
-import "@blossom-carousel/core/dist/blossom-carousel-core.css";
+import "@blossom-carousel/core/style.css";
 import { SERVICES, PROJECTS, TESTIMONIALS, FAQS, CREDENTIALS } from "../data/index.js";
 import RevealText from "../components/RevealText.jsx";
 import CountUp from "../components/CountUp.jsx";
