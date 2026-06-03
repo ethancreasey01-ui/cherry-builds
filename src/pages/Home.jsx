@@ -380,66 +380,131 @@ function WhyChoose() {
 }
 
 // ─── Services ────────────────────────────────────────────────────────────────
+// Tiered layout: 1 featured hero card + 3 medium cards + 4 compact cards
+
+const svcGlass = {
+  background: "rgba(255,255,255,0.04)",
+  border: "1px solid rgba(255,255,255,0.09)",
+};
+const svcGlassHover = {
+  background: "rgba(255,255,255,0.07)",
+  border: "1px solid rgba(163,52,62,0.35)",
+  boxShadow: "0 0 28px rgba(163,52,62,0.1), 0 8px 32px rgba(0,0,0,0.5)",
+};
+
+function ServiceCard({ svc, size = "mid" }) {
+  const [hovered, setHovered] = React.useState(false);
+  const isMid = size === "mid";
+
+  return (
+    <motion.div
+      variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+      whileHover={{ y: isMid ? -5 : -3 }}
+      transition={{ duration: 0.2 }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      className="group"
+    >
+      <Link
+        to={`/services/${svc.slug}`}
+        className={`flex flex-col h-full overflow-hidden transition-all duration-300 ${isMid ? "rounded-2xl" : "rounded-xl"}`}
+        style={hovered ? svcGlassHover : svcGlass}
+      >
+        <div className={`relative overflow-hidden flex-shrink-0 ${isMid ? "h-44" : "h-24"}`}>
+          {svc.heroImage && (
+            <img src={svc.heroImage} alt={svc.title} loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+          )}
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 55%, transparent 100%)" }} />
+          <div className={`absolute left-3 flex items-center justify-center ${isMid ? "bottom-3 w-8 h-8 rounded-lg" : "bottom-2 w-6 h-6 rounded-md"}`}
+            style={{ backgroundColor: "#a3343e" }}>
+            <svc.icon className={`text-white ${isMid ? "w-4 h-4" : "w-3 h-3"}`} />
+          </div>
+        </div>
+        <div className={`flex flex-col flex-1 ${isMid ? "p-5" : "p-4"}`}>
+          <h3 className={`font-semibold text-white leading-snug ${isMid ? "text-sm mb-2" : "text-xs mb-1.5"}`}>{svc.title}</h3>
+          <p className={`leading-relaxed flex-1 ${isMid ? "text-xs mb-4" : "text-[11px] mb-3"}`}
+            style={{ color: "rgba(232,232,232,0.5)" }}>{svc.desc}</p>
+          <div className="inline-flex items-center gap-1 font-semibold group-hover:gap-1.5 transition-all"
+            style={{ color: "#a3343e", fontSize: isMid ? 12 : 11 }}>
+            Learn More <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
 
 function Services() {
+  const [featured, ...rest] = SERVICES;
+  const midTier  = rest.slice(0, 3);   // Bathroom, Kitchen, Decking
+  const baseTier = rest.slice(3);       // Tiling, Waterproofing, Plastering, Property Prep
+  const [featHovered, setFeatHovered] = React.useState(false);
+
   return (
-    <section id="services" className="py-24" style={{ backgroundColor: "#ededed" }}>
+    <section id="services" className="py-24" style={{ backgroundColor: "#111111" }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
+
+        {/* Header */}
+        <motion.div {...fadeUp(0.05)} className="mb-12">
           <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>What We Do</span>
-          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900">Our Services</RevealText>
-          <p className="mt-4 text-neutral-500 max-w-xl mx-auto">
-            From a single bathroom through to a full home renovation. We manage every trade in-house.
+          <RevealText className="mt-2 font-serif text-4xl sm:text-5xl font-bold text-white">Our Services</RevealText>
+          <p className="mt-3 text-sm sm:text-base max-w-md" style={{ color: "rgba(232,232,232,0.5)" }}>
+            From a single bathroom to a complete home transformation — one team manages every trade.
           </p>
         </motion.div>
 
-        <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
-        >
-          {SERVICES.map((svc) => (
-            <motion.div
-              key={svc.title}
-              variants={{ hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
-              whileHover={{ y: -4 }}
-              className="group"
+        {/* Featured: Full Home Renovations */}
+        <motion.div {...fadeUp(0.1)} className="mb-5">
+          <motion.div
+            whileHover={{ y: -3 }} transition={{ duration: 0.22, ease: "easeOut" }}
+            onHoverStart={() => setFeatHovered(true)}
+            onHoverEnd={() => setFeatHovered(false)}
+            className="group"
+          >
+            <Link
+              to={`/services/${featured.slug}`}
+              className="flex flex-col md:flex-row rounded-2xl overflow-hidden transition-all duration-300"
+              style={featHovered
+                ? { ...svcGlassHover, boxShadow: "0 0 40px rgba(163,52,62,0.14), 0 12px 40px rgba(0,0,0,0.6)" }
+                : svcGlass}
             >
-              <Link
-                to={`/services/${svc.slug}`}
-                className="flex flex-col h-full bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-md hover:border-cherry-100 transition-shadow transition-colors"
-              >
-                {/* Photo / icon header */}
-                <div className="h-36 relative overflow-hidden flex-shrink-0" style={{ backgroundColor: "#fdf2f3" }}>
-                  {svc.heroImage ? (
-                    <img src={svc.heroImage} alt={svc.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: "#fdf2f3" }}>
-                      <svc.icon className="w-10 h-10" style={{ color: "#a3343e", opacity: 0.35 }} />
-                    </div>
-                  )}
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 55%)" }} />
-                  <div className="absolute bottom-3 left-3">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#a3343e" }}>
-                      <svc.icon className="w-4 h-4 text-white" />
-                    </div>
-                  </div>
+              <div className="md:w-[52%] h-64 md:h-auto min-h-[260px] relative overflow-hidden flex-shrink-0">
+                <img src={featured.heroImage} alt={featured.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.18), transparent 60%)" }} />
+              </div>
+              <div className="flex flex-col justify-center p-7 sm:p-10 md:w-[48%]">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: "#a3343e" }}>
+                  <featured.icon className="w-5 h-5 text-white" />
                 </div>
-                {/* Content */}
-                <div className="flex flex-col flex-1 p-5">
-                  <h3 className="font-semibold text-neutral-900 mb-2 text-sm">{svc.title}</h3>
-                  <p className="text-xs text-neutral-500 leading-relaxed mb-4 flex-1">{svc.desc}</p>
-                  <div className="inline-flex items-center gap-1 text-xs font-semibold group-hover:gap-1.5 transition-all" style={{ color: "#a3343e" }}>
-                    Learn More
-                    <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                  </div>
+                <p className="text-[11px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: "#a3343e" }}>
+                  Flagship Service
+                </p>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight mb-3">{featured.title}</h3>
+                <p className="text-sm sm:text-base leading-relaxed mb-6 max-w-sm" style={{ color: "rgba(232,232,232,0.58)" }}>{featured.desc}</p>
+                <div className="inline-flex items-center gap-2 font-semibold text-sm transition-all group-hover:gap-2.5" style={{ color: "#a3343e" }}>
+                  Explore Service <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </div>
-              </Link>
-            </motion.div>
-          ))}
+              </div>
+            </Link>
+          </motion.div>
         </motion.div>
+
+        {/* Mid tier: 3-col */}
+        <motion.div className="grid sm:grid-cols-3 gap-4 mb-4"
+          initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}>
+          {midTier.map(svc => <ServiceCard key={svc.slug} svc={svc} size="mid" />)}
+        </motion.div>
+
+        {/* Base tier: 4-col compact */}
+        <motion.div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3"
+          initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}>
+          {baseTier.map(svc => <ServiceCard key={svc.slug} svc={svc} size="compact" />)}
+        </motion.div>
+
       </div>
     </section>
   );
