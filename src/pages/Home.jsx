@@ -20,114 +20,129 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
-// ─── Hero ────────────────────────────────────────────────────────────────────
+const stagger = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const slideUp = {
+  hidden: { opacity: 0, y: 32 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+};
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+// Left-aligned editorial hero — photo visible on right, text anchored left
 
 function Hero() {
   const { scrollY } = useScroll();
-  const bgY = useTransform(scrollY, [0, 700], [0, 180]);
-  const gridY = useTransform(scrollY, [0, 700], [0, 80]);
+  const bgY = useTransform(scrollY, [0, 600], [0, 150]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: "#1a1a1a" }}>
-      {/* Hero photo with parallax */}
+    <section
+      className="relative min-h-[100dvh] flex items-center overflow-hidden"
+      style={{ backgroundColor: "#1a1a1a" }}
+    >
+      {/* Full-bleed photo with subtle parallax */}
       <motion.img
         src="/images/melbourne-home-renovations-cherry-builds.jpg"
-        alt="Cherry Builds renovation"
-        className="absolute inset-0 w-full h-full object-cover object-center"
-        style={{ y: bgY, scale: 1.08 }}
+        alt="Cherry Builds Melbourne renovation"
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ y: bgY, scale: 1.06 }}
       />
-      {/* Dark overlay so text stays readable */}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(26,26,26,0.62) 0%, rgba(26,26,26,0.52) 50%, rgba(26,26,26,0.62) 100%)" }} />
-      <motion.div
-        className="absolute inset-0 opacity-[0.025]"
+
+      {/* Left-biased gradient — dark on left, photo shows on right */}
+      <div
+        className="absolute inset-0"
         style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(255,255,255,1) 60px,rgba(255,255,255,1) 61px),repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(255,255,255,1) 60px,rgba(255,255,255,1) 61px)",
-          y: gridY,
+          background:
+            "linear-gradient(to right, rgba(26,26,26,0.96) 0%, rgba(26,26,26,0.88) 30%, rgba(26,26,26,0.52) 58%, rgba(26,26,26,0.14) 80%, transparent 100%)",
         }}
       />
+      {/* Bottom vignette */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-40 pointer-events-none"
+        style={{ background: "linear-gradient(to top, rgba(26,26,26,0.6), transparent)" }}
+      />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium mb-8 tracking-wide border"
-          style={{ backgroundColor: "rgba(163,52,62,0.2)", borderColor: "rgba(163,52,62,0.4)", color: "#f49ba0" }}
-        >
-          <Award className="w-4 h-4" />
-          VBA Licensed · Master Builders Member · 30+ Years Experience
-        </motion.div>
+      {/* Left-aligned content block */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 w-full pt-28 pb-20 sm:pt-32 sm:pb-28">
+        <div className="max-w-[560px]">
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-[1.08] mb-6 tracking-tight"
-        >
-          Melbourne's Trusted
-          <span className="block mt-1" style={{ color: "#a3343e" }}>Renovation Specialists</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-lg sm:text-xl text-neutral-300 max-w-2xl mx-auto mb-12 leading-relaxed"
-        >
-          From full home renovations to kitchens, bathrooms, decking, and landscaping.
-          Cherry Builds delivers expert craftsmanship across Melbourne's Bayside and Mornington Peninsula.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 text-white font-semibold px-8 py-4 rounded-xl transition-all shadow-xl"
-            style={{ backgroundColor: "#a3343e" }}
-            onMouseEnter={e => e.currentTarget.style.backgroundColor = "#8a2b34"}
-            onMouseLeave={e => e.currentTarget.style.backgroundColor = "#a3343e"}
+          {/* Credential eyebrow */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold tracking-wide mb-8 border"
+            style={{
+              backgroundColor: "rgba(163,52,62,0.18)",
+              borderColor: "rgba(163,52,62,0.35)",
+              color: "#f49ba0",
+            }}
           >
-            Get a Free Quote
-            <ArrowRight className="w-4 h-4" />
-          </a>
-          <a
-            href="tel:0438499146"
-            className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all backdrop-blur-sm"
-          >
-            <Phone className="w-4 h-4" />
-            0438 499 146
-          </a>
-        </motion.div>
+            <Award className="w-3.5 h-3.5" />
+            VBA Licensed · Master Builders · 30+ Years
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.55 }}
-          className="mt-20 grid grid-cols-3 gap-6 max-w-md mx-auto"
-        >
-          {[
-            { val: "30+", label: "Years Experience" },
-            { val: "500+", label: "Projects Completed" },
-            { val: "100%", label: "Licensed & Insured" },
-          ].map((s) => (
-            <div key={s.label} className="text-center">
-              <CountUp value={s.val} delay={1400} className="font-serif text-3xl font-bold" style={{ color: "#a3343e" }} />
-              <div className="text-xs text-neutral-400 mt-1.5 leading-snug">{s.label}</div>
-            </div>
-          ))}
-        </motion.div>
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.72, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="font-serif font-bold text-white leading-[1.05] tracking-tight mb-6"
+            style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.25rem)" }}
+          >
+            Melbourne&rsquo;s Trusted
+            <br />
+            <span style={{ color: "#a3343e" }}>Renovation</span>
+            {" Specialists"}
+          </motion.h1>
+
+          {/* Subtext — 19 words */}
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.62, delay: 0.34, ease: [0.22, 1, 0.36, 1] }}
+            className="text-base sm:text-lg text-neutral-300 leading-relaxed mb-10 max-w-md"
+          >
+            Kitchens, bathrooms, full home renovations and outdoor living.
+            Expert craftsmanship across Bayside and the Mornington Peninsula.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.58, delay: 0.46, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row gap-3.5"
+          >
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors shadow-xl"
+              style={{ backgroundColor: "#a3343e" }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#8a2b34")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#a3343e")}
+            >
+              Get a Free Quote
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href="tel:0438499146"
+              className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/[0.16] border border-white/20 text-white font-semibold px-7 py-3.5 rounded-xl transition-all backdrop-blur-sm"
+            >
+              <Phone className="w-4 h-4" />
+              0438 499 146
+            </a>
+          </motion.div>
+        </div>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-neutral-500"
+        transition={{ delay: 1.1 }}
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 text-neutral-500"
       >
         <ChevronDown className="w-5 h-5 animate-bounce" />
       </motion.div>
@@ -135,31 +150,74 @@ function Hero() {
   );
 }
 
-// ─── About ───────────────────────────────────────────────────────────────────
+// ─── Stats Strip ──────────────────────────────────────────────────────────────
+// Separate dark section — stats removed from hero for visual clarity
+
+function StatsStrip() {
+  return (
+    <section className="py-12 sm:py-16" style={{ backgroundColor: "#111111" }}>
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+        <div className="grid grid-cols-3 gap-4 sm:gap-10">
+          {[
+            { val: "30+", label: "Years of industry experience", sub: "Est. 1994" },
+            { val: "500+", label: "Completed renovations", sub: "Melbourne-wide" },
+            { val: "100%", label: "Licensed, insured & certified", sub: "VBA DB-71349" },
+          ].map((s, i) => (
+            <motion.div
+              key={s.label}
+              {...fadeUp(i * 0.07)}
+              className="border-l-2 border-white/[0.12] pl-4 sm:pl-7"
+            >
+              <CountUp
+                value={s.val}
+                className="font-serif font-bold leading-none block"
+                style={{ color: "#a3343e", fontSize: "clamp(1.65rem, 3.8vw, 2.6rem)" }}
+              />
+              <p className="text-[11px] sm:text-sm text-neutral-400 mt-1.5 leading-snug">{s.label}</p>
+              <p className="hidden sm:block text-[10px] text-neutral-600 mt-0.5 font-mono tracking-wider">
+                {s.sub}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── About ────────────────────────────────────────────────────────────────────
+// Editorial stat display replaces 4 equal grey cards
 
 function About() {
   return (
     <section id="about" className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+          {/* Left: copy + credentials */}
           <motion.div {...fadeUp(0.1)}>
-            <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>About Us</span>
-            <h2 className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
-              Building Melbourne homes since 2007
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight mb-6">
+              Building Melbourne
+              <br />homes since 2007
             </h2>
-            <p className="mt-5 text-neutral-600 leading-relaxed">
-              Originally established as Cherry Properties in 2007, we rebranded to Cherry Building and
-              Construction Services in 2020, bringing the same trusted team and quality workmanship
-              that Melbourne homeowners have relied on for decades.
+            <p className="text-neutral-600 leading-relaxed mb-4">
+              Originally established as Cherry Properties in 2007, we rebranded to Cherry Building
+              and Construction Services in 2020 — bringing the same trusted team and quality
+              workmanship that Melbourne homeowners have relied on for decades.
             </p>
-            <p className="mt-4 text-neutral-600 leading-relaxed">
-              With over 30 years of industry experience, our portfolio spans hundreds of full renovations from period homes to architectural homes, bathroom renovations, custom kitchens, and outdoor living projects across Melbourne's Bayside, inner city, and the Mornington Peninsula.
+            <p className="text-neutral-600 leading-relaxed mb-8">
+              With over 30 years of industry experience, our portfolio spans hundreds of full
+              renovations, period homes, custom kitchens, and outdoor living projects across
+              Bayside and the Mornington Peninsula.
             </p>
 
-            <div className="mt-8 grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-2.5 mb-8">
               {CREDENTIALS.map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-2.5 text-sm text-neutral-700">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#fdf2f3", border: "1px solid #fce4e5" }}>
+                  <div
+                    className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: "#fdf2f3", border: "1px solid #fce4e5" }}
+                  >
                     <Icon className="w-3.5 h-3.5" style={{ color: "#a3343e" }} />
                   </div>
                   {text}
@@ -169,28 +227,44 @@ function About() {
 
             <a
               href="#contact"
-              className="mt-8 inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
               style={{ backgroundColor: "#a3343e" }}
-              onMouseEnter={e => e.currentTarget.style.backgroundColor = "#8a2b34"}
-              onMouseLeave={e => e.currentTarget.style.backgroundColor = "#a3343e"}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#8a2b34")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#a3343e")}
             >
               Talk to Us
               <ArrowRight className="w-4 h-4" />
             </a>
           </motion.div>
 
-          <motion.div {...fadeUp(0.25)} className="grid grid-cols-2 gap-4">
-            {[
-              { val: "30+", label: "Years in the industry" },
-              { val: "2007", label: "Established" },
-              { val: "500+", label: "Projects completed" },
-              { val: "100%", label: "Customer satisfaction focus" },
-            ].map((s) => (
-              <div key={s.label} className="bg-white border border-neutral-200 rounded-2xl p-8 text-center shadow-sm" style={{ backgroundColor: "#ededed" }}>
-                <CountUp value={s.val} className="font-serif text-4xl font-bold" style={{ color: "#a3343e" }} />
-                <div className="text-sm text-neutral-500 mt-2 leading-snug">{s.label}</div>
-              </div>
-            ))}
+          {/* Right: editorial bold stat display */}
+          <motion.div {...fadeUp(0.25)}>
+            {/* Feature stat — large editorial number */}
+            <div className="pb-8 mb-8 border-b border-neutral-200">
+              <CountUp
+                value="30+"
+                className="font-serif font-bold leading-none tracking-tight block"
+                style={{ color: "#a3343e", fontSize: "clamp(4rem, 8vw, 6.5rem)" }}
+              />
+              <p className="text-neutral-500 text-base mt-3">years of industry expertise</p>
+            </div>
+
+            {/* Supporting stats */}
+            <div className="grid grid-cols-2 gap-6 sm:gap-8">
+              {[
+                { val: "2007", label: "Year established" },
+                { val: "500+", label: "Projects completed" },
+              ].map(s => (
+                <div key={s.label}>
+                  <CountUp
+                    value={s.val}
+                    className="font-serif font-bold leading-none block"
+                    style={{ color: "#1a1a1a", fontSize: "clamp(2rem, 4vw, 2.75rem)" }}
+                  />
+                  <p className="text-sm text-neutral-500 mt-2 leading-snug">{s.label}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
@@ -198,7 +272,8 @@ function About() {
   );
 }
 
-// ─── Why Choose ──────────────────────────────────────────────────────────────
+// ─── Why Choose ───────────────────────────────────────────────────────────────
+// Horizontal numbered rows — replaces 5 equal 2-col cards
 
 const WHY_ITEMS = [
   {
@@ -214,7 +289,7 @@ const WHY_ITEMS = [
   {
     icon: LayoutGrid,
     title: "Comprehensive Services",
-    desc: "From full home renovations to custom kitchen and bathroom remodels, Cherry Builds offers a comprehensive range of services, including full project management. We handle every aspect of your project with precision and care, ensuring a seamless experience from start to finish.",
+    desc: "From full home renovations to custom kitchen and bathroom remodels, Cherry Builds offers a comprehensive range of services, including full project management. We handle every aspect of your project with precision and care.",
   },
   {
     icon: Eye,
@@ -231,101 +306,218 @@ const WHY_ITEMS = [
 function WhyChoose() {
   return (
     <section className="py-24" style={{ backgroundColor: "#1a1a1a" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>
-            Why Cherry Builds
-          </span>
-          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">
-            Why Choose Cherry Builds?
-          </RevealText>
-        </motion.div>
-
-        <motion.div
-          className="grid sm:grid-cols-2 gap-5"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09 } } }}
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+        <motion.h2
+          {...fadeUp(0.05)}
+          className="font-serif text-4xl sm:text-5xl font-bold text-white leading-tight mb-14 max-w-lg"
         >
+          Why Melbourne homeowners choose Cherry Builds
+        </motion.h2>
+
+        <div className="divide-y divide-white/10">
           {WHY_ITEMS.map((item, i) => (
             <motion.div
               key={item.title}
-              variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
-              className={`rounded-2xl p-6 border${i === WHY_ITEMS.length - 1 ? " sm:col-span-2 flex flex-col items-center text-center" : ""}`}
-              style={{ backgroundColor: "#2a2a2a", borderColor: "rgba(255,255,255,0.07)" }}
+              {...fadeUp(0.04 + i * 0.05)}
+              className="py-7 grid md:grid-cols-[2rem_220px_1fr] gap-4 md:gap-10 items-start"
             >
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
-                style={{ backgroundColor: "rgba(163,52,62,0.2)", border: "1px solid rgba(163,52,62,0.3)" }}
-              >
-                <item.icon className="w-5 h-5" style={{ color: "#f49ba0" }} />
+              {/* Sequence number */}
+              <span className="hidden md:block text-xs font-mono text-neutral-700 pt-1.5 select-none tabular-nums">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {/* Icon + title */}
+              <div className="flex items-start gap-3">
+                <div
+                  className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                  style={{
+                    backgroundColor: "rgba(163,52,62,0.18)",
+                    border: "1px solid rgba(163,52,62,0.22)",
+                  }}
+                >
+                  <item.icon className="w-4 h-4" style={{ color: "#f49ba0" }} />
+                </div>
+                <h3 className="font-semibold text-white text-sm sm:text-base leading-snug pt-1">{item.title}</h3>
               </div>
-              <h3 className="font-semibold text-white mb-2">{item.title}</h3>
-              <p className={`text-sm text-neutral-400 leading-relaxed${i === WHY_ITEMS.length - 1 ? " max-w-xl" : ""}`}>{item.desc}</p>
+              {/* Description */}
+              <p className="text-sm text-neutral-400 leading-relaxed">{item.desc}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
 
-// ─── Services ────────────────────────────────────────────────────────────────
+// ─── Services ─────────────────────────────────────────────────────────────────
+// Tiered layout: 1 featured hero card + 3 mid cards + 4 compact cards
 
 function Services() {
+  const [featured, ...rest] = SERVICES;
+  const midTier = rest.slice(0, 3);   // Bathroom, Kitchen, Decking
+  const baseTier = rest.slice(3);     // Tiling, Waterproofing, Plastering, Property Prep
+
   return (
     <section id="services" className="py-24" style={{ backgroundColor: "#ededed" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>What We Do</span>
-          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900">Our Services</RevealText>
-          <p className="mt-4 text-neutral-500 max-w-xl mx-auto">
-            From a single bathroom through to a full home renovation. We manage every trade in-house.
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+
+        {/* Section header */}
+        <motion.div {...fadeUp(0.05)} className="mb-12">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>
+            What We Do
+          </span>
+          <RevealText className="mt-2 font-serif text-4xl sm:text-5xl font-bold text-neutral-900">
+            Our Services
+          </RevealText>
+          <p className="mt-3 text-neutral-500 text-sm sm:text-base max-w-md">
+            From a single bathroom to a complete home transformation — one team manages every trade.
           </p>
         </motion.div>
 
+        {/* Featured: Full Home Renovations */}
+        <motion.div {...fadeUp(0.1)} className="mb-5">
+          <motion.div
+            whileHover={{ y: -3 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="group"
+          >
+            <Link
+              to={`/services/${featured.slug}`}
+              className="flex flex-col md:flex-row bg-white rounded-2xl overflow-hidden border border-neutral-200 hover:shadow-xl hover:border-neutral-100 transition-shadow transition-colors"
+            >
+              <div className="md:w-[52%] h-64 md:h-auto min-h-[260px] relative overflow-hidden flex-shrink-0">
+                <img
+                  src={featured.heroImage}
+                  alt={featured.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(0,0,0,0.28), transparent 60%)" }}
+                />
+              </div>
+              <div className="flex flex-col justify-center p-7 sm:p-10 md:w-[48%]">
+                <div
+                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
+                  style={{ backgroundColor: "#a3343e" }}
+                >
+                  <featured.icon className="w-5 h-5 text-white" />
+                </div>
+                <p className="text-[11px] font-bold tracking-[0.16em] uppercase mb-2" style={{ color: "#a3343e" }}>
+                  Flagship Service
+                </p>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-neutral-900 leading-tight mb-3">
+                  {featured.title}
+                </h3>
+                <p className="text-neutral-500 text-sm sm:text-base leading-relaxed mb-6 max-w-sm">{featured.desc}</p>
+                <div
+                  className="inline-flex items-center gap-2 font-semibold text-sm transition-all group-hover:gap-2.5"
+                  style={{ color: "#a3343e" }}
+                >
+                  Explore Service
+                  <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Mid tier: Bathroom, Kitchen, Decking (3-col medium cards) */}
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="grid sm:grid-cols-3 gap-5 mb-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}
+          variants={stagger}
         >
-          {SERVICES.map((svc) => (
+          {midTier.map(svc => (
             <motion.div
               key={svc.title}
-              variants={{ hidden: { opacity: 0, y: 32 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
-              whileHover={{ y: -4 }}
+              variants={slideUp}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.2 }}
               className="group"
             >
               <Link
                 to={`/services/${svc.slug}`}
-                className="flex flex-col h-full bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-md hover:border-cherry-100 transition-shadow transition-colors"
+                className="flex flex-col h-full bg-white border border-neutral-200 rounded-2xl overflow-hidden hover:shadow-md hover:border-neutral-100 transition-all"
               >
-                {/* Photo / icon header */}
-                <div className="h-36 relative overflow-hidden flex-shrink-0" style={{ backgroundColor: "#fdf2f3" }}>
-                  {svc.heroImage ? (
-                    <img src={svc.heroImage} alt={svc.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center" style={{ backgroundColor: "#fdf2f3" }}>
-                      <svc.icon className="w-10 h-10" style={{ color: "#a3343e", opacity: 0.35 }} />
-                    </div>
+                <div className="h-44 relative overflow-hidden flex-shrink-0" style={{ backgroundColor: "#fdf2f3" }}>
+                  {svc.heroImage && (
+                    <img
+                      src={svc.heroImage}
+                      alt={svc.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   )}
-                  <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 55%)" }} />
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 55%)" }}
+                  />
                   <div className="absolute bottom-3 left-3">
                     <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#a3343e" }}>
                       <svc.icon className="w-4 h-4 text-white" />
                     </div>
                   </div>
                 </div>
-                {/* Content */}
                 <div className="flex flex-col flex-1 p-5">
-                  <h3 className="font-semibold text-neutral-900 mb-2 text-sm">{svc.title}</h3>
+                  <h3 className="font-semibold text-neutral-900 text-sm mb-2">{svc.title}</h3>
                   <p className="text-xs text-neutral-500 leading-relaxed mb-4 flex-1">{svc.desc}</p>
                   <div className="inline-flex items-center gap-1 text-xs font-semibold group-hover:gap-1.5 transition-all" style={{ color: "#a3343e" }}>
                     Learn More
-                    <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Base tier: 4 compact cards */}
+        <motion.div
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={stagger}
+        >
+          {baseTier.map(svc => (
+            <motion.div
+              key={svc.title}
+              variants={slideUp}
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.18 }}
+              className="group"
+            >
+              <Link
+                to={`/services/${svc.slug}`}
+                className="flex flex-col h-full bg-white border border-neutral-200 rounded-xl overflow-hidden hover:shadow-sm hover:border-neutral-100 transition-all"
+              >
+                <div className="h-24 relative overflow-hidden flex-shrink-0" style={{ backgroundColor: "#fdf2f3" }}>
+                  {svc.heroImage && (
+                    <img
+                      src={svc.heroImage}
+                      alt={svc.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35), transparent 65%)" }}
+                  />
+                  <div className="absolute bottom-2 left-2.5">
+                    <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ backgroundColor: "#a3343e" }}>
+                      <svc.icon className="w-3 h-3 text-white" />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col flex-1 p-4">
+                  <h3 className="font-semibold text-neutral-900 text-xs mb-1.5">{svc.title}</h3>
+                  <p className="text-[11px] text-neutral-500 leading-relaxed mb-3 flex-1">{svc.desc}</p>
+                  <div className="inline-flex items-center gap-1 text-[11px] font-semibold" style={{ color: "#a3343e" }}>
+                    Learn More
+                    <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
               </Link>
@@ -337,27 +529,27 @@ function Services() {
   );
 }
 
-// ─── Photo Gallery ───────────────────────────────────────────────────────────
+// ─── Photo Gallery ────────────────────────────────────────────────────────────
 
 const GALLERY_PHOTOS = [
-  { src: "/images/melbourne-bathroom-renovation-shower.jpg",        alt: "Herringbone brass bathroom, Marina Rd renovation" },
-  { src: "/images/melbourne-kitchen-renovation-island-bench.jpg",   alt: "Kitchen island bench with navy stools, Brighton" },
-  { src: "/images/melbourne-full-home-renovation-living-wide.jpg",  alt: "Open plan kitchen and living, Brighton" },
-  { src: "/images/melbourne-bathroom-tiling-mosaic-shower.jpg",     alt: "Mosaic tile shower, Albert Park renovation" },
-  { src: "/images/melbourne-full-home-renovation-living-room.jpg",  alt: "Living room with fireplace, Brighton" },
+  { src: "/images/melbourne-bathroom-renovation-shower.jpg",          alt: "Herringbone brass bathroom, Marina Rd renovation" },
+  { src: "/images/melbourne-kitchen-renovation-island-bench.jpg",     alt: "Kitchen island bench with navy stools, Brighton" },
+  { src: "/images/melbourne-full-home-renovation-living-wide.jpg",    alt: "Open plan kitchen and living, Brighton" },
+  { src: "/images/melbourne-bathroom-tiling-mosaic-shower.jpg",       alt: "Mosaic tile shower, Albert Park renovation" },
+  { src: "/images/melbourne-full-home-renovation-living-room.jpg",    alt: "Living room with fireplace, Brighton" },
   { src: "/images/melbourne-kitchen-renovation-splashback-tiles.jpg", alt: "Kitchen with patchwork splashback tiles, Albert Park" },
-  { src: "/images/melbourne-bathroom-renovation-vanity.jpg",        alt: "Double vanity bathroom, Hampton renovation" },
-  { src: "/images/melbourne-kitchen-renovation-albert-park.jpg",    alt: "White kitchen renovation, Albert Park" },
-  { src: "/images/melbourne-kitchen-renovation-dining.jpg",         alt: "Kitchen and dining area, Brighton" },
-  { src: "/images/melbourne-home-renovation-entry.jpg",             alt: "Herringbone tiling, Mentone renovation" },
+  { src: "/images/melbourne-bathroom-renovation-vanity.jpg",          alt: "Double vanity bathroom, Hampton renovation" },
+  { src: "/images/melbourne-kitchen-renovation-albert-park.jpg",      alt: "White kitchen renovation, Albert Park" },
+  { src: "/images/melbourne-kitchen-renovation-dining.jpg",           alt: "Kitchen and dining area, Brighton" },
+  { src: "/images/melbourne-home-renovation-entry.jpg",               alt: "Herringbone tiling, Mentone renovation" },
   { src: "/images/melbourne-bathroom-renovation-frameless-shower.jpg", alt: "Frameless glass shower, Hampton renovation" },
-  { src: "/images/melbourne-timber-decking-sandringham.jpg",        alt: "Oiled jarrah timber decking, Sandringham" },
-  { src: "/images/melbourne-living-room-renovation-albert-park.jpg", alt: "Living room renovation, Albert Park" },
-  { src: "/images/melbourne-kitchen-renovation-wide-angle.jpg",     alt: "Kitchen renovation wide view, Brighton" },
-  { src: "/images/melbourne-balcony-waterproofing-tiling.jpg",      alt: "Balcony waterproofing and porcelain tiling, Hampton" },
-  { src: "/images/melbourne-kitchen-renovation-galley-white.jpg",   alt: "White galley kitchen renovation, Toorak" },
-  { src: "/images/melbourne-kitchen-renovation-open-plan.jpg",      alt: "Open plan kitchen, Brighton" },
-  { src: "/images/melbourne-renovation-laundry-white-cabinetry.jpg", alt: "Laundry with white cabinetry, Mentone renovation" },
+  { src: "/images/melbourne-timber-decking-sandringham.jpg",          alt: "Oiled jarrah timber decking, Sandringham" },
+  { src: "/images/melbourne-living-room-renovation-albert-park.jpg",  alt: "Living room renovation, Albert Park" },
+  { src: "/images/melbourne-kitchen-renovation-wide-angle.jpg",       alt: "Kitchen renovation wide view, Brighton" },
+  { src: "/images/melbourne-balcony-waterproofing-tiling.jpg",        alt: "Balcony waterproofing and porcelain tiling, Hampton" },
+  { src: "/images/melbourne-kitchen-renovation-galley-white.jpg",     alt: "White galley kitchen renovation, Toorak" },
+  { src: "/images/melbourne-kitchen-renovation-open-plan.jpg",        alt: "Open plan kitchen, Brighton" },
+  { src: "/images/melbourne-renovation-laundry-white-cabinetry.jpg",  alt: "Laundry with white cabinetry, Mentone renovation" },
 ];
 
 function PhotoGallery() {
@@ -378,11 +570,11 @@ function PhotoGallery() {
   return (
     <section id="gallery" className="py-24 bg-neutral-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>Portfolio</span>
-          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">Our Work</RevealText>
-          <p className="mt-4 max-w-xl mx-auto text-neutral-400">
-            Real projects, real results — kitchens, bathrooms, full homes and outdoor living across Melbourne's Bayside and Mornington Peninsula.
+        <motion.div {...fadeUp(0.1)} className="mb-14">
+          <RevealText className="font-serif text-4xl sm:text-5xl font-bold text-white">Our Work</RevealText>
+          <p className="mt-4 max-w-xl text-neutral-400 text-sm sm:text-base">
+            Real projects, real results — kitchens, bathrooms, full homes and outdoor living
+            across Melbourne's Bayside and Mornington Peninsula.
           </p>
         </motion.div>
 
@@ -407,6 +599,7 @@ function PhotoGallery() {
         </motion.div>
       </div>
 
+      {/* Lightbox */}
       <AnimatePresence>
         {lightboxIdx !== null && (
           <motion.div
@@ -458,16 +651,15 @@ function PhotoGallery() {
   );
 }
 
-// ─── Projects ────────────────────────────────────────────────────────────────
+// ─── Projects ─────────────────────────────────────────────────────────────────
 
 function Projects() {
   return (
     <section id="projects" className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>Portfolio</span>
-          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900">Recent Projects</RevealText>
-          <p className="mt-4 text-neutral-500 max-w-xl mx-auto">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+        <motion.div {...fadeUp(0.1)} className="mb-14">
+          <RevealText className="font-serif text-4xl sm:text-5xl font-bold text-neutral-900">Recent Projects</RevealText>
+          <p className="mt-4 text-neutral-500 max-w-lg text-sm sm:text-base">
             A selection of completed renovations across Melbourne's Bayside and Mornington Peninsula.
           </p>
         </motion.div>
@@ -501,7 +693,12 @@ function Projects() {
               >
                 <div className="h-48 relative overflow-hidden" style={{ backgroundColor: "#ededed" }}>
                   {p.image ? (
-                    <img src={p.image} alt={p.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center text-neutral-400">
                       <div className="text-center">
@@ -529,7 +726,11 @@ function Projects() {
                   <p className="text-xs text-neutral-500 leading-relaxed mb-4 flex-1">{p.summary}</p>
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {p.tags.map((t) => (
-                      <span key={t} className="text-xs px-2 py-0.5 rounded-full" style={{ backgroundColor: "#fdf2f3", color: "#a3343e", border: "1px solid #fce4e5" }}>
+                      <span
+                        key={t}
+                        className="text-xs px-2 py-0.5 rounded-full"
+                        style={{ backgroundColor: "#fdf2f3", color: "#a3343e", border: "1px solid #fce4e5" }}
+                      >
                         {t}
                       </span>
                     ))}
@@ -548,15 +749,19 @@ function Projects() {
   );
 }
 
-// ─── Testimonials ────────────────────────────────────────────────────────────
+// ─── Testimonials ─────────────────────────────────────────────────────────────
 
 function Testimonials() {
   return (
     <section className="py-24" style={{ backgroundColor: "#1a1a1a" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>Reviews</span>
-          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">What Our Clients Say</RevealText>
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+        <motion.div {...fadeUp(0.1)} className="mb-14">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>
+            Client Reviews
+          </span>
+          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">
+            What Our Clients Say
+          </RevealText>
         </motion.div>
 
         <motion.div {...fadeUp(0.15)}>
@@ -571,27 +776,32 @@ function Testimonials() {
   );
 }
 
-// ─── One Stop ────────────────────────────────────────────────────────────────
+// ─── One Stop ─────────────────────────────────────────────────────────────────
 
 function OneStop() {
   return (
     <section id="one-stop" className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)" }}>
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+        <div
+          className="rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)" }}
+        >
           <div className="absolute top-0 right-0 w-72 h-72 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-56 h-56 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+
           <div className="relative z-10 grid md:grid-cols-2 gap-12 items-center">
             <motion.div {...fadeUp(0.1)}>
-              <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>One Stop Service</span>
-              <h2 className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white leading-tight">
+              <h2 className="font-serif text-4xl sm:text-5xl font-bold text-white leading-tight mb-5">
                 One team. Every trade. Start to finish.
               </h2>
-              <p className="mt-5 text-neutral-400 leading-relaxed">
-                Cherry Builds manages every aspect of your renovation under one roof. No coordinating multiple contractors, no gaps between trades. From your first consultation through to final handover, one experienced team handles it all.
+              <p className="text-neutral-400 leading-relaxed mb-8">
+                Cherry Builds manages every aspect of your renovation under one roof. No coordinating
+                multiple contractors, no gaps between trades. From your first consultation through to
+                final handover, one experienced team handles it all.
               </p>
               <a
                 href="#contact"
-                className="mt-8 inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+                className="inline-flex items-center gap-2 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
                 style={{ backgroundColor: "#a3343e" }}
                 onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#8a2b34")}
                 onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#a3343e")}
@@ -600,12 +810,13 @@ function OneStop() {
                 <ArrowRight className="w-4 h-4" />
               </a>
             </motion.div>
+
             <motion.div {...fadeUp(0.2)} className="grid grid-cols-2 gap-4">
               {[
-                { icon: Hammer, title: "Full Renovations", desc: "Kitchens, bathrooms, and complete home transformations" },
-                { icon: LayoutGrid, title: "Project Management", desc: "One point of contact coordinating every trade" },
-                { icon: Droplets, title: "Waterproofing", desc: "Certified AS3740 waterproofing in-house" },
-                { icon: Shield, title: "Licensed Builder", desc: "VBA Licensed with 30+ years industry experience" },
+                { icon: Hammer,      title: "Full Renovations",     desc: "Kitchens, bathrooms, and complete home transformations" },
+                { icon: LayoutGrid,  title: "Project Management",   desc: "One point of contact coordinating every trade" },
+                { icon: Droplets,    title: "Waterproofing",        desc: "Certified AS3740 waterproofing in-house" },
+                { icon: Shield,      title: "Licensed Builder",     desc: "VBA Licensed with 30+ years industry experience" },
               ].map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="bg-white/10 border border-white/20 rounded-xl p-4">
                   <Icon className="w-5 h-5 mb-2" style={{ color: "#f49ba0" }} />
@@ -621,13 +832,16 @@ function OneStop() {
   );
 }
 
-// ─── AquaTight ───────────────────────────────────────────────────────────────
+// ─── AquaTight ────────────────────────────────────────────────────────────────
 
 function AquaTight() {
   return (
     <section id="aquatight" className="py-24" style={{ backgroundColor: "#ededed" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden" style={{ background: "linear-gradient(135deg, #a3343e 0%, #72232b 100%)" }}>
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+        <div
+          className="rounded-3xl p-8 sm:p-14 text-white relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, #a3343e 0%, #72232b 100%)" }}
+        >
           <div className="absolute top-0 right-0 w-72 h-72 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-56 h-56 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
 
@@ -636,7 +850,7 @@ function AquaTight() {
               <img
                 src="/logos/aqua-tight.png"
                 alt="Aquatight"
-                className="h-16 w-auto mb-5"
+                className="h-14 w-auto mb-5"
                 style={{ filter: "brightness(0) invert(1)" }}
               />
               <div className="inline-flex items-center gap-2 bg-white/15 border border-white/20 rounded-full px-3 py-1 text-sm font-medium mb-5">
@@ -679,10 +893,10 @@ function AquaTight() {
 
             <motion.div {...fadeUp(0.25)} className="grid grid-cols-2 gap-4">
               {[
-                { icon: Shield, title: "AS3740 Compliant", desc: "All work meets Australian Standards" },
-                { icon: Award, title: "Certified Team", desc: "Licensed waterproofers & tilers" },
-                { icon: Check, title: "Warranties Issued", desc: "Certificates on every job" },
-                { icon: Droplets, title: "All Wet Areas", desc: "Showers, balconies, laundries" },
+                { icon: Shield,   title: "AS3740 Compliant",  desc: "All work meets Australian Standards" },
+                { icon: Award,    title: "Certified Team",    desc: "Licensed waterproofers & tilers" },
+                { icon: Check,    title: "Warranties Issued", desc: "Certificates on every job" },
+                { icon: Droplets, title: "All Wet Areas",     desc: "Showers, balconies, laundries" },
               ].map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="bg-white/10 border border-white/20 rounded-xl p-4">
                   <Icon className="w-5 h-5 text-red-200 mb-2" />
@@ -698,18 +912,15 @@ function AquaTight() {
   );
 }
 
-// ─── Combined expertise ───────────────────────────────────────────────────────
+// ─── Combined Expertise ───────────────────────────────────────────────────────
 
 function CombinedExpertise() {
   return (
     <section className="py-24 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <motion.div {...fadeUp(0.1)}>
-            <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>
-              The Complete Solution
-            </span>
-            <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
+            <RevealText className="font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
               Complete renovations and waterproofing, coordinated by one team.
             </RevealText>
             <div className="flex items-center gap-6 mt-8 pt-6 border-t border-neutral-200">
@@ -738,7 +949,7 @@ function CombinedExpertise() {
                 { val: "18+", label: "Years waterproofing expertise" },
               ].map((s) => (
                 <div key={s.label} className="rounded-2xl p-5 text-center" style={{ backgroundColor: "#ededed" }}>
-                  <CountUp value={s.val} className="font-serif text-3xl font-bold" style={{ color: "#a3343e" }} />
+                  <CountUp value={s.val} className="font-serif text-3xl font-bold block" style={{ color: "#a3343e" }} />
                   <div className="text-xs text-neutral-500 mt-1.5 leading-snug">{s.label}</div>
                 </div>
               ))}
@@ -772,17 +983,19 @@ function CombinedExpertise() {
   );
 }
 
-// ─── FAQ ─────────────────────────────────────────────────────────────────────
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
 
 function FAQ() {
   const [open, setOpen] = React.useState(null);
 
   return (
-    <section id="faq" className="py-24 bg-white">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
+    <section id="faq" className="py-24" style={{ backgroundColor: "#ededed" }}>
+      <div className="max-w-3xl mx-auto px-6 sm:px-8">
+        <motion.div {...fadeUp(0.1)} className="mb-14">
           <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>FAQ</span>
-          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900">Common Questions</RevealText>
+          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900">
+            Common Questions
+          </RevealText>
         </motion.div>
 
         <div className="space-y-3">
@@ -790,8 +1003,7 @@ function FAQ() {
             <motion.div
               key={i}
               {...fadeUp(0.05 + i * 0.04)}
-              className="border border-neutral-200 rounded-2xl overflow-hidden"
-              style={{ backgroundColor: "#ededed" }}
+              className="border border-neutral-200 rounded-2xl overflow-hidden bg-white"
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
@@ -825,7 +1037,7 @@ function FAQ() {
   );
 }
 
-// ─── Contact ─────────────────────────────────────────────────────────────────
+// ─── Contact ──────────────────────────────────────────────────────────────────
 
 function Contact() {
   const [submitted, setSubmitted] = React.useState(false);
@@ -840,40 +1052,43 @@ function Contact() {
     setSubmitted(true);
     // Fire Google Ads "Form Enquiry" conversion
     if (window.gtag) {
-      window.gtag('event', 'conversion', { send_to: 'AW-17973575816/eCcUCJqgsLQcEIiBvPpC' });
+      window.gtag("event", "conversion", { send_to: "AW-17973575816/eCcUCJqgsLQcEIiBvPpC" });
     }
   };
 
-  const inputClass = "w-full rounded-lg border border-neutral-200 bg-white px-3 py-2.5 text-neutral-800 text-sm focus:outline-none focus:ring-2 focus:ring-cherry-600";
+  const inputClass =
+    "w-full rounded-lg border border-neutral-200 bg-white px-3 py-2.5 text-neutral-800 text-sm focus:outline-none focus:ring-2 focus:ring-cherry-600";
 
   return (
-    <section id="contact" className="py-24" style={{ backgroundColor: "#ededed" }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="contact" className="py-24 bg-white">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8">
         <div className="grid md:grid-cols-2 gap-14 items-start">
           <motion.div {...fadeUp(0.1)}>
-            <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>Get in Touch</span>
-            <h2 className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight mb-5">
               Ready to start your renovation?
             </h2>
-            <p className="mt-5 text-neutral-500 leading-relaxed">
+            <p className="text-neutral-500 leading-relaxed mb-8">
               Tell us about your project and we'll get back to you with an obligation-free quote.
               We service Melbourne's Bayside suburbs, Mornington Peninsula, and inner-city areas.
             </p>
 
-            <div className="mt-8 space-y-4">
+            <div className="space-y-4 mb-8">
               {[
-                { icon: Phone, label: "Phone", value: "0438 499 146", href: "tel:0438499146" },
-                { icon: Mail, label: "Email", value: "info@cherrybuilds.com.au", href: "mailto:info@cherrybuilds.com.au" },
+                { icon: Phone, label: "Phone",  value: "0438 499 146",                href: "tel:0438499146" },
+                { icon: Mail,  label: "Email",  value: "info@cherrybuilds.com.au",    href: "mailto:info@cherrybuilds.com.au" },
                 { icon: MapPin, label: "Postal", value: "PO BOX 3109, Mentone East VIC 3194", href: null },
               ].map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="flex items-start gap-3">
-                  <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#fdf2f3", border: "1px solid #fce4e5" }}>
+                  <div
+                    className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ backgroundColor: "#fdf2f3", border: "1px solid #fce4e5" }}
+                  >
                     <Icon className="w-4 h-4" style={{ color: "#a3343e" }} />
                   </div>
                   <div>
                     <div className="text-xs text-neutral-400 font-medium">{label}</div>
                     {href ? (
-                      <a href={href} className="text-sm text-neutral-700 font-medium transition-colors hover:text-cherry-600">{value}</a>
+                      <a href={href} className="text-sm text-neutral-700 font-medium hover:text-cherry-600 transition-colors">{value}</a>
                     ) : (
                       <span className="text-sm text-neutral-700">{value}</span>
                     )}
@@ -882,28 +1097,51 @@ function Contact() {
               ))}
             </div>
 
-            <div className="mt-8 flex items-center gap-2 text-sm text-neutral-500">
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
-              <a href="https://www.facebook.com/cherrybuilds" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-600 transition-colors">Follow us on Facebook</a>
+            <div className="flex items-center gap-2 text-sm text-neutral-500 mb-6">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+              <a
+                href="https://www.facebook.com/cherrybuilds"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-cherry-600 transition-colors"
+              >
+                Follow us on Facebook
+              </a>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-neutral-300 text-xs text-neutral-400 space-y-0.5">
+            <div className="pt-6 border-t border-neutral-200 text-xs text-neutral-400 space-y-0.5">
               <div>ABN: 60 122 151 679</div>
               <div>VBA Licence: DB-71349</div>
             </div>
           </motion.div>
 
-          <motion.div {...fadeUp(0.2)} className="bg-white border border-neutral-200 rounded-2xl p-8 shadow-sm">
+          <motion.div
+            {...fadeUp(0.2)}
+            className="bg-white border border-neutral-200 rounded-2xl p-8 shadow-sm"
+            style={{ backgroundColor: "#f9f9f9" }}
+          >
             {submitted ? (
               <div className="flex flex-col items-center justify-center py-12 text-center gap-4">
-                <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ backgroundColor: "#fdf2f3", border: "1px solid #fce4e5" }}>
+                <div
+                  className="w-14 h-14 rounded-full flex items-center justify-center"
+                  style={{ backgroundColor: "#fdf2f3", border: "1px solid #fce4e5" }}
+                >
                   <Check className="w-7 h-7" style={{ color: "#a3343e" }} />
                 </div>
                 <h3 className="text-lg font-semibold text-neutral-900">Enquiry sent!</h3>
-                <p className="text-neutral-500 text-sm">Thanks for reaching out. We'll be in touch shortly with your obligation-free quote.</p>
+                <p className="text-neutral-500 text-sm">
+                  Thanks for reaching out. We'll be in touch shortly with your obligation-free quote.
+                </p>
               </div>
             ) : (
-              <form action="https://formspree.io/f/placeholder" method="POST" onSubmit={handleSubmit} className="space-y-4 text-sm">
+              <form
+                action="https://formspree.io/f/placeholder"
+                method="POST"
+                onSubmit={handleSubmit}
+                className="space-y-4 text-sm"
+              >
                 <input type="text" name="_gotcha" className="hidden" />
                 <input type="hidden" name="_subject" value="New enquiry from Cherry Builds website" />
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -930,7 +1168,7 @@ function Contact() {
                 </div>
                 <div>
                   <label htmlFor="cb-message" className="block text-xs font-semibold text-neutral-600 mb-1">Tell us about your project</label>
-                  <textarea id="cb-message" name="message" rows="4" className={`${inputClass} resize-none`} />
+                  <textarea id="cb-message" name="message" rows={4} className={`${inputClass} resize-none`} />
                 </div>
                 <button
                   type="submit"
@@ -952,7 +1190,7 @@ function Contact() {
   );
 }
 
-// ─── Floating call ────────────────────────────────────────────────────────────
+// ─── Floating Call ────────────────────────────────────────────────────────────
 
 function FloatingCall() {
   return (
@@ -979,13 +1217,21 @@ export default function Home() {
     <>
       <Helmet>
         <title>Cherry Builds | VBA Licensed Renovation Builder Melbourne</title>
-        <meta name="description" content="VBA Licensed renovation builder in Melbourne — kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
+        <meta
+          name="description"
+          content="VBA Licensed renovation builder in Melbourne — kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote."
+        />
         <meta property="og:title" content="Cherry Builds | VBA Licensed Renovation Builder Melbourne" />
-        <meta property="og:description" content="VBA Licensed renovation builder in Melbourne — kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
+        <meta
+          property="og:description"
+          content="VBA Licensed renovation builder in Melbourne — kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote."
+        />
         <meta property="og:url" content="https://cherrybuilds.com.au/" />
         <link rel="canonical" href="https://cherrybuilds.com.au/" />
       </Helmet>
+
       <Hero />
+      <StatsStrip />
       <TrustBar />
       <About />
       <WhyChoose />
