@@ -7,6 +7,8 @@ import {
   Award, Check, ArrowRight, ExternalLink, Droplets, Shield,
   Hammer, SlidersHorizontal, LayoutGrid, Eye, ThumbsUp,
 } from "lucide-react";
+import { BlossomCarousel } from "@blossom-carousel/react";
+import "@blossom-carousel/core/dist/blossom-carousel-core.css";
 import { SERVICES, PROJECTS, TESTIMONIALS, FAQS, CREDENTIALS } from "../data/index.js";
 import RevealText from "../components/RevealText.jsx";
 import CountUp from "../components/CountUp.jsx";
@@ -467,6 +469,7 @@ const GALLERY_PHOTOS = [
 ];
 
 function PhotoGallery() {
+  const carouselRef = React.useRef(null);
   const [lightboxIdx, setLightboxIdx] = React.useState(null);
   const count = GALLERY_PHOTOS.length;
 
@@ -481,38 +484,72 @@ function PhotoGallery() {
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxIdx, count]);
 
-  return (
-    <section id="gallery" className="py-24 bg-neutral-950">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
-          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>Portfolio</span>
-          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">Our Work</RevealText>
-          <p className="mt-4 max-w-xl mx-auto text-neutral-400">
-            Real projects, real results — kitchens, bathrooms, full homes and outdoor living across Melbourne's Bayside and Mornington Peninsula.
-          </p>
-        </motion.div>
+  const NavBtn = ({ dir }) => (
+    <button
+      onClick={() => carouselRef.current?.[dir]({ align: "start" })}
+      aria-label={dir === "prev" ? "Previous" : "Next"}
+      className="w-10 h-10 rounded-full flex items-center justify-center transition-all border border-neutral-700 text-neutral-400 hover:border-neutral-400 hover:text-white"
+    >
+      {dir === "prev"
+        ? <ChevronLeft className="w-5 h-5" />
+        : <ChevronRight className="w-5 h-5" />
+      }
+    </button>
+  );
 
-        <motion.div {...fadeUp(0.15)} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
-          {GALLERY_PHOTOS.map((photo, i) => (
-            <div
-              key={i}
-              className="aspect-[4/3] cursor-pointer group relative overflow-hidden rounded-xl"
-              onClick={() => setLightboxIdx(i)}
-            >
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-center justify-center">
-                <Eye className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
-              </div>
-            </div>
-          ))}
+  return (
+    <section id="gallery" className="py-24 bg-neutral-950 overflow-hidden">
+      {/* Header + desktop nav — constrained to page container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <motion.div {...fadeUp(0.1)} className="flex items-end justify-between mb-10 gap-6">
+          <div>
+            <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>Portfolio</span>
+            <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">Our Work</RevealText>
+            <p className="mt-3 max-w-xl text-neutral-400 text-sm sm:text-base">
+              Kitchens, bathrooms, full homes and outdoor living across Melbourne&apos;s Bayside and Mornington Peninsula.
+            </p>
+          </div>
+          {/* Prev / Next — desktop only, shown beside heading */}
+          <div className="hidden sm:flex items-center gap-2 flex-shrink-0 pb-1">
+            <NavBtn dir="prev" />
+            <NavBtn dir="next" />
+          </div>
         </motion.div>
       </div>
 
+      {/* Blossom carousel — full-width, drag on mouse / native scroll on touch */}
+      <motion.div {...fadeUp(0.15)}>
+        <BlossomCarousel ref={carouselRef} as="ul" className="gallery-carousel">
+          {GALLERY_PHOTOS.map((photo, i) => (
+            <li
+              key={i}
+              className="gallery-slide"
+              onClick={() => setLightboxIdx(i)}
+            >
+              <div className="relative overflow-hidden rounded-2xl h-full cursor-pointer group">
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  loading="lazy"
+                  draggable="false"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                  <Eye className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+                </div>
+              </div>
+            </li>
+          ))}
+        </BlossomCarousel>
+      </motion.div>
+
+      {/* Mobile nav — centred below carousel */}
+      <div className="flex sm:hidden items-center justify-center gap-3 mt-6">
+        <NavBtn dir="prev" />
+        <NavBtn dir="next" />
+      </div>
+
+      {/* Lightbox — unchanged */}
       <AnimatePresence>
         {lightboxIdx !== null && (
           <motion.div

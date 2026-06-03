@@ -29,3 +29,25 @@
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Blossom Gallery Carousel ─────────────────────────────────────────────── */
+/* blossom's base CSS is in @layer, so these unlayered rules take priority     */
+.gallery-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(260px, 34vw, 400px);
+  gap: 10px;
+  /* left edge lines up with the page container at every breakpoint */
+  padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 1.5rem));
+  scroll-padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 1.5rem));
+  scroll-snap-type: x mandatory;
+  /* block padding gives hover scale room without overflow-hidden clipping */
+  padding-block: 12px;
+  margin-block: -12px;
+}
+
+.gallery-slide {
+  display: block;
+  aspect-ratio: 4 / 3;
+  scroll-snap-align: start;
+}
