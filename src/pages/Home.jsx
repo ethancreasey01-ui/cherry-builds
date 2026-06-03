@@ -116,7 +116,7 @@ function Hero() {
             { val: "100%", label: "Licensed & Insured" },
           ].map((s) => (
             <div key={s.label} className="text-center">
-              <CountUp value={s.val} className="font-serif text-3xl font-bold" style={{ color: "#a3343e" }} />
+              <CountUp value={s.val} delay={1400} className="font-serif text-3xl font-bold" style={{ color: "#a3343e" }} />
               <div className="text-xs text-neutral-400 mt-1.5 leading-snug">{s.label}</div>
             </div>
           ))}
@@ -386,18 +386,18 @@ function PhotoGallery() {
           </p>
         </motion.div>
 
-        <motion.div {...fadeUp(0.15)} className="columns-2 sm:columns-3 lg:columns-4 gap-2 sm:gap-3">
+        <motion.div {...fadeUp(0.15)} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
           {GALLERY_PHOTOS.map((photo, i) => (
             <div
               key={i}
-              className="break-inside-avoid mb-2 sm:mb-3 cursor-pointer group relative overflow-hidden rounded-xl"
+              className="aspect-[4/3] cursor-pointer group relative overflow-hidden rounded-xl"
               onClick={() => setLightboxIdx(i)}
             >
               <img
                 src={photo.src}
                 alt={photo.alt}
                 loading="lazy"
-                className="w-full object-cover block transition-transform duration-500 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-center justify-center">
                 <Eye className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />

@@ -1,9 +1,9 @@
 import React from "react";
 import { useInView } from "framer-motion";
 
-export default function CountUp({ value, className = "", style }) {
+export default function CountUp({ value, className = "", style, delay = 0 }) {
   const ref = React.useRef(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const inView = useInView(ref, { once: true, amount: 0.3 });
   const [display, setDisplay] = React.useState("0");
 
   React.useEffect(() => {
@@ -16,18 +16,26 @@ export default function CountUp({ value, className = "", style }) {
     const target = parseInt(match[1], 10);
     const suffix = match[2];
     const duration = Math.min(1800, 600 + target * 0.8);
-    let start = null;
 
-    const step = (ts) => {
-      if (!start) start = ts;
-      const progress = Math.min((ts - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setDisplay(String(Math.floor(eased * target)) + suffix);
-      if (progress < 1) requestAnimationFrame(step);
+    const run = () => {
+      let start = null;
+      const step = (ts) => {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setDisplay(String(Math.floor(eased * target)) + suffix);
+        if (progress < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
     };
 
-    requestAnimationFrame(step);
-  }, [inView, value]);
+    if (delay > 0) {
+      const t = setTimeout(run, delay);
+      return () => clearTimeout(t);
+    } else {
+      run();
+    }
+  }, [inView, value, delay]);
 
   return <span ref={ref} className={className} style={style}>{display}</span>;
 }
