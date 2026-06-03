@@ -12,6 +12,13 @@
   --color-cherry-800: #72232b;
   --color-cherry-900: #1a1a1a;
 
+  /* Gold accent — premium highlight colour */
+  --color-gold-300: #f0d585;
+  --color-gold-400: #e8c671;
+  --color-gold-500: #d4a853;
+  --color-gold-600: #b8923f;
+  --color-gold-700: #9a7834;
+
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans:  'Plus Jakarta Sans', system-ui, sans-serif;
   --font-display: 'Playfair Display', Georgia, serif;
@@ -20,12 +27,31 @@
 @layer base {
   html { scroll-behavior: smooth; }
   body {
-    @apply antialiased bg-white text-neutral-700;
+    @apply antialiased;
+    background-color: #0d0d0d;
+    color: #e8e8e8;
     font-family: var(--font-sans);
     margin: 0;
   }
   #root { width: 100%; text-align: left; }
+
+  /* Premium dark scrollbar */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #0d0d0d; }
+  ::-webkit-scrollbar-thumb { background: #282828; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #353535; }
+
+  /* Cherry text selection */
+  ::selection { background: rgba(199,62,73,0.28); color: #fff; }
 }
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Glow utilities referenced inline via className */
+.glow-cherry {
+  box-shadow: 0 0 18px rgba(199,62,73,0.38), 0 4px 16px rgba(199,62,73,0.22), 0 2px 6px rgba(0,0,0,0.45);
+}
+.glow-cherry:hover {
+  box-shadow: 0 0 28px rgba(199,62,73,0.52), 0 6px 22px rgba(199,62,73,0.30), 0 2px 8px rgba(0,0,0,0.5);
+}
