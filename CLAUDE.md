@@ -19,7 +19,7 @@ Different from dsea-site — uses a pages folder:
 ## Phone Number
 **Display**: 0438 499 146  
 **Tel href**: `tel:0438499146`  
-⚠️ Confirm this is the real client number before going live — may still be a placeholder.
+✅ Confirmed correct — real client number.
 
 ## Contact Form
 **Formspree endpoint**: `https://formspree.io/f/placeholder` ← NOT SET UP  
@@ -40,7 +40,7 @@ When configured, follow this pattern (learned from dsea-site):
 - Canonical URL: always `https://cherrybuilds.com.au/` — never a Vercel preview URL
 
 ## Launch Checklist
-- [ ] Confirm real client phone number
+- [x] Confirm real client phone number — ✅ 0438 499 146 confirmed
 - [ ] Replace Formspree placeholder with real form ID
 - [ ] Set up Google Ads account + get tag ID
 - [ ] Add Google base tag to `index.html` head
