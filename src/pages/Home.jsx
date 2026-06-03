@@ -137,13 +137,13 @@ function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: "#1a1a1a" }}>
       {/* Hero photo with parallax */}
       <motion.img
-        src="/images/melbourne-home-renovations-cherry-builds.jpg"
-        alt="Cherry Builds renovation"
+        src="/images/hero-banner-gemini-original.jpg"
+        alt="Cherry Builds renovation — kitchens, bathrooms, outdoor living"
         className="absolute inset-0 w-full h-full object-cover object-center"
         style={{ y: bgY, scale: 1.08 }}
       />
-      {/* Dark overlay so text stays readable */}
-      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(26,26,26,0.62) 0%, rgba(26,26,26,0.52) 50%, rgba(26,26,26,0.62) 100%)" }} />
+      {/* Heavier overlay — banner is bright so needs more contrast for text */}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(26,26,26,0.78) 0%, rgba(26,26,26,0.68) 50%, rgba(26,26,26,0.78) 100%)" }} />
       <motion.div
         className="absolute inset-0 opacity-[0.025]"
         style={{
