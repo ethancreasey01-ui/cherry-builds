@@ -380,16 +380,22 @@ function WhyChoose() {
 }
 
 // ─── Services ────────────────────────────────────────────────────────────────
-// Tiered layout: 1 featured hero card + 3 medium cards + 4 compact cards
+// Tiered layout: 1 dark featured hero card + 3 mid + 4 compact (light section)
 
-const svcGlass = {
-  background: "rgba(255,255,255,0.04)",
-  border: "1px solid rgba(255,255,255,0.09)",
+// Light cards for mid/base tiers — clean on the white/grey background
+const svcCard      = { background: "#ffffff", border: "1px solid #e8e8e8" };
+const svcCardHover = {
+  background: "#ffffff",
+  border: "1px solid rgba(163,52,62,0.28)",
+  boxShadow: "0 4px 20px rgba(163,52,62,0.07), 0 2px 8px rgba(0,0,0,0.06)",
 };
-const svcGlassHover = {
-  background: "rgba(255,255,255,0.07)",
+
+// Dark card for the featured tile — pops on the light section bg
+const featCard      = { background: "#1a1a1a", border: "1px solid rgba(255,255,255,0.08)" };
+const featCardHover = {
+  background: "#1a1a1a",
   border: "1px solid rgba(163,52,62,0.35)",
-  boxShadow: "0 0 28px rgba(163,52,62,0.1), 0 8px 32px rgba(0,0,0,0.5)",
+  boxShadow: "0 0 30px rgba(163,52,62,0.12), 0 12px 40px rgba(0,0,0,0.25)",
 };
 
 function ServiceCard({ svc, size = "mid" }) {
@@ -408,23 +414,22 @@ function ServiceCard({ svc, size = "mid" }) {
       <Link
         to={`/services/${svc.slug}`}
         className={`flex flex-col h-full overflow-hidden transition-all duration-300 ${isMid ? "rounded-2xl" : "rounded-xl"}`}
-        style={hovered ? svcGlassHover : svcGlass}
+        style={hovered ? svcCardHover : svcCard}
       >
         <div className={`relative overflow-hidden flex-shrink-0 ${isMid ? "h-44" : "h-24"}`}>
           {svc.heroImage && (
             <img src={svc.heroImage} alt={svc.title} loading="lazy"
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
           )}
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 55%, transparent 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 55%)" }} />
           <div className={`absolute left-3 flex items-center justify-center ${isMid ? "bottom-3 w-8 h-8 rounded-lg" : "bottom-2 w-6 h-6 rounded-md"}`}
             style={{ backgroundColor: "#a3343e" }}>
             <svc.icon className={`text-white ${isMid ? "w-4 h-4" : "w-3 h-3"}`} />
           </div>
         </div>
         <div className={`flex flex-col flex-1 ${isMid ? "p-5" : "p-4"}`}>
-          <h3 className={`font-semibold text-white leading-snug ${isMid ? "text-sm mb-2" : "text-xs mb-1.5"}`}>{svc.title}</h3>
-          <p className={`leading-relaxed flex-1 ${isMid ? "text-xs mb-4" : "text-[11px] mb-3"}`}
-            style={{ color: "rgba(232,232,232,0.5)" }}>{svc.desc}</p>
+          <h3 className={`font-semibold text-neutral-900 leading-snug ${isMid ? "text-sm mb-2" : "text-xs mb-1.5"}`}>{svc.title}</h3>
+          <p className={`leading-relaxed flex-1 text-neutral-500 ${isMid ? "text-xs mb-4" : "text-[11px] mb-3"}`}>{svc.desc}</p>
           <div className="inline-flex items-center gap-1 font-semibold group-hover:gap-1.5 transition-all"
             style={{ color: "#a3343e", fontSize: isMid ? 12 : 11 }}>
             Learn More <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -437,24 +442,24 @@ function ServiceCard({ svc, size = "mid" }) {
 
 function Services() {
   const [featured, ...rest] = SERVICES;
-  const midTier  = rest.slice(0, 3);   // Bathroom, Kitchen, Decking
-  const baseTier = rest.slice(3);       // Tiling, Waterproofing, Plastering, Property Prep
+  const midTier  = rest.slice(0, 3);
+  const baseTier = rest.slice(3);
   const [featHovered, setFeatHovered] = React.useState(false);
 
   return (
-    <section id="services" className="py-24" style={{ backgroundColor: "#111111" }}>
+    <section id="services" className="py-24" style={{ backgroundColor: "#f5f5f5" }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         {/* Header */}
         <motion.div {...fadeUp(0.05)} className="mb-12">
           <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>What We Do</span>
-          <RevealText className="mt-2 font-serif text-4xl sm:text-5xl font-bold text-white">Our Services</RevealText>
-          <p className="mt-3 text-sm sm:text-base max-w-md" style={{ color: "rgba(232,232,232,0.5)" }}>
+          <RevealText className="mt-2 font-serif text-4xl sm:text-5xl font-bold text-neutral-900">Our Services</RevealText>
+          <p className="mt-3 text-sm sm:text-base max-w-md text-neutral-500">
             From a single bathroom to a complete home transformation — one team manages every trade.
           </p>
         </motion.div>
 
-        {/* Featured: Full Home Renovations */}
+        {/* Featured: Full Home Renovations — dark card on light bg */}
         <motion.div {...fadeUp(0.1)} className="mb-5">
           <motion.div
             whileHover={{ y: -3 }} transition={{ duration: 0.22, ease: "easeOut" }}
@@ -465,14 +470,12 @@ function Services() {
             <Link
               to={`/services/${featured.slug}`}
               className="flex flex-col md:flex-row rounded-2xl overflow-hidden transition-all duration-300"
-              style={featHovered
-                ? { ...svcGlassHover, boxShadow: "0 0 40px rgba(163,52,62,0.14), 0 12px 40px rgba(0,0,0,0.6)" }
-                : svcGlass}
+              style={featHovered ? featCardHover : featCard}
             >
               <div className="md:w-[52%] h-64 md:h-auto min-h-[260px] relative overflow-hidden flex-shrink-0">
                 <img src={featured.heroImage} alt={featured.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.18), transparent 60%)" }} />
+                <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(0,0,0,0.15), transparent 60%)" }} />
               </div>
               <div className="flex flex-col justify-center p-7 sm:p-10 md:w-[48%]">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: "#a3343e" }}>
@@ -482,7 +485,7 @@ function Services() {
                   Flagship Service
                 </p>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white leading-tight mb-3">{featured.title}</h3>
-                <p className="text-sm sm:text-base leading-relaxed mb-6 max-w-sm" style={{ color: "rgba(232,232,232,0.58)" }}>{featured.desc}</p>
+                <p className="text-sm sm:text-base leading-relaxed mb-6 max-w-sm" style={{ color: "rgba(232,232,232,0.6)" }}>{featured.desc}</p>
                 <div className="inline-flex items-center gap-2 font-semibold text-sm transition-all group-hover:gap-2.5" style={{ color: "#a3343e" }}>
                   Explore Service <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </div>
@@ -491,14 +494,14 @@ function Services() {
           </motion.div>
         </motion.div>
 
-        {/* Mid tier: 3-col */}
+        {/* Mid tier: 3-col white cards */}
         <motion.div className="grid sm:grid-cols-3 gap-4 mb-4"
           initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08 } } }}>
           {midTier.map(svc => <ServiceCard key={svc.slug} svc={svc} size="mid" />)}
         </motion.div>
 
-        {/* Base tier: 4-col compact */}
+        {/* Base tier: 4-col compact white cards */}
         <motion.div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3"
           initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }}
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}>
@@ -536,8 +539,10 @@ const GALLERY_PHOTOS = [
 function PhotoGallery() {
   const carouselRef = React.useRef(null);
   const [lightboxIdx, setLightboxIdx] = React.useState(null);
+  const [isHovered, setIsHovered] = React.useState(false);
   const count = GALLERY_PHOTOS.length;
 
+  // Keyboard nav for lightbox
   React.useEffect(() => {
     if (lightboxIdx === null) return;
     const onKey = (e) => {
@@ -548,6 +553,22 @@ function PhotoGallery() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxIdx, count]);
+
+  // Auto-scroll — pauses on hover and while lightbox is open, loops back to start
+  React.useEffect(() => {
+    if (isHovered || lightboxIdx !== null) return;
+    const interval = setInterval(() => {
+      const el = carouselRef.current?.element;
+      if (!el) return;
+      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 20;
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        carouselRef.current?.next({ align: "start" });
+      }
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [isHovered, lightboxIdx]);
 
   const NavBtn = ({ dir }) => (
     <button
@@ -583,7 +604,11 @@ function PhotoGallery() {
       </div>
 
       {/* Blossom carousel — full-width, drag on mouse / native scroll on touch */}
-      <motion.div {...fadeUp(0.15)}>
+      <motion.div
+        {...fadeUp(0.15)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <BlossomCarousel ref={carouselRef} as="ul" className="gallery-carousel">
           {GALLERY_PHOTOS.map((photo, i) => (
             <li
