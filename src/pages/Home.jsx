@@ -13,6 +13,112 @@ import CountUp from "../components/CountUp.jsx";
 import TrustBar from "../components/TrustBar.jsx";
 import TestimonialsCarousel from "../components/TestimonialsCarousel.jsx";
 
+// ─── Schema.org Structured Data ───────────────────────────────────────────────
+// seo-schema audit: zero structured data on live site (cherrybuilds.com.au).
+// Added: GeneralContractor + LocalBusiness, Service ItemList, FAQPage.
+// FAQPage note: included for AI/LLM citation benefit (ChatGPT, Perplexity,
+// AI Overviews) — NOT for Google rich results (commercial restriction Aug 2023).
+
+const schemaLocalBusiness = {
+  "@context": "https://schema.org",
+  "@type": ["GeneralContractor", "LocalBusiness"],
+  "@id": "https://cherrybuilds.com.au/#business",
+  name: "Cherry Builds",
+  legalName: "Cherry Building and Construction Services",
+  description:
+    "VBA Licensed renovation builder in Melbourne. Kitchens, bathrooms, full home renovations, decking and waterproofing across Bayside and the Mornington Peninsula. 30+ years experience.",
+  url: "https://cherrybuilds.com.au",
+  telephone: "+61438499146",
+  email: "info@cherrybuilds.com.au",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "PO BOX 3109",
+    addressLocality: "Mentone East",
+    addressRegion: "VIC",
+    postalCode: "3194",
+    addressCountry: "AU",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: -37.9736, longitude: 145.0724 },
+  areaServed: [
+    { "@type": "City", name: "Melbourne" },
+    { "@type": "AdministrativeArea", name: "Bayside, Victoria" },
+    { "@type": "AdministrativeArea", name: "Mornington Peninsula" },
+  ],
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "licence",
+    name: "VBA Building Practitioner Licence",
+    identifier: "DB-71349",
+    recognizedBy: {
+      "@type": "GovernmentOrganization",
+      name: "Victorian Building Authority",
+    },
+  },
+  memberOf: {
+    "@type": "Organization",
+    name: "Master Builders Association of Victoria",
+  },
+  foundingDate: "2007",
+  identifier: { "@type": "PropertyValue", name: "ABN", value: "60 122 151 679" },
+  image: "https://cherrybuilds.com.au/og-image.jpg",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://cherrybuilds.com.au/logos/cherry-builds-navbar.png",
+  },
+  sameAs: ["https://www.facebook.com/cherrybuilds"],
+  priceRange: "$$",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "07:00",
+      closes: "18:00",
+    },
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5.0",
+    bestRating: "5",
+    worstRating: "1",
+    ratingCount: "21",
+    reviewCount: "21",
+  },
+};
+
+const schemaServices = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "@id": "https://cherrybuilds.com.au/#services",
+  name: "Renovation Services by Cherry Builds",
+  url: "https://cherrybuilds.com.au/#services",
+  numberOfItems: SERVICES.length,
+  itemListElement: SERVICES.map((svc, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Service",
+      "@id": `https://cherrybuilds.com.au/services/${svc.slug}`,
+      name: svc.title,
+      description: svc.desc,
+      url: `https://cherrybuilds.com.au/services/${svc.slug}`,
+      provider: { "@id": "https://cherrybuilds.com.au/#business" },
+      areaServed: "Melbourne, Victoria, Australia",
+      serviceType: "Home Renovation",
+    },
+  })),
+};
+
+const schemaFAQ = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://cherrybuilds.com.au/#faq",
+  mainEntity: FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
+};
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -984,6 +1090,12 @@ export default function Home() {
         <meta property="og:description" content="VBA Licensed renovation builder in Melbourne — kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
         <meta property="og:url" content="https://cherrybuilds.com.au/" />
         <link rel="canonical" href="https://cherrybuilds.com.au/" />
+        {/* Structured data — GeneralContractor + LocalBusiness */}
+        <script type="application/ld+json">{JSON.stringify(schemaLocalBusiness)}</script>
+        {/* Service ItemList — all 8 renovation services */}
+        <script type="application/ld+json">{JSON.stringify(schemaServices)}</script>
+        {/* FAQPage — AI/LLM citation benefit only (not Google rich results) */}
+        <script type="application/ld+json">{JSON.stringify(schemaFAQ)}</script>
       </Helmet>
       <Hero />
       <TrustBar />
