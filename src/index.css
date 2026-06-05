@@ -30,24 +30,39 @@
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ── Blossom Gallery Carousel ─────────────────────────────────────────────── */
-/* blossom's base CSS is in @layer, so these unlayered rules take priority     */
-.gallery-carousel {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: clamp(260px, 34vw, 400px);
-  gap: 10px;
-  /* left edge lines up with the page container at every breakpoint */
-  padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 1.5rem));
-  scroll-padding-inline: max(1rem, calc((100vw - 80rem) / 2 + 1.5rem));
-  scroll-snap-type: x mandatory;
-  /* block padding gives hover scale room without overflow-hidden clipping */
-  padding-block: 12px;
-  margin-block: -12px;
+/* ── Infinite marquee — shared keyframe for gallery + reviews ─────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.gallery-slide {
-  display: block;
-  aspect-ratio: 4 / 3;
-  scroll-snap-align: start;
+/* Gallery infinite track */
+.gallery-infinite-track {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: marquee 48s linear infinite;
+  /* block padding lets hover scale breathe without being clipped */
+  padding-block: 8px;
+  margin-block: -8px;
 }
+.gallery-infinite-track:hover { animation-play-state: paused; }
+
+.gallery-infinite-slide {
+  flex-shrink: 0;
+  width: clamp(240px, 28vw, 360px);
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Reviews / testimonials marquee */
+.reviews-marquee {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+.reviews-marquee:hover { animation-play-state: paused; }

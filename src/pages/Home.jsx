@@ -5,15 +5,12 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import {
   Phone, Mail, MapPin, ChevronDown, ChevronRight, ChevronLeft, X,
   Award, Check, ArrowRight, ExternalLink, Droplets, Shield,
-  Hammer, SlidersHorizontal, LayoutGrid, Eye, ThumbsUp,
+  Hammer, SlidersHorizontal, LayoutGrid, Eye, ThumbsUp, Star,
 } from "lucide-react";
-import { BlossomCarousel } from "@blossom-carousel/react";
-import "@blossom-carousel/core/style.css";
 import { SERVICES, PROJECTS, TESTIMONIALS, FAQS, CREDENTIALS } from "../data/index.js";
 import RevealText from "../components/RevealText.jsx";
 import CountUp from "../components/CountUp.jsx";
 import TrustBar from "../components/TrustBar.jsx";
-import TestimonialsCarousel from "../components/TestimonialsCarousel.jsx";
 
 // ─── Schema.org Structured Data ───────────────────────────────────────────────
 // seo-schema audit: zero structured data on live site (cherrybuilds.com.au).
@@ -536,13 +533,13 @@ const GALLERY_PHOTOS = [
   { src: "/images/melbourne-renovation-laundry-white-cabinetry.jpg", alt: "Laundry with white cabinetry, Mentone renovation" },
 ];
 
+// Doubled for seamless CSS marquee loops (defined after GALLERY_PHOTOS)
+const GALLERY_DOUBLED = [...GALLERY_PHOTOS, ...GALLERY_PHOTOS];
+
 function PhotoGallery() {
-  const carouselRef = React.useRef(null);
   const [lightboxIdx, setLightboxIdx] = React.useState(null);
-  const [isHovered, setIsHovered] = React.useState(false);
   const count = GALLERY_PHOTOS.length;
 
-  // Keyboard nav for lightbox
   React.useEffect(() => {
     if (lightboxIdx === null) return;
     const onKey = (e) => {
@@ -554,92 +551,44 @@ function PhotoGallery() {
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxIdx, count]);
 
-  // Auto-scroll — pauses on hover and while lightbox is open, loops back to start
-  React.useEffect(() => {
-    if (isHovered || lightboxIdx !== null) return;
-    const interval = setInterval(() => {
-      const el = carouselRef.current?.element;
-      if (!el) return;
-      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 20;
-      if (atEnd) {
-        el.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        carouselRef.current?.next({ align: "start" });
-      }
-    }, 3500);
-    return () => clearInterval(interval);
-  }, [isHovered, lightboxIdx]);
-
-  const NavBtn = ({ dir }) => (
-    <button
-      onClick={() => carouselRef.current?.[dir]({ align: "start" })}
-      aria-label={dir === "prev" ? "Previous" : "Next"}
-      className="w-10 h-10 rounded-full flex items-center justify-center transition-all border border-neutral-700 text-neutral-400 hover:border-neutral-400 hover:text-white"
-    >
-      {dir === "prev"
-        ? <ChevronLeft className="w-5 h-5" />
-        : <ChevronRight className="w-5 h-5" />
-      }
-    </button>
-  );
-
   return (
     <section id="gallery" className="py-24 bg-neutral-950 overflow-hidden">
-      {/* Header + desktop nav — constrained to page container */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="flex items-end justify-between mb-10 gap-6">
-          <div>
-            <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>Portfolio</span>
-            <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">Our Work</RevealText>
-            <p className="mt-3 max-w-xl text-neutral-400 text-sm sm:text-base">
-              Kitchens, bathrooms, full homes and outdoor living across Melbourne&apos;s Bayside and Mornington Peninsula.
-            </p>
-          </div>
-          {/* Prev / Next — desktop only, shown beside heading */}
-          <div className="hidden sm:flex items-center gap-2 flex-shrink-0 pb-1">
-            <NavBtn dir="prev" />
-            <NavBtn dir="next" />
-          </div>
+        <motion.div {...fadeUp(0.1)} className="mb-10">
+          <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>Portfolio</span>
+          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">Our Work</RevealText>
+          <p className="mt-3 max-w-xl text-neutral-400 text-sm sm:text-base">
+            Kitchens, bathrooms, full homes and outdoor living across Melbourne&apos;s Bayside and Mornington Peninsula.
+            <span className="block mt-1 text-neutral-600 text-xs">Hover to pause · click any photo to open</span>
+          </p>
         </motion.div>
       </div>
 
-      {/* Blossom carousel — full-width, drag on mouse / native scroll on touch */}
-      <motion.div
-        {...fadeUp(0.15)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <BlossomCarousel ref={carouselRef} as="ul" className="gallery-carousel">
-          {GALLERY_PHOTOS.map((photo, i) => (
-            <li
+      {/* Infinite CSS marquee — duplicated array, loops seamlessly */}
+      <motion.div {...fadeUp(0.15)} className="overflow-hidden">
+        <div className="gallery-infinite-track">
+          {GALLERY_DOUBLED.map((photo, i) => (
+            <div
               key={i}
-              className="gallery-slide"
-              onClick={() => setLightboxIdx(i)}
+              className="gallery-infinite-slide group"
+              onClick={() => setLightboxIdx(i % count)}
             >
-              <div className="relative overflow-hidden rounded-2xl h-full cursor-pointer group">
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  loading="lazy"
-                  draggable="false"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
-                  <Eye className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
-                </div>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                loading="lazy"
+                draggable="false"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-center justify-center">
+                <Eye className="w-7 h-7 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
               </div>
-            </li>
+            </div>
           ))}
-        </BlossomCarousel>
+        </div>
       </motion.div>
 
-      {/* Mobile nav — centred below carousel */}
-      <div className="flex sm:hidden items-center justify-center gap-3 mt-6">
-        <NavBtn dir="prev" />
-        <NavBtn dir="next" />
-      </div>
-
-      {/* Lightbox — unchanged */}
+      {/* Lightbox */}
       <AnimatePresence>
         {lightboxIdx !== null && (
           <motion.div
@@ -782,24 +731,72 @@ function Projects() {
 }
 
 // ─── Testimonials ────────────────────────────────────────────────────────────
+// Constant-motion marquee — hover to pause, loops seamlessly
+
+const REVIEWS_DOUBLED = [...TESTIMONIALS.slice(0, 10), ...TESTIMONIALS.slice(0, 10)];
 
 function Testimonials() {
   return (
-    <section className="py-24" style={{ backgroundColor: "#1a1a1a" }}>
+    <section className="py-24 overflow-hidden" style={{ backgroundColor: "#1a1a1a" }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <motion.div {...fadeUp(0.1)} className="text-center mb-14">
+        <motion.div {...fadeUp(0.1)} className="mb-12">
           <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#f49ba0" }}>Reviews</span>
-          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">What Our Clients Say</RevealText>
-        </motion.div>
-
-        <motion.div {...fadeUp(0.15)}>
-          <TestimonialsCarousel
-            testimonials={TESTIMONIALS.slice(0, 4)}
-            cardBg="#2a2a2a"
-            cardWidth="clamp(280px, 70vw, 340px)"
-          />
+          <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white">
+            What Our Clients Say
+          </RevealText>
+          <p className="mt-2 text-xs text-neutral-600">Hover to pause</p>
         </motion.div>
       </div>
+
+      {/* Constant-motion marquee — CSS animation, no JS needed */}
+      <motion.div {...fadeUp(0.15)} className="overflow-hidden">
+        <div className="reviews-marquee">
+          {REVIEWS_DOUBLED.map((t, i) => (
+            <div
+              key={i}
+              className="flex-shrink-0 rounded-2xl p-6"
+              style={{
+                width: 300,
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+              }}
+            >
+              {/* Stars */}
+              <div className="flex gap-0.5 mb-3">
+                {[1,2,3,4,5].map(s => (
+                  <Star key={s} className="w-3.5 h-3.5 fill-current" style={{ color: "#e8a020" }} />
+                ))}
+              </div>
+              {/* Quote */}
+              <p
+                className="text-sm leading-relaxed mb-4"
+                style={{
+                  color: "rgba(232,232,232,0.72)",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 4,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                &ldquo;{t.text}&rdquo;
+              </p>
+              {/* Author */}
+              <div className="flex items-center gap-2.5">
+                <div
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0"
+                  style={{ backgroundColor: "#a3343e" }}
+                >
+                  {t.name.charAt(0)}
+                </div>
+                <div>
+                  <div className="text-xs font-semibold text-white">{t.name}</div>
+                  <div className="text-[11px]" style={{ color: "rgba(232,232,232,0.4)" }}>{t.suburb}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }
