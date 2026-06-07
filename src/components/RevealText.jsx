@@ -9,7 +9,7 @@ const wordVariant = {
   }),
 };
 
-export default function RevealText({ children, as: Tag = "h2", className = "", once = true }) {
+export default function RevealText({ children, as: Tag = "h2", className = "" }) {
   const words = String(children).split(" ");
 
   return (
@@ -17,7 +17,7 @@ export default function RevealText({ children, as: Tag = "h2", className = "", o
       <motion.span
         initial="hidden"
         whileInView="visible"
-        viewport={{ once, amount: 0.2 }}
+        viewport={{ once: false, amount: 0.2 }}
         aria-label={children}
         style={{ display: "inline" }}
       >
