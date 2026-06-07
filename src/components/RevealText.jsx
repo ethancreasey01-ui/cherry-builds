@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import React from "react";
 
 const wordVariant = {
   hidden: { opacity: 0, y: 10 },
@@ -22,14 +23,16 @@ export default function RevealText({ children, as: Tag = "h2", className = "" })
         style={{ display: "inline" }}
       >
         {words.map((word, i) => (
-          <motion.span
-            key={i}
-            custom={i}
-            variants={wordVariant}
-            style={{ display: "inline-block" }}
-          >
-            {word}{i < words.length - 1 ? " " : ""}
-          </motion.span>
+          <React.Fragment key={i}>
+            <motion.span
+              custom={i}
+              variants={wordVariant}
+              style={{ display: "inline-block" }}
+            >
+              {word}
+            </motion.span>
+            {i < words.length - 1 ? " " : ""}
+          </React.Fragment>
         ))}
       </motion.span>
     </Tag>
