@@ -32,7 +32,7 @@ export const SERVICES = [
     overviewHeading: "Melbourne Full Home Renovations",
     includesHeading: "Our Home Renovation Services",
     seoDesc: "VBA Licensed renovation builder in Melbourne, full home, heritage, period, and investment property renovations. Bayside, Mornington Peninsula and inner suburbs. Fixed prices, 30+ years experience. Free quote.",
-    overview: "Most builders will manage a full home renovation. Far fewer will manage one well. We've been doing this across Melbourne's Bayside and the Mornington Peninsula for over 30 years, and the difference between a smooth renovation and a stressful one almost always comes down to coordination.\n\nWe run every trade under one contract — structural, electrical, plumbing, kitchen, bathrooms, flooring, painting, landscaping. No finger-pointing when something needs adjusting, no trades going quiet mid-job. One point of contact, regular updates, a realistic timeline we stick to.\n\nWe work on all kinds of properties: period homes, investment flats, coastal holiday houses, family homes that need updating without losing their character. Whatever the scope, the approach is the same — understand what you want, price it honestly, and deliver it properly.",
+    overview: "Most builders will manage a full home renovation. Far fewer will manage one well. We've been doing this across Melbourne's Bayside and the Mornington Peninsula for over 30 years, and the difference between a smooth renovation and a stressful one almost always comes down to coordination.\n\nWe run every trade under one contract: structural, electrical, plumbing, kitchen, bathrooms, flooring, painting, landscaping. No finger-pointing when something needs adjusting, no trades going quiet mid-job. One point of contact, regular updates, a realistic timeline we stick to.\n\nWe work on all kinds of properties: period homes, investment flats, coastal holiday houses, family homes that need updating without losing their character. Whatever the scope, the approach is the same: understand what you want, price it honestly, and deliver it properly.",
     includes: [
       "Full project management, one point of contact",
       "Structural work, subfloor, and framing",
@@ -68,7 +68,7 @@ export const SERVICES = [
     overviewHeading: "Melbourne Bathroom Renovations",
     includesHeading: "Our Bathroom Renovation Services",
     seoDesc: "Bathroom renovation cost Melbourne: $15,000–$35,000+. Complete rebuilds with AS3740 waterproofing, custom tiling and quality fixtures across Bayside, Mornington Peninsula and inner Melbourne. VBA Licensed. Free quote.",
-    overview: "Bathrooms are the one renovation that really does have to be done right the first time. A leaking shower isn't just an inconvenience — it's water sitting in your structure, and by the time you can see the damage, it's usually been there a while.\n\nWe run our own waterproofing division, Aquatight, so we never rely on a subcontractor for the most critical part of the job. Every bathroom we build starts from the membrane up — correctly applied, inspected, and certified before a single tile goes down.\n\nBeyond the waterproofing, we help you navigate the decisions that make a bathroom genuinely enjoyable: layout, tile selection, fixtures that balance looks and practicality. We've done enough of these to know what works and what dates badly, and we'll tell you straight.",
+    overview: "Bathrooms are the one renovation that really does have to be done right the first time. A leaking shower isn't just an inconvenience. It's water sitting in your structure, and by the time you can see the damage, it's usually been there a while.\n\nWe run our own waterproofing division, Aquatight, so we never rely on a subcontractor for the most critical part of the job. Every bathroom we build starts from the membrane up, correctly applied, inspected, and certified before a single tile goes down.\n\nBeyond the waterproofing, we help you navigate the decisions that make a bathroom genuinely enjoyable: layout, tile selection, fixtures that balance looks and practicality. We've done enough of these to know what works and what dates badly, and we'll tell you straight.",
     includes: [
       "Full demolition and disposal",
       "AS3740-compliant waterproofing membrane",
@@ -104,7 +104,7 @@ export const SERVICES = [
     overviewHeading: "Melbourne Kitchen Renovations",
     includesHeading: "Our Kitchen Renovation Services",
     seoDesc: "Kitchen renovation cost Melbourne: $20,000–$60,000+. Custom kitchens with stone benchtops, butler pantries and cabinetry across Bayside, Mornington Peninsula and inner Melbourne. VBA Licensed builder. Free quote.",
-    overview: "We've done hundreds of kitchen renovations across Melbourne — compact apartment reconfigures, full open-plan knockouts with butler pantries and island benches, everything in between. The brief is almost always the same: more space, better storage, something that actually works for how the family cooks.\n\nWe manage the whole scope in-house: cabinetry, benchtops, splashbacks, appliances, plumbing, electrical, and lighting. If structural work is needed — walls out, openings widened — we do that too.\n\nThe honest truth is that most of the decisions that matter in a kitchen aren't the glamorous ones. It's the benchtop height, the power point placement, the size of the sink. We've been making those calls long enough to know which ones you'll thank us for later.",
+    overview: "We've done hundreds of kitchen renovations across Melbourne: compact apartment reconfigures, full open-plan knockouts with butler pantries and island benches, everything in between. The brief is almost always the same: more space, better storage, something that actually works for how the family cooks.\n\nWe manage the whole scope in-house: cabinetry, benchtops, splashbacks, appliances, plumbing, electrical, and lighting. If walls need to come out or openings need widening, we do that too.\n\nThe honest truth is that most of the decisions that matter in a kitchen aren't the glamorous ones. It's the benchtop height, the power point placement, the size of the sink. We've been making those calls long enough to know which ones you'll thank us for later.",
     includes: [
       "Full demolition and disposal",
       "Custom cabinetry and joinery",
@@ -140,7 +140,7 @@ export const SERVICES = [
     overviewHeading: "Melbourne Decking and Outdoor Living",
     includesHeading: "Our Decking and Landscaping Services",
     seoDesc: "Melbourne decking and outdoor living, composite and timber decking, synthetic lawn, pergolas and garden lighting. Servicing Hampton, Brighton, Cheltenham, Bayside and Mornington Peninsula. VBA Licensed. Free quote.",
-    overview: "A good deck is one of the better investments you can make in a Bayside or Mornington Peninsula property. Buyers and renters expect outdoor living space, and a properly built deck with good lighting and low-maintenance surrounds adds real value.\n\nWe're not landscape architects — we're builders who understand outdoor construction, drainage, structural requirements, and how materials hold up over time in the Melbourne climate. We build composite and hardwood decks, lay synthetic and natural lawn, install granitic pathways, and run garden and deck lighting.\n\nMost of our outdoor projects start with a simple brief: make it look good, make it easy to maintain, make it somewhere the family actually wants to spend time. That's what we aim for every time.",
+    overview: "A good deck is one of the better investments you can make in a Bayside or Mornington Peninsula property. Buyers and renters expect outdoor living space, and a properly built deck with good lighting and low-maintenance surrounds adds real value.\n\nWe're not landscape architects. We're builders who understand outdoor construction, drainage, structural requirements, and how materials hold up over time in the Melbourne climate. We build composite and hardwood decks, lay synthetic and natural lawn, install granitic pathways, and run garden and deck lighting.\n\nMost of our outdoor projects start with a simple brief: make it look good, make it easy to maintain, make it somewhere the family actually wants to spend time. That's what we aim for every time.",
     includes: [
       "Composite or hardwood timber decking",
       "Subfloor construction and structural reinforcement",
@@ -175,7 +175,7 @@ export const SERVICES = [
     overviewHeading: "Melbourne Tiling and Flooring",
     includesHeading: "Our Tiling and Flooring Services",
     seoDesc: "Melbourne tiling and flooring specialists, large-format porcelain, heritage mosaic, timber floors and polished concrete. Wet area waterproofing included. Servicing Bayside, Mornington Peninsula and inner suburbs. Free quote.",
-    overview: "Good tiling and flooring is the kind of thing people notice without quite knowing why — the bathroom feels right, the proportions work, everything looks cohesive. Bad tiling you notice immediately: lippage, uneven grout, tiles that aren't straight.\n\nWe've been laying tiles and flooring across Melbourne for over 30 years. Every format: heritage mosaic, standard, large-format porcelain slabs, rectified tiles with fine grout lines, solid and engineered timber, floating boards, polished concrete. We carry our own waterproofing licence, so tiled wet areas get properly membraned before anything else goes down.\n\nWhether it's one bathroom floor or an entire house retile, we lay out the job properly before the first tile goes down. It takes longer up front but it's the only way to get a result worth looking at.",
+    overview: "Good tiling and flooring is the kind of thing people notice without quite knowing why. The bathroom feels right, the proportions work, everything looks cohesive. Bad tiling you notice immediately: lippage, uneven grout, tiles that aren't straight.\n\nWe've been laying tiles and flooring across Melbourne for over 30 years. Every format: heritage mosaic, standard, large-format porcelain slabs, rectified tiles with fine grout lines, solid and engineered timber, floating boards, polished concrete. We carry our own waterproofing licence, so tiled wet areas get properly membraned before anything else goes down.\n\nWhether it's one bathroom floor or an entire house retile, we lay out the job properly before the first tile goes down. It takes longer up front but it's the only way to get a result worth looking at.",
     includes: [
       "All tile formats, mosaic, standard, large-format, rectified",
       "Floor and wall tiling for wet and dry areas",
@@ -210,7 +210,7 @@ export const SERVICES = [
     overviewHeading: "Melbourne Waterproofing Services",
     includesHeading: "Our Waterproofing Services",
     seoDesc: "Leaking shower or balcony in Melbourne? Cherry Builds' Aquatight division provides AS3740-certified shower waterproofing and balcony waterproofing. Certificates issued on every job. Free inspections, Bayside and Mornington Peninsula.",
-    overview: "Waterproofing failure is quiet until it isn't. Water gets into a structure slowly, and by the time you've got damp patches, mould, or tiles lifting, it's usually been leaking for longer than you'd like to know.\n\nWe run Aquatight as a dedicated certified waterproofing division. Our waterproofers are licensed, all work is done to AS3740, and every job gets a certificate on completion — not as a box-ticking exercise, but because the certificate only gets issued after the membrane has been properly applied and inspected.\n\nWe do new showers and bathrooms, balconies, laundries, and outdoor wet areas. We also do rectification work where previous waterproofing has failed — which is, frustratingly, a lot of what we see. If you're not sure whether your existing waterproofing is holding up, we offer free inspections.",
+    overview: "Waterproofing failure is quiet until it isn't. Water gets into a structure slowly, and by the time you've got damp patches, mould, or tiles lifting, it's usually been leaking for longer than you'd like to know.\n\nWe run Aquatight as a dedicated certified waterproofing division. Our waterproofers are licensed, all work is done to AS3740, and every job gets a certificate on completion. Not as a box-ticking exercise, but because the certificate only gets issued after the membrane has been properly applied and inspected.\n\nWe do new showers and bathrooms, balconies, laundries, and outdoor wet areas. We also do rectification work where previous waterproofing has failed, which is, frustratingly, a lot of what we see. If you're not sure whether your existing waterproofing is holding up, we offer free inspections.",
     includes: [
       "Shower recesses and bathroom floors",
       "Balconies and terraces",
@@ -245,7 +245,7 @@ export const SERVICES = [
     overviewHeading: "Melbourne Plastering, Painting and Heritage Restoration",
     includesHeading: "Our Plastering and Painting Services",
     seoDesc: "Melbourne plastering and painting specialists, heritage plaster restoration, cornicing, ceiling roses, and premium interior and exterior painting. Period and modern homes. Bayside, Mornington Peninsula and inner suburbs. Free quote.",
-    overview: "Paint is the most visible trade in any renovation and one of the most misunderstood. A job that looks great at handover and starts peeling within a year almost always comes down to preparation — surfaces that weren't properly repaired, priming that was skipped, product that didn't suit the surface or conditions.\n\nWe take prep seriously. Every crack, hole, and damaged section is repaired before any brush goes on. We prime, we caulk, we sand where needed. Then two coats as standard, premium products throughout.\n\nBeyond painting, we do plaster repairs, full replastering for walls that have genuinely had it, and period plaster work: cornicing restoration, ceiling roses, the detailing that makes an older Melbourne home worth preserving properly.",
+    overview: "Paint is the most visible trade in any renovation and one of the most misunderstood. A job that looks great at handover and starts peeling within a year almost always comes down to preparation: surfaces that weren't properly repaired, priming that was skipped, product that didn't suit the surface or conditions.\n\nWe take prep seriously. Every crack, hole, and damaged section is repaired before any brush goes on. We prime, we caulk, we sand where needed. Then two coats as standard, premium products throughout.\n\nBeyond painting, we do plaster repairs, full replastering for walls that have genuinely had it, and period plaster work: cornicing restoration, ceiling roses, the detailing that makes an older Melbourne home worth preserving properly.",
     includes: [
       "Plaster crack and hole repairs",
       "Full wall and ceiling replastering",
@@ -280,7 +280,7 @@ export const SERVICES = [
     overviewHeading: "Melbourne Pre-Sale Property Preparation",
     includesHeading: "Our Property Preparation Services",
     seoDesc: "Pre-sale property preparation and renovation across Melbourne, repairs, fresh paint, floor polishing. Cherry Builds maximises your sale or rental result fast. Bayside, Brighton, Sandringham, Mornington Peninsula. Free quote.",
-    overview: "We've done a lot of pre-sale work over the years, and the advice is almost always the same: fresh paint and polished floors will do more for your result than anything else at the money. After that, fix the obvious things — the dripping tap, the broken fence panel, the stained carpet. Then stop.\n\nThe mistake most vendors make is over-capitalising. We'll walk through the property and tell you honestly what's worth doing and what isn't. We've seen properties spend $40,000 on a kitchen before auction that didn't add a dollar to the price, and others spend $8,000 on paint and floors and sell $30,000 above reserve.\n\nWe work within tight campaign timelines, coordinate directly with agents if it helps, and focus the work where it'll actually move the needle.",
+    overview: "We've done a lot of pre-sale work over the years, and the advice is almost always the same: fresh paint and polished floors will do more for your result than anything else at the money. After that, fix the obvious things: the dripping tap, the broken fence panel, the stained carpet. Then stop.\n\nThe mistake most vendors make is over-capitalising. We'll walk through the property and tell you honestly what's worth doing and what isn't. We've seen properties spend $40,000 on a kitchen before auction that didn't add a dollar to the price, and others spend $8,000 on paint and floors and sell $30,000 above reserve.\n\nWe work within tight campaign timelines, coordinate directly with agents if it helps, and focus the work where it'll actually move the needle.",
     includes: [
       "Condition report and priority assessment",
       "Plaster repairs and touch-up painting",
@@ -327,7 +327,7 @@ export const PROJECTS = [
       "Timber flooring sanding and restoration",
       "Full interior repaint throughout",
     ],
-    overview: "This place had done 13 years of hard holiday use and it showed. The owners knew they'd been putting it off too long — the kitchen was falling apart, the bathroom had been leaking quietly for years, and there was structural water damage under the floor that nobody had dealt with. We stripped it back, fixed the structure, rebuilt the kitchen and butler pantry, put in new mosaic tiling in the primary bathroom, and restored the original timber floors. It now comfortably fits a large family and actually feels like the premium coastal property it always should have been.",
+    overview: "This place had done 13 years of hard holiday use and it showed. The owners knew they'd been putting it off too long. The kitchen was falling apart, the bathroom had been leaking quietly for years, and there was structural water damage under the floor that nobody had dealt with. We stripped it back, fixed the structure, rebuilt the kitchen and butler pantry, put in new mosaic tiling in the primary bathroom, and restored the original timber floors. It now comfortably fits a large family and actually feels like the premium coastal property it always should have been.",
     imageCount: 6,
   },
   {
@@ -349,7 +349,7 @@ export const PROJECTS = [
       "Floating timber floorboards throughout",
       "Professional staging and furnishing",
     ],
-    overview: "The owners bought this St Kilda apartment knowing it needed everything — and they weren't wrong. We replaced every system: wiring, plumbing, split-system air conditioning. Once the bones were right we reconfigured the kitchen to open up the space, rebuilt the bathroom with a frameless shower and floor-to-ceiling tiles, and laid floating timber boards throughout to replace the dated carpet. Professionally staged on completion, it relet above the suburb median within the first week of listing.",
+    overview: "The owners bought this St Kilda apartment knowing it needed everything, and they weren't wrong. We replaced every system: wiring, plumbing, split-system air conditioning. Once the bones were right we reconfigured the kitchen to open up the space, rebuilt the bathroom with a frameless shower and floor-to-ceiling tiles, and laid floating timber boards throughout to replace the dated carpet. Professionally staged on completion, it relet above the suburb median within the first week of listing.",
     imageCount: 5,
   },
   {
@@ -372,7 +372,7 @@ export const PROJECTS = [
       "Timber floor polishing throughout",
       "Full garden and landscaping overhaul",
     ],
-    overview: "A 1940s Moorabbin home that needed everything replaced without losing the character that made it worth keeping. New kitchen, two bathrooms, full rewire and replumb, ducted heating and cooling, a new carport, the original timber floors polished up beautifully, and the garden landscaped from scratch. Fourteen weeks start to finish. The owners had been nervous about the timeline given the scope — we delivered on time and within budget, which in a job this size doesn't happen by accident.",
+    overview: "A 1940s Moorabbin home that needed everything replaced without losing the character that made it worth keeping. New kitchen, two bathrooms, full rewire and replumb, ducted heating and cooling, a new carport, the original timber floors polished up beautifully, and the garden landscaped from scratch. Fourteen weeks start to finish. The owners had been nervous about the timeline given the scope. We delivered on time and within budget, which in a job this size doesn't happen by accident.",
     imageCount: 8,
   },
   {
@@ -435,7 +435,7 @@ export const PROJECTS = [
       "Interior repaint throughout",
       "Restoration of original cornicing and ceiling roses",
     ],
-    overview: "Art deco apartments attract buyers who want the character kept intact — so the brief here was to modernise fully without it looking like someone had tried to modernise it. We rebuilt the kitchen and bathroom with fixtures chosen to sit comfortably in the period, rewired and replumbed throughout, and spent a fair amount of time restoring the original cornicing and ceiling roses before the final repaint. The finished apartment feels completely updated but looks exactly as it should.",
+    overview: "Art deco apartments attract buyers who want the character kept intact, so the brief here was to modernise fully without it looking like someone had tried to modernise it. We rebuilt the kitchen and bathroom with fixtures chosen to sit comfortably in the period, rewired and replumbed throughout, and spent a fair amount of time restoring the original cornicing and ceiling roses before the final repaint. The finished apartment feels completely updated but looks exactly as it should.",
     imageCount: 6,
   },
 ];
@@ -508,7 +508,7 @@ export const TESTIMONIALS = [
   {
     name: "Anthony B.",
     suburb: "Moorabbin",
-    text: "Used Cherry Builds to get our place ready for sale. The fresh paint and polished floors made such a difference — our agent was thrilled and we sold above reserve.",
+    text: "Used Cherry Builds to get our place ready for sale. The fresh paint and polished floors made such a difference. Our agent was thrilled and we sold above reserve.",
     rating: 5,
     service: "property-preparation",
   },
@@ -584,7 +584,7 @@ export const TESTIMONIALS = [
   {
     name: "Emma T.",
     suburb: "Mordialloc",
-    text: "The plasterers Cherry Builds used were exceptional — seamless joins, no marks, no mess left behind. The whole repaint came up better than we could have hoped for.",
+    text: "The plasterers Cherry Builds used were exceptional. Seamless joins, no marks, no mess left behind. The whole repaint came up better than we could have hoped for.",
     rating: 5,
     service: "plastering-painting",
   },
@@ -607,7 +607,7 @@ export const TESTIMONIALS = [
   {
     name: "Alison & Marcus J.",
     suburb: "Brighton",
-    text: "We wanted herringbone timber floors throughout and Cherry Builds delivered them perfectly. The pattern is crisp, the finish is immaculate — it's completely elevated the feel of the house.",
+    text: "We wanted herringbone timber floors throughout and Cherry Builds delivered them perfectly. The pattern is crisp, the finish is immaculate. It's completely elevated the feel of the house.",
     rating: 5,
     service: "tiling-flooring",
   },

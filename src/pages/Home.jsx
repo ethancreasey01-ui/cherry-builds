@@ -258,7 +258,7 @@ function About() {
               same direct line to the people doing the work.
             </p>
             <p className="mt-4 text-neutral-600 leading-relaxed">
-              Over 30 years we've completed hundreds of renovations across Melbourne's Bayside, inner suburbs, and the Mornington Peninsula — period homes, investment flats, coastal holiday houses, full knockdown-rebuilds. We've seen most things and made very few mistakes twice.
+              Over 30 years we've completed hundreds of renovations across Melbourne's Bayside, inner suburbs, and the Mornington Peninsula: period homes, investment flats, coastal holiday houses, full knockdown-rebuilds. We've seen most things and made very few mistakes twice.
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-3">
@@ -314,12 +314,12 @@ const WHY_ITEMS = [
   {
     icon: SlidersHorizontal,
     title: "One Team, Every Trade",
-    desc: "We don't hand off the important work to whoever's available. Our core team handles structural, tiling, waterproofing, and fit-off in-house. When trades need coordinating, we do it — not you.",
+    desc: "We don't hand off the important work to whoever's available. Our core team handles structural, tiling, waterproofing, and fit-off in-house. When trades need coordinating, we do it, not you.",
   },
   {
     icon: LayoutGrid,
     title: "Fixed Prices",
-    desc: "We quote the job properly, upfront. If we missed something in the scope, that's on us — the price doesn't change. The only time a figure moves is if you change what you want, and we'll tell you the cost before we proceed.",
+    desc: "We quote the job properly, upfront. If we missed something in the scope, that's on us. The price doesn't change. The only time a figure moves is if you change what you want, and we'll tell you the cost before we proceed.",
   },
   {
     icon: Eye,
@@ -329,7 +329,7 @@ const WHY_ITEMS = [
   {
     icon: ThumbsUp,
     title: "VBA Licensed & Properly Insured",
-    desc: "We hold VBA Licence DB-71349 and carry public liability on every job. We're also members of the Master Builders Association. There's a proper channel if anything ever goes wrong — though in 30 years we've rarely needed it.",
+    desc: "We hold VBA Licence DB-71349 and carry public liability on every job. We're also members of the Master Builders Association. There's a proper channel if anything ever goes wrong, though in 30 years we've rarely needed it.",
   },
 ];
 
@@ -452,7 +452,7 @@ function Services() {
           <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>What We Do</span>
           <RevealText className="mt-2 font-serif text-4xl sm:text-5xl font-bold text-neutral-900">Our Services</RevealText>
           <p className="mt-3 text-sm sm:text-base max-w-md text-neutral-500">
-            From a single bathroom to a complete home transformation — one team manages every trade.
+            From a single bathroom to a complete home transformation. One team manages every trade.
           </p>
         </motion.div>
 
@@ -1209,9 +1209,9 @@ export default function Home() {
     <>
       <Helmet>
         <title>Cherry Builds | VBA Licensed Renovation Builder Melbourne</title>
-        <meta name="description" content="VBA Licensed renovation builder in Melbourne — kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
+        <meta name="description" content="VBA Licensed renovation builder in Melbourne: kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
         <meta property="og:title" content="Cherry Builds | VBA Licensed Renovation Builder Melbourne" />
-        <meta property="og:description" content="VBA Licensed renovation builder in Melbourne — kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
+        <meta property="og:description" content="VBA Licensed renovation builder in Melbourne: kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
         <meta property="og:url" content="https://cherrybuilds.com.au/" />
         <link rel="canonical" href="https://cherrybuilds.com.au/" />
         {/* Structured data — GeneralContractor + LocalBusiness */}

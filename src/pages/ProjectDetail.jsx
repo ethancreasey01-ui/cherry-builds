@@ -103,7 +103,7 @@ export default function ProjectDetail() {
   const count = galleryImages.length;
 
   const metaTitle = `${project.title} | Melbourne Home Renovations | Cherry Builds`;
-  const metaDesc = `${project.summary} By Cherry Builds — Melbourne's renovation specialists. VBA Licensed. 30+ years experience.`.slice(0, 160);
+  const metaDesc = `${project.summary} By Cherry Builds, Melbourne's renovation specialists. VBA Licensed. 30+ years experience.`.slice(0, 160);
 
   return (
     <div className="min-h-screen bg-white">

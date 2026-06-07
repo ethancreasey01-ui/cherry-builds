@@ -15,7 +15,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-xs leading-relaxed mb-3">
-              Melbourne's trusted renovation specialists — kitchens, bathrooms, full home renovations,
+              Melbourne's trusted renovation specialists: kitchens, bathrooms, full home renovations,
               decking, landscaping, and waterproofing.
             </p>
             <div className="text-xs space-y-0.5">
