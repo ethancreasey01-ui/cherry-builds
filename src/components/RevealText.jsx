@@ -16,8 +16,7 @@ export default function RevealText({ children, as: Tag = "h2", className = "" })
     <Tag className={className}>
       <motion.span
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
+        animate="visible"
         aria-label={children}
         style={{ display: "inline" }}
       >
@@ -28,7 +27,7 @@ export default function RevealText({ children, as: Tag = "h2", className = "" })
             variants={wordVariant}
             style={{ display: "inline-block" }}
           >
-            {word}{i < words.length - 1 ? " " : ""}
+            {word}{i < words.length - 1 ? " " : ""}
           </motion.span>
         ))}
       </motion.span>
