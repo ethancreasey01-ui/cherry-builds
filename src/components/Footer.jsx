@@ -27,9 +27,16 @@ export default function Footer() {
           <div>
             <div className="font-semibold text-white mb-3 text-sm">Services</div>
             <ul className="space-y-1.5 text-xs">
-              {["Full Home Renovations","Bathroom Renovations","Kitchen Renovations","Decking & Landscaping","Tiling & Flooring","Waterproofing"].map((s) => (
-                <li key={s}>
-                  <a href="/#services" className="hover:text-cherry-400 transition-colors">{s}</a>
+              {[
+                { label: "Full Home Renovations",  slug: "full-home-renovations" },
+                { label: "Bathroom Renovations",   slug: "bathroom-renovations" },
+                { label: "Kitchen Renovations",    slug: "kitchen-renovations" },
+                { label: "Decking & Landscaping",  slug: "decking-landscaping" },
+                { label: "Tiling & Flooring",      slug: "tiling-flooring" },
+                { label: "Waterproofing",          slug: "waterproofing" },
+              ].map(({ label, slug }) => (
+                <li key={slug}>
+                  <a href={`/services/${slug}`} className="hover:text-cherry-400 transition-colors">{label}</a>
                 </li>
               ))}
             </ul>

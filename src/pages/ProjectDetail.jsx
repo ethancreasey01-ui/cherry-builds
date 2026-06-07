@@ -1,9 +1,10 @@
+import React from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin, Clock, DollarSign, ArrowLeft, ArrowRight,
-  CheckCircle, Phone,
+  CheckCircle, Phone, Star, X, ChevronLeft, ChevronRight, Eye,
 } from "lucide-react";
 import { PROJECTS, TESTIMONIALS } from "../data/index.js";
 import ScrollProgress from "../components/ScrollProgress.jsx";
@@ -27,9 +28,69 @@ function PlaceholderImage({ className = "" }) {
   );
 }
 
+function Lightbox({ images, index, onClose, onPrev, onNext }) {
+  React.useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "ArrowLeft")  onPrev();
+      if (e.key === "ArrowRight") onNext();
+      if (e.key === "Escape")     onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose, onPrev, onNext]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.18 }}
+      className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+      onClick={onClose}
+    >
+      <button
+        className="absolute top-4 right-4 text-white/60 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        aria-label="Close"
+      >
+        <X className="w-5 h-5" />
+      </button>
+      <button
+        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}
+        aria-label="Previous"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <motion.img
+        key={index}
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.18 }}
+        src={images[index]}
+        alt={`Photo ${index + 1}`}
+        className="max-h-[88vh] max-w-[88vw] object-contain rounded-lg shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      />
+      <button
+        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 text-white/60 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+        onClick={(e) => { e.stopPropagation(); onNext(); }}
+        aria-label="Next"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-neutral-500 text-sm tabular-nums select-none">
+        {index + 1} / {images.length}
+      </div>
+    </motion.div>
+  );
+}
+
 export default function ProjectDetail() {
   const { slug } = useParams();
   const project = PROJECTS.find((p) => p.slug === slug);
+
+  const [lightboxIdx, setLightboxIdx] = React.useState(null);
 
   if (!project) return <Navigate to="/" replace />;
 
@@ -38,6 +99,8 @@ export default function ProjectDetail() {
   const next = PROJECTS[currentIndex + 1] ?? null;
 
   const projectTestimonials = TESTIMONIALS.filter((t) => t.project === project.slug);
+  const galleryImages = project.images ?? [];
+  const count = galleryImages.length;
 
   const metaTitle = `${project.title} | Melbourne Home Renovations | Cherry Builds`;
   const metaDesc = `${project.summary} By Cherry Builds — Melbourne's renovation specialists. VBA Licensed. 30+ years experience.`.slice(0, 160);
@@ -114,13 +177,32 @@ export default function ProjectDetail() {
 
             <motion.div {...fadeUp(0.15)}>
               <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-4">Gallery</RevealText>
-              {project.images?.length > 0 ? (
+              {galleryImages.length > 0 ? (
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                   <div className="col-span-2 sm:col-span-2">
-                    <img src={project.images[0]} alt={project.title} className="w-full h-64 sm:h-72 rounded-2xl object-cover" />
+                    <button
+                      className="group relative w-full h-64 sm:h-72 rounded-2xl overflow-hidden block"
+                      onClick={() => setLightboxIdx(0)}
+                      aria-label="Open photo"
+                    >
+                      <img src={galleryImages[0]} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                        <Eye className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+                      </div>
+                    </button>
                   </div>
-                  {project.images.slice(1).map((img, i) => (
-                    <img key={i} src={img} alt={`${project.title} ${i + 2}`} className="w-full h-32 sm:h-[8.5rem] rounded-xl object-cover" />
+                  {galleryImages.slice(1).map((img, i) => (
+                    <button
+                      key={i}
+                      className="group relative w-full h-32 sm:h-[8.5rem] rounded-xl overflow-hidden block"
+                      onClick={() => setLightboxIdx(i + 1)}
+                      aria-label="Open photo"
+                    >
+                      <img src={img} alt={`${project.title} ${i + 2}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                        <Eye className="w-5 h-5 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 drop-shadow-lg" />
+                      </div>
+                    </button>
                   ))}
                 </div>
               ) : (
@@ -136,23 +218,34 @@ export default function ProjectDetail() {
             </motion.div>
             {projectTestimonials.length > 0 && (
               <motion.div {...fadeUp(0.2)}>
-                <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-5">Client Review</RevealText>
-                <div className="space-y-4">
-                  {projectTestimonials.slice(0, 1).map((t) => (
-                    <div key={t.name} className="rounded-2xl p-5 border" style={{ backgroundColor: "#1a1a1a", borderColor: "rgba(255,255,255,0.08)" }}>
-                      <div className="flex gap-0.5 mb-3">
+                {projectTestimonials.slice(0, 1).map((t) => (
+                  <div key={t.name} className="relative rounded-3xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)" }}>
+                    {/* decorative quote mark */}
+                    <div className="absolute top-4 right-6 font-serif text-[120px] leading-none select-none pointer-events-none" style={{ color: "rgba(163,52,62,0.12)" }}>"</div>
+                    <div className="relative z-10 p-8">
+                      {/* stars */}
+                      <div className="flex gap-1 mb-5">
                         {Array.from({ length: t.rating }).map((_, j) => (
-                          <svg key={j} className="w-4 h-4 text-amber-400 fill-amber-400" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                          <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
                         ))}
                       </div>
-                      <p className="text-neutral-300 text-sm leading-relaxed mb-4">"{t.text}"</p>
-                      <div>
-                        <div className="font-semibold text-white text-sm">{t.name}</div>
-                        <div className="text-xs text-neutral-500 mt-0.5">{t.suburb}</div>
+                      {/* quote */}
+                      <p className="font-serif text-xl sm:text-2xl text-white leading-relaxed mb-7">
+                        &ldquo;{t.text}&rdquo;
+                      </p>
+                      {/* author */}
+                      <div className="flex items-center gap-3 pt-5 border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white flex-shrink-0" style={{ backgroundColor: "#a3343e" }}>
+                          {t.name.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-white">{t.name}</div>
+                          <div className="text-sm mt-0.5" style={{ color: "rgba(232,232,232,0.45)" }}>{t.suburb}</div>
+                        </div>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </motion.div>
             )}
           </div>
@@ -223,6 +316,18 @@ export default function ProjectDetail() {
           </div>
         </div>
       </section>
+
+      <AnimatePresence>
+        {lightboxIdx !== null && count > 0 && (
+          <Lightbox
+            images={galleryImages}
+            index={lightboxIdx}
+            onClose={() => setLightboxIdx(null)}
+            onPrev={() => setLightboxIdx((lightboxIdx - 1 + count) % count)}
+            onNext={() => setLightboxIdx((lightboxIdx + 1) % count)}
+          />
+        )}
+      </AnimatePresence>
 
       {(prev || next) && (
         <section className="border-t border-neutral-200 bg-white">

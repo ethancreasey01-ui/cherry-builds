@@ -79,8 +79,8 @@ const schemaLocalBusiness = {
     ratingValue: "5.0",
     bestRating: "5",
     worstRating: "1",
-    ratingCount: "21",
-    reviewCount: "21",
+    ratingCount: "34",
+    reviewCount: "34",
   },
 };
 
@@ -217,7 +217,7 @@ function Hero() {
         >
           {[
             { val: "30+", label: "Years Experience" },
-            { val: "500+", label: "Projects Completed" },
+            { val: "99+", label: "Projects Completed" },
             { val: "100%", label: "Licensed & Insured" },
           ].map((s) => (
             <div key={s.label} className="text-center">
@@ -253,12 +253,12 @@ function About() {
               Building Melbourne homes since 2007
             </h2>
             <p className="mt-5 text-neutral-600 leading-relaxed">
-              Originally established as Cherry Properties in 2007, we rebranded to Cherry Building and
-              Construction Services in 2020, bringing the same trusted team and quality workmanship
-              that Melbourne homeowners have relied on for decades.
+              We started as Cherry Properties in 2007 and rebranded to Cherry Building and Construction
+              Services in 2020. The name changed; the team didn't. Same tradespeople, same standards,
+              same direct line to the people doing the work.
             </p>
             <p className="mt-4 text-neutral-600 leading-relaxed">
-              With over 30 years of industry experience, our portfolio spans hundreds of full renovations from period homes to architectural homes, bathroom renovations, custom kitchens, and outdoor living projects across Melbourne's Bayside, inner city, and the Mornington Peninsula.
+              Over 30 years we've completed hundreds of renovations across Melbourne's Bayside, inner suburbs, and the Mornington Peninsula — period homes, investment flats, coastal holiday houses, full knockdown-rebuilds. We've seen most things and made very few mistakes twice.
             </p>
 
             <div className="mt-8 grid grid-cols-2 gap-3">
@@ -288,7 +288,7 @@ function About() {
             {[
               { val: "30+", label: "Years in the industry" },
               { val: "2007", label: "Established" },
-              { val: "500+", label: "Projects completed" },
+              { val: "99+", label: "Projects completed" },
               { val: "100%", label: "Customer satisfaction focus" },
             ].map((s) => (
               <div key={s.label} className="bg-white border border-neutral-200 rounded-2xl p-8 text-center shadow-sm" style={{ backgroundColor: "#ededed" }}>
@@ -308,28 +308,28 @@ function About() {
 const WHY_ITEMS = [
   {
     icon: Hammer,
-    title: "Expert Craftsmanship",
-    desc: "Our team of seasoned professionals brings years of experience and expertise to every project, ensuring impeccable results that exceed your expectations. From concept to completion, trust Cherry Builds to deliver excellence at every step.",
+    title: "30+ Years in the Trade",
+    desc: "We started in 2007 as Cherry Properties and have been renovating Melbourne homes ever since. Same core team, same approach. When you've been doing this long enough, you stop making the mistakes that cost homeowners time and money.",
   },
   {
     icon: SlidersHorizontal,
-    title: "Tailored Solutions for Every Budget",
-    desc: "At Cherry Builds, we believe that exceptional quality should be accessible to all. We offer personalised renovation solutions designed to accommodate a range of budgets, whether a modest update or a full-scale transformation.",
+    title: "One Team, Every Trade",
+    desc: "We don't hand off the important work to whoever's available. Our core team handles structural, tiling, waterproofing, and fit-off in-house. When trades need coordinating, we do it — not you.",
   },
   {
     icon: LayoutGrid,
-    title: "Comprehensive Services",
-    desc: "From full home renovations to custom kitchen and bathroom remodels, Cherry Builds offers a comprehensive range of services, including full project management. We handle every aspect of your project with precision and care, ensuring a seamless experience from start to finish.",
+    title: "Fixed Prices",
+    desc: "We quote the job properly, upfront. If we missed something in the scope, that's on us — the price doesn't change. The only time a figure moves is if you change what you want, and we'll tell you the cost before we proceed.",
   },
   {
     icon: Eye,
-    title: "Unmatched Attention to Detail",
-    desc: "We understand that the difference is in the details. That's why we take pride in our meticulous approach to every aspect of your project, ensuring that every corner is crafted to perfection. No detail is overlooked.",
+    title: "Honest Advice",
+    desc: "Not every renovation makes financial sense. We'll tell you if a project is over-capitalising for the suburb, or if there's a simpler way to get the same result. Not always what people want to hear, but it's why they come back.",
   },
   {
     icon: ThumbsUp,
-    title: "Customer Satisfaction Guaranteed",
-    desc: "Your satisfaction is our top priority. We go above and beyond to ensure that you're thrilled with the results of your renovation, providing unparalleled service and support every step of the way.",
+    title: "VBA Licensed & Properly Insured",
+    desc: "We hold VBA Licence DB-71349 and carry public liability on every job. We're also members of the Master Builders Association. There's a proper channel if anything ever goes wrong — though in 30 years we've rarely needed it.",
   },
 ];
 

@@ -2,13 +2,12 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import {
-  ArrowLeft, ArrowRight, CheckCircle, Phone, ChevronDown, MapPin, ChevronLeft, ChevronRight,
+  ArrowLeft, ArrowRight, CheckCircle, Phone, ChevronDown, MapPin, ChevronLeft, ChevronRight, Star,
 } from "lucide-react";
 import React from "react";
 import { SERVICES, PROJECTS, TESTIMONIALS } from "../data/index.js";
 import ScrollProgress from "../components/ScrollProgress.jsx";
 import RevealText from "../components/RevealText.jsx";
-import TestimonialsCarousel from "../components/TestimonialsCarousel.jsx";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -245,7 +244,31 @@ export default function ServiceDetail() {
             {serviceTestimonials.length > 0 && (
               <motion.div {...fadeUp(0.28)}>
                 <RevealText className="font-serif text-2xl font-bold text-neutral-900 mb-5">What Our Clients Say</RevealText>
-                <TestimonialsCarousel testimonials={serviceTestimonials.slice(0, 3)} cardBg="#1a1a1a" />
+                <div className={`grid gap-4 ${serviceTestimonials.length === 1 ? "" : "sm:grid-cols-2"}`}>
+                  {serviceTestimonials.map((t) => (
+                    <div
+                      key={t.name}
+                      className="rounded-2xl p-6 border flex flex-col"
+                      style={{ backgroundColor: "#1a1a1a", borderColor: "rgba(255,255,255,0.08)" }}
+                    >
+                      <div className="flex gap-0.5 mb-3">
+                        {Array.from({ length: t.rating }).map((_, j) => (
+                          <Star key={j} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                      <p className="text-neutral-300 text-sm leading-relaxed mb-5 flex-1">"{t.text}"</p>
+                      <div className="flex items-center gap-2.5 pt-4 border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white flex-shrink-0" style={{ backgroundColor: "#a3343e" }}>
+                          {t.name.charAt(0)}
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-white">{t.name}</div>
+                          <div className="text-xs mt-0.5" style={{ color: "rgba(232,232,232,0.4)" }}>{t.suburb}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </motion.div>
             )}
 
