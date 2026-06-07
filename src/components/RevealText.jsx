@@ -15,6 +15,7 @@ export default function RevealText({ children, as: Tag = "h2", className = "" })
   return (
     <Tag className={className}>
       <motion.span
+        key={children}
         initial="hidden"
         animate="visible"
         aria-label={children}
