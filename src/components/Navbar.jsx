@@ -43,7 +43,7 @@ export default function Navbar() {
           {NAV_LINKS.map((l) => (
             <a
               key={l.label}
-              href={isHome ? l.href : `/${l.href}`}
+              href={l.href.startsWith("/") ? l.href : (isHome ? l.href : `/${l.href}`)}
               onMouseEnter={() => setHovered(l.label)}
               className={`relative text-sm font-medium transition-colors ${
                 transparent ? "text-white/80 hover:text-white" : "text-neutral-600 hover:text-cherry-600"
@@ -91,7 +91,7 @@ export default function Navbar() {
               {NAV_LINKS.map((l) => (
                 <a
                   key={l.label}
-                  href={isHome ? l.href : `/${l.href}`}
+                  href={l.href.startsWith("/") ? l.href : (isHome ? l.href : `/${l.href}`)}
                   onClick={() => setOpen(false)}
                   className="px-3 py-2.5 text-sm font-medium text-neutral-700 hover:text-cherry-600 hover:bg-cherry-50 rounded-lg transition-colors"
                 >

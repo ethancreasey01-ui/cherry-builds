@@ -59,6 +59,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Service areas -->
+  <url>
+    <loc>https://cherrybuilds.com.au/service-areas</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Project pages -->
   <url>
     <loc>https://cherrybuilds.com.au/projects/point-leo-holiday-home</loc>

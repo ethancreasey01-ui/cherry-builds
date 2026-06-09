@@ -16,6 +16,7 @@ export const NAV_LINKS = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#projects" },
+  { label: "Areas", href: "/service-areas" },
   { label: "Gallery", href: "#gallery" },
   { label: "Aquatight", href: "#aquatight" },
   { label: "FAQ", href: "#faq" },

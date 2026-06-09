@@ -6,6 +6,7 @@ import StickyQuoteBar from "./components/StickyQuoteBar.jsx";
 import Home from "./pages/Home.jsx";
 import ProjectDetail from "./pages/ProjectDetail.jsx";
 import ServiceDetail from "./pages/ServiceDetail.jsx";
+import ServiceAreas from "./pages/ServiceAreas.jsx";
 import NotFound from "./pages/NotFound.jsx";
 
 function ScrollToTop() {
@@ -58,6 +59,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/services/:slug" element={<ServiceDetail />} />
+          <Route path="/service-areas" element={<ServiceAreas />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
