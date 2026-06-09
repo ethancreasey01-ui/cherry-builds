@@ -383,13 +383,13 @@ export default function ServiceAreas() {
 
           {/* Link to projects */}
           <motion.div {...fadeUp(0.2)} className="mt-8 text-center">
-            <Link
-              to="/projects/point-leo-holiday-home"
+            <a
+              href="/#projects"
               className="inline-flex items-center gap-2 text-sm font-semibold transition-colors"
               style={{ color: CHERRY }}
             >
               View our full project portfolio <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
           </motion.div>
         </div>
       </section>
