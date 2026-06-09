@@ -139,7 +139,24 @@ export default function ServiceDetail() {
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDesc} />
         <meta property="og:url" content={`https://cherrybuilds.com.au/services/${service.slug}`} />
+        <meta property="og:image" content="https://cherrybuilds.com.au/og-image.jpg" />
+        <meta property="og:locale" content="en_AU" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metaTitle} />
+        <meta name="twitter:description" content={metaDesc} />
+        <meta name="twitter:image" content="https://cherrybuilds.com.au/og-image.jpg" />
         <link rel="canonical" href={`https://cherrybuilds.com.au/services/${service.slug}`} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "@id": `https://cherrybuilds.com.au/services/${service.slug}`,
+          name: service.title,
+          description: metaDesc,
+          url: `https://cherrybuilds.com.au/services/${service.slug}`,
+          provider: { "@id": "https://cherrybuilds.com.au/#business" },
+          areaServed: "Melbourne, Victoria, Australia",
+          serviceType: "Home Renovation",
+        })}</script>
       </Helmet>
       <ScrollProgress />
       {/* Hero */}

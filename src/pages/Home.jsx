@@ -1213,6 +1213,7 @@ export default function Home() {
         <meta property="og:title" content="Cherry Builds | VBA Licensed Renovation Builder Melbourne" />
         <meta property="og:description" content="VBA Licensed renovation builder in Melbourne: kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
         <meta property="og:url" content="https://cherrybuilds.com.au/" />
+        <meta property="og:locale" content="en_AU" />
         <link rel="canonical" href="https://cherrybuilds.com.au/" />
         {/* Structured data — GeneralContractor + LocalBusiness */}
         <script type="application/ld+json">{JSON.stringify(schemaLocalBusiness)}</script>
