@@ -22,15 +22,13 @@ Different from dsea-site — uses a pages folder:
 ✅ Confirmed correct — real client number.
 
 ## Contact Form
-**Formspree endpoint**: `https://formspree.io/f/placeholder` ← NOT SET UP  
-Action: replace `placeholder` with real Formspree form ID before launch.
+**Formspree endpoint**: `https://formspree.io/f/meewklkk` ✅ Live and tested.
 
 ## Google Ads
-⚠️ NOT SET UP YET  
-When configured, follow this pattern (learned from dsea-site):
-- Base Google tag goes in `index.html` head
-- Phone swap snippet goes in `App` useEffect (NOT index.html — React SPA, DOM is empty when head scripts run)
-- Form conversion event fires inside `handleSubmit` AFTER Formspree fetch resolves
+**Google Tag ID**: AW-17973575816  
+✅ Base tag in `index.html` head  
+✅ Phone click conversion (`AW-17973575816/BcHrCJ2gsLQcEIiBvPpC`) fires in `App.jsx` PhoneClickTracker on any `tel:` link click  
+✅ Form submission conversion (`AW-17973575816/eCcUCJqgsLQcEIiBvPpC`) fires in `handleSubmit` after Formspree fetch resolves
 
 ## Performance Standards
 - Videos: compress with ffmpeg before committing. Target <1MB each.  
@@ -41,11 +39,11 @@ When configured, follow this pattern (learned from dsea-site):
 
 ## Launch Checklist
 - [x] Confirm real client phone number — ✅ 0438 499 146 confirmed
-- [ ] Replace Formspree placeholder with real form ID
-- [ ] Set up Google Ads account + get tag ID
-- [ ] Add Google base tag to `index.html` head
-- [ ] Add phone swap snippet to `App` useEffect
-- [ ] Add form conversion event to `handleSubmit`
+- [x] Replace Formspree placeholder with real form ID — ✅ meewklkk
+- [x] Set up Google Ads account + get tag ID — ✅ AW-17973575816
+- [x] Add Google base tag to `index.html` head — ✅
+- [x] Add phone swap snippet to `App` useEffect — ✅ PhoneClickTracker in App.jsx
+- [x] Add form conversion event to `handleSubmit` — ✅
 - [ ] Compress all videos <1MB
 - [ ] Canonical URL points to production domain
 - [ ] Connect GitHub remote for auto-deploy
