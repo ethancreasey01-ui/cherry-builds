@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
+import { Phone, Mail, MapPin, ExternalLink, Instagram } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -62,6 +62,14 @@ export default function Footer() {
                 className="flex items-center gap-2 hover:text-cherry-400 transition-colors"
               >
                 <ExternalLink className="w-3.5 h-3.5" /> Aquatight Waterproofing
+              </a>
+              <a
+                href="https://www.instagram.com/cherrybuildsmelb/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 hover:text-cherry-400 transition-colors"
+              >
+                <Instagram className="w-3.5 h-3.5" /> @cherrybuildsmelb
               </a>
             </div>
           </div>
