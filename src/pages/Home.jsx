@@ -1112,9 +1112,15 @@ function Contact() {
               ))}
             </div>
 
-            <div className="mt-8 flex items-center gap-2 text-sm text-neutral-500">
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
-              <a href="https://www.facebook.com/cherrybuilds" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-600 transition-colors">Follow us on Facebook</a>
+            <div className="mt-8 space-y-3">
+              <div className="flex items-center gap-2 text-sm text-neutral-500">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+                <a href="https://www.facebook.com/cherrybuilds" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-600 transition-colors">Follow us on Facebook</a>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-neutral-500">
+                <span className="text-base">📷</span>
+                <a href="https://www.instagram.com/cherrybuildsmelb/" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-600 transition-colors">Follow us on Instagram</a>
+              </div>
             </div>
 
             <div className="mt-6 pt-6 border-t border-neutral-300 text-xs text-neutral-400 space-y-0.5">
