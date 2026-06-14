@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
+import { Phone, Mail, MapPin, ExternalLink, Facebook } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -63,14 +63,27 @@ export default function Footer() {
               >
                 <ExternalLink className="w-3.5 h-3.5" /> Aquatight Waterproofing
               </a>
-              <a
-                href="https://www.instagram.com/cherrybuildsmelb/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-cherry-400 transition-colors"
-              >
-                Follow us on Instagram
-              </a>
+              <div className="pt-2 border-t border-white/10">
+                <div className="text-white text-xs font-semibold mb-2">Follow us</div>
+                <div className="flex gap-3">
+                  <a
+                    href="https://www.facebook.com/cherrybuilds"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 hover:text-cherry-400 transition-colors"
+                  >
+                    <Facebook className="w-4 h-4" /> Facebook
+                  </a>
+                  <a
+                    href="https://www.instagram.com/cherrybuildsmelb/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 hover:text-cherry-400 transition-colors"
+                  >
+                    📷 Instagram
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
