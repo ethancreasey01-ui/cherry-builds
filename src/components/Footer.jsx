@@ -65,21 +65,23 @@ export default function Footer() {
               </a>
               <div className="pt-2 border-t border-white/10">
                 <div className="text-white text-xs font-semibold mb-2">Follow us</div>
-                <div className="flex gap-4 text-xs">
+                <div className="flex gap-4">
                   <a
                     href="https://www.facebook.com/cherrybuilds"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-cherry-400 transition-colors"
+                    className="flex items-center gap-1.5 hover:text-cherry-400 transition-colors text-xs"
                   >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
                     Facebook
                   </a>
                   <a
                     href="https://www.instagram.com/cherrybuildsmelb/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-cherry-400 transition-colors"
+                    className="flex items-center gap-1.5 hover:text-cherry-400 transition-colors text-xs"
                   >
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="18.5" cy="5.5" r="1.5" fill="currentColor"/></svg>
                     Instagram
                   </a>
                 </div>

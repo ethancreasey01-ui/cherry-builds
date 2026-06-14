@@ -1118,7 +1118,7 @@ function Contact() {
                 <a href="https://www.facebook.com/cherrybuilds" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-600 transition-colors">Follow us on Facebook</a>
               </div>
               <div className="flex items-center gap-2 text-sm text-neutral-500">
-                <span className="text-base">📷</span>
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="18.5" cy="5.5" r="1.5" fill="currentColor"/></svg>
                 <a href="https://www.instagram.com/cherrybuildsmelb/" target="_blank" rel="noopener noreferrer" className="hover:text-cherry-600 transition-colors">Follow us on Instagram</a>
               </div>
             </div>
