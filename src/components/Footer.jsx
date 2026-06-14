@@ -65,22 +65,22 @@ export default function Footer() {
               </a>
               <div className="pt-2 border-t border-white/10">
                 <div className="text-white text-xs font-semibold mb-2">Follow us</div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 text-xs">
                   <a
                     href="https://www.facebook.com/cherrybuilds"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 hover:text-cherry-400 transition-colors text-xs"
+                    className="hover:text-cherry-400 transition-colors"
                   >
-                    👍 Facebook
+                    Facebook
                   </a>
                   <a
                     href="https://www.instagram.com/cherrybuildsmelb/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 hover:text-cherry-400 transition-colors text-xs"
+                    className="hover:text-cherry-400 transition-colors"
                   >
-                    📷 Instagram
+                    Instagram
                   </a>
                 </div>
               </div>
