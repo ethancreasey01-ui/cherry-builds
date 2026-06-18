@@ -51,6 +51,18 @@ export default function StickyQuoteBar() {
 
             {/* Right — actions */}
             <div className="flex items-center gap-3 ml-auto">
+              {/* Social icons */}
+              <div className="hidden sm:flex items-center gap-2">
+                <a href="https://www.facebook.com/cherrybuilds" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-700 transition-colors" aria-label="Facebook">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>
+                </a>
+                <a href="https://www.instagram.com/cherrybuildsmelb/" target="_blank" rel="noopener noreferrer" className="text-neutral-400 hover:text-neutral-700 transition-colors" aria-label="Instagram">
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="3"/><circle cx="18.5" cy="5.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                </a>
+              </div>
+
+              <div className="hidden sm:block w-px h-5 bg-neutral-200" />
+
               <a
                 href="tel:0438499146"
                 className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-700 hover:text-neutral-900 transition-colors"
