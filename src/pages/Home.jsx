@@ -942,10 +942,10 @@ function CombinedExpertise() {
             <RevealText className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
               Complete renovations and waterproofing, coordinated by one team.
             </RevealText>
-            <div className="flex items-center gap-4 mt-8 pt-6 border-t border-neutral-200 overflow-visible">
-              <img src="/logos/cherry-builds-navbar.png" alt="Cherry Builds" className="h-10 w-auto flex-shrink-0" />
+            <div className="flex items-center justify-center gap-4 mt-8 pt-6 border-t border-neutral-200">
+              <img src="/logos/cherry-builds-navbar.png" alt="Cherry Builds" className="h-12 w-auto flex-shrink-0" />
               <span className="text-neutral-300 text-lg font-light flex-shrink-0">×</span>
-              <img src="/logos/aqua-tight.png" alt="Aquatight" className="h-10 w-auto flex-shrink-0" />
+              <img src="/logos/aqua-tight.png" alt="Aquatight" className="h-12 w-auto flex-shrink-0" />
             </div>
           </motion.div>
 
