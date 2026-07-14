@@ -64,11 +64,11 @@ export default function StickyQuoteBar() {
               <div className="hidden sm:block w-px h-5 bg-neutral-200" />
 
               <a
-                href="tel:0438499146"
+                href="tel:0408827996"
                 className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-700 hover:text-neutral-900 transition-colors"
               >
                 <Phone className="w-4 h-4" style={{ color: "#a3343e" }} />
-                0438 499 146
+                0408 827 996
               </a>
 
               {/* Divider */}

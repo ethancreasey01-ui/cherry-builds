@@ -45,8 +45,8 @@ export default function Footer() {
           <div>
             <div className="font-semibold text-white mb-3 text-sm">Contact</div>
             <div className="space-y-2 text-xs">
-              <a href="tel:0438499146" className="flex items-center gap-2 hover:text-cherry-400 transition-colors">
-                <Phone className="w-3.5 h-3.5" /> 0438 499 146
+              <a href="tel:0408827996" className="flex items-center gap-2 hover:text-cherry-400 transition-colors">
+                <Phone className="w-3.5 h-3.5" /> 0408 827 996
               </a>
               <a href="mailto:info@cherrybuilds.com.au" className="flex items-center gap-2 hover:text-cherry-400 transition-colors">
                 <Mail className="w-3.5 h-3.5" /> info@cherrybuilds.com.au

@@ -27,7 +27,7 @@ const schemaLocalBusiness = {
   description:
     "VBA Licensed renovation builder in Melbourne. Kitchens, bathrooms, full home renovations, decking and waterproofing across Bayside and the Mornington Peninsula. 30+ years experience.",
   url: "https://cherrybuilds.com.au",
-  telephone: "+61438499146",
+  telephone: "+61408827996",
   email: "info@cherrybuilds.com.au",
   address: {
     "@type": "PostalAddress",
@@ -201,11 +201,11 @@ function Hero() {
             <ArrowRight className="w-4 h-4" />
           </a>
           <a
-            href="tel:0438499146"
+            href="tel:0408827996"
             className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all backdrop-blur-sm"
           >
             <Phone className="w-4 h-4" />
-            0438 499 146
+            0408 827 996
           </a>
         </motion.div>
 
@@ -1092,7 +1092,7 @@ function Contact() {
 
             <div className="mt-8 space-y-4">
               {[
-                { icon: Phone, label: "Phone", value: "0438 499 146", href: "tel:0438499146" },
+                { icon: Phone, label: "Phone", value: "0408 827 996", href: "tel:0408827996" },
                 { icon: Mail, label: "Email", value: "info@cherrybuilds.com.au", href: "mailto:info@cherrybuilds.com.au" },
                 { icon: MapPin, label: "Postal", value: "PO BOX 3109, Mentone East VIC 3194", href: null },
               ].map(({ icon: Icon, label, value, href }) => (
@@ -1193,7 +1193,7 @@ function Contact() {
 function FloatingCall() {
   return (
     <motion.a
-      href="tel:0438499146"
+      href="tel:0408827996"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 1.5 }}

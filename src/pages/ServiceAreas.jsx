@@ -204,11 +204,11 @@ export default function ServiceAreas() {
                   Get a Free Quote <ArrowRight className="w-4 h-4" />
                 </a>
                 <a
-                  href="tel:0438499146"
+                  href="tel:0408827996"
                   className="inline-flex items-center gap-2 border border-neutral-200 hover:border-cherry-300 text-neutral-700 font-semibold px-6 py-3 rounded-xl transition-all"
                 >
                   <Phone className="w-4 h-4" style={{ color: CHERRY }} />
-                  0438 499 146
+                  0408 827 996
                 </a>
               </div>
             </motion.div>
@@ -415,11 +415,11 @@ export default function ServiceAreas() {
                 Get a Free Quote <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="tel:0438499146"
+                href="tel:0408827996"
                 className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all"
               >
                 <Phone className="w-4 h-4" />
-                0438 499 146
+                0408 827 996
               </a>
             </div>
           </motion.div>

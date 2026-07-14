@@ -306,11 +306,11 @@ export default function ProjectDetail() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="tel:0438499146"
+                href="tel:0408827996"
                 className="mt-2 flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm font-medium px-5 py-3 rounded-xl transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                0438 499 146
+                0408 827 996
               </a>
             </motion.div>
           </div>
