@@ -1065,12 +1065,18 @@ function Contact() {
     e.preventDefault();
     setSubmitting(true);
     const data = new FormData(e.target);
-    await fetch(e.target.action, { method: "POST", body: data, headers: { Accept: "application/json" } });
-    setSubmitting(false);
-    setSubmitted(true);
-    // Fire Google Ads "Form Enquiry" conversion
-    if (window.gtag) {
-      window.gtag('event', 'conversion', { send_to: 'AW-17973575816/eCcUCJqgsLQcEIiBvPpC' });
+    try {
+      const res = await fetch(e.target.action, { method: "POST", body: data, headers: { Accept: "application/json" } });
+      if (!res.ok) throw new Error("Form send failed");
+      setSubmitted(true);
+      // Fire Google Ads "Form Enquiry" conversion (only on a real successful send)
+      if (window.gtag) {
+        window.gtag('event', 'conversion', { send_to: 'AW-17973575816/eCcUCJqgsLQcEIiBvPpC' });
+      }
+    } catch {
+      alert("Sorry, your message didn't send. Please call us instead.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
