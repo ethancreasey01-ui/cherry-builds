@@ -7,10 +7,28 @@ export const PHONE_TEL = "0408827996";
 const CLICK_ID_KEYS = ["gclid", "gbraid", "wbraid"];
 const CLICK_ID_TTL_MS = 90 * 24 * 60 * 60 * 1000;
 
+// Shared phone state. Starts as the real number; swapped for Google's forwarding number via the config callback.
+let phone = { display: PHONE_DISPLAY, tel: PHONE_TEL };
+const phoneListeners = new Set();
+export const getPhone = () => phone;
+export function subscribePhone(listener) {
+  phoneListeners.add(listener);
+  return () => phoneListeners.delete(listener);
+}
+function setPhone(formatted, mobile) {
+  const display = formatted || mobile;
+  if (!display) return;
+  phone = { display, tel: (mobile || formatted).replace(/[^\d+]/g, "") };
+  phoneListeners.forEach((l) => l());
+}
+
 // Enable Google's website-call forwarding number (no-op until a label is set)
 export function initCallTracking() {
   if (!WEBSITE_CALL_LABEL || !window.gtag) return;
-  window.gtag("config", `${ADS_ID}/${WEBSITE_CALL_LABEL}`, { phone_conversion_number: PHONE_TEL });
+  window.gtag("config", `${ADS_ID}/${WEBSITE_CALL_LABEL}`, {
+    phone_conversion_number: PHONE_TEL,
+    phone_conversion_callback: setPhone,
+  });
 }
 
 // Remember ad click IDs from the landing URL for 90 days
