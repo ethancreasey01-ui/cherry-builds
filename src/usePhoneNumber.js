@@ -17,7 +17,7 @@ function start() {
         if (!display) return;
         current = { display, tel: (mobile || formatted).replace(/[^\d+]/g, "") };
         listeners.forEach((l) => l());
-      }, PHONE_DISPLAY);
+      }, PHONE_TEL);
     } else if (tries++ < 20) {
       setTimeout(attempt, 500);
     }
