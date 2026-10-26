@@ -9,6 +9,7 @@ import {
 import { PROJECTS, TESTIMONIALS } from "../data/index.js";
 import ScrollProgress from "../components/ScrollProgress.jsx";
 import RevealText from "../components/RevealText.jsx";
+import usePhoneNumber from "../usePhoneNumber.js";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -87,6 +88,7 @@ function Lightbox({ images, index, onClose, onPrev, onNext }) {
 }
 
 export default function ProjectDetail() {
+  const phone = usePhoneNumber();
   const { slug } = useParams();
   const project = PROJECTS.find((p) => p.slug === slug);
 
@@ -306,11 +308,11 @@ export default function ProjectDetail() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="tel:0408827996"
+                href={`tel:${phone.tel}`}
                 className="mt-2 flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm font-medium px-5 py-3 rounded-xl transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                0408 827 996
+                {phone.display}
               </a>
             </motion.div>
           </div>

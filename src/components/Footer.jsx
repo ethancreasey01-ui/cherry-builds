@@ -1,6 +1,8 @@
 import { Phone, Mail, MapPin, ExternalLink } from "lucide-react";
+import usePhoneNumber from "../usePhoneNumber.js";
 
 export default function Footer() {
+  const phone = usePhoneNumber();
   return (
     <footer style={{ backgroundColor: "#1a1a1a" }} className="text-neutral-400 py-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -45,8 +47,8 @@ export default function Footer() {
           <div>
             <div className="font-semibold text-white mb-3 text-sm">Contact</div>
             <div className="space-y-2 text-xs">
-              <a href="tel:0408827996" className="flex items-center gap-2 hover:text-cherry-400 transition-colors">
-                <Phone className="w-3.5 h-3.5" /> 0408 827 996
+              <a href={`tel:${phone.tel}`} className="flex items-center gap-2 hover:text-cherry-400 transition-colors">
+                <Phone className="w-3.5 h-3.5" /> {phone.display}
               </a>
               <a href="mailto:info@cherrybuilds.com.au" className="flex items-center gap-2 hover:text-cherry-400 transition-colors">
                 <Mail className="w-3.5 h-3.5" /> info@cherrybuilds.com.au

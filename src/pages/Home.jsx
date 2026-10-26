@@ -11,6 +11,8 @@ import { SERVICES, PROJECTS, TESTIMONIALS, FAQS, CREDENTIALS } from "../data/ind
 import RevealText from "../components/RevealText.jsx";
 import CountUp from "../components/CountUp.jsx";
 import TrustBar from "../components/TrustBar.jsx";
+import usePhoneNumber from "../usePhoneNumber.js";
+import { getClickId } from "../tracking.js";
 
 // ─── Schema.org Structured Data ───────────────────────────────────────────────
 // seo-schema audit: zero structured data on live site (cherrybuilds.com.au).
@@ -128,6 +130,7 @@ const fadeUp = (delay = 0) => ({
 // ─── Hero ────────────────────────────────────────────────────────────────────
 
 function Hero() {
+  const phone = usePhoneNumber();
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 700], [0, 180]);
   const gridY = useTransform(scrollY, [0, 700], [0, 80]);
@@ -201,11 +204,11 @@ function Hero() {
             <ArrowRight className="w-4 h-4" />
           </a>
           <a
-            href="tel:0408827996"
+            href={`tel:${phone.tel}`}
             className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold px-8 py-4 rounded-xl transition-all backdrop-blur-sm"
           >
             <Phone className="w-4 h-4" />
-            0408 827 996
+            {phone.display}
           </a>
         </motion.div>
 
@@ -1058,6 +1061,7 @@ function FAQ() {
 // ─── Contact ─────────────────────────────────────────────────────────────────
 
 function Contact() {
+  const phone = usePhoneNumber();
   const [submitted, setSubmitted] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
 
@@ -1098,7 +1102,7 @@ function Contact() {
 
             <div className="mt-8 space-y-4">
               {[
-                { icon: Phone, label: "Phone", value: "0408 827 996", href: "tel:0408827996" },
+                { icon: Phone, label: "Phone", value: phone.display, href: `tel:${phone.tel}` },
                 { icon: Mail, label: "Email", value: "info@cherrybuilds.com.au", href: "mailto:info@cherrybuilds.com.au" },
                 { icon: MapPin, label: "Postal", value: "PO BOX 3109, Mentone East VIC 3194", href: null },
               ].map(({ icon: Icon, label, value, href }) => (
@@ -1148,6 +1152,9 @@ function Contact() {
               <form action="https://formspree.io/f/meewklkk" method="POST" onSubmit={handleSubmit} className="space-y-4 text-sm">
                 <input type="text" name="_gotcha" className="hidden" />
                 <input type="hidden" name="_subject" value="New enquiry from Cherry Builds website" />
+                <input type="hidden" name="gclid" value={getClickId("gclid")} />
+                <input type="hidden" name="gbraid" value={getClickId("gbraid")} />
+                <input type="hidden" name="wbraid" value={getClickId("wbraid")} />
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="cb-first" className="block text-xs font-semibold text-neutral-600 mb-1">First name</label>
@@ -1197,9 +1204,10 @@ function Contact() {
 // ─── Floating call ────────────────────────────────────────────────────────────
 
 function FloatingCall() {
+  const phone = usePhoneNumber();
   return (
     <motion.a
-      href="tel:0408827996"
+      href={`tel:${phone.tel}`}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 1.5 }}

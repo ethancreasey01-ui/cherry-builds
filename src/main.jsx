@@ -5,6 +5,10 @@ import { HelmetProvider } from "react-helmet-async";
 import { Analytics } from "@vercel/analytics/react";
 import "./index.css";
 import App from "./App.jsx";
+import { initCallTracking, captureClickIds } from "./tracking.js";
+
+captureClickIds();
+initCallTracking();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

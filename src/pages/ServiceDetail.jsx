@@ -8,6 +8,7 @@ import React from "react";
 import { SERVICES, PROJECTS, TESTIMONIALS } from "../data/index.js";
 import ScrollProgress from "../components/ScrollProgress.jsx";
 import RevealText from "../components/RevealText.jsx";
+import usePhoneNumber from "../usePhoneNumber.js";
 
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -112,6 +113,7 @@ function RelatedProjectsCarousel({ projects }) {
 }
 
 export default function ServiceDetail() {
+  const phone = usePhoneNumber();
   const { slug } = useParams();
   const service = SERVICES.find((s) => s.slug === slug);
   const [openFaq, setOpenFaq] = React.useState(null);
@@ -316,11 +318,11 @@ export default function ServiceDetail() {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
-                href="tel:0408827996"
+                href={`tel:${phone.tel}`}
                 className="mt-2 flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm font-medium px-5 py-3 rounded-xl transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                0408 827 996
+                {phone.display}
               </a>
             </motion.div>
 
