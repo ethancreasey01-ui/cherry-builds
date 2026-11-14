@@ -89,17 +89,17 @@ export default function ServiceAreas() {
         />
         <meta property="og:title" content="Service Areas Melbourne | Cherry Builds" />
         <meta property="og:description" content="Cherry Builds covers Melbourne's Bayside, Mornington Peninsula, and inner suburbs. VBA Licensed renovation specialists." />
-        <meta property="og:url" content="https://cherrybuilds.com.au/service-areas" />
-        <meta property="og:image" content="https://cherrybuilds.com.au/og-image.jpg" />
+        <meta property="og:url" content="https://www.cherrybuilds.com.au/service-areas" />
+        <meta property="og:image" content="https://www.cherrybuilds.com.au/og-image.jpg" />
         <meta property="og:locale" content="en_AU" />
         <meta name="twitter:card" content="summary_large_image" />
-        <link rel="canonical" href="https://cherrybuilds.com.au/service-areas" />
+        <link rel="canonical" href="https://www.cherrybuilds.com.au/service-areas" />
         <script type="application/ld+json">{JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",
-          "@id": "https://cherrybuilds.com.au/service-areas",
+          "@id": "https://www.cherrybuilds.com.au/service-areas",
           name: "Cherry Builds — Melbourne Service Areas",
-          provider: { "@id": "https://cherrybuilds.com.au/#business" },
+          provider: { "@id": "https://www.cherrybuilds.com.au/#business" },
           areaServed: AREAS.flatMap(a => a.suburbs.map(s => ({
             "@type": "City",
             name: `${s.name}, Victoria, Australia`,

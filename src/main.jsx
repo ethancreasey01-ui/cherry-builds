@@ -1,5 +1,5 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Analytics } from "@vercel/analytics/react";
@@ -10,7 +10,7 @@ import { initCallTracking, captureClickIds } from "./tracking.js";
 captureClickIds();
 initCallTracking();
 
-createRoot(document.getElementById("root")).render(
+const tree = (
   <StrictMode>
     <HelmetProvider>
       <BrowserRouter>
@@ -20,3 +20,9 @@ createRoot(document.getElementById("root")).render(
     </HelmetProvider>
   </StrictMode>
 );
+
+// Pages are prerendered at build time (scripts/prerender.mjs): take over that HTML. The empty app shell
+// (used for unknown URLs) has no content to hydrate, so it renders from scratch.
+const rootEl = document.getElementById("root");
+if (rootEl.hasChildNodes()) hydrateRoot(rootEl, tree);
+else createRoot(rootEl).render(tree);

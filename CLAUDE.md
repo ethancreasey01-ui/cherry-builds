@@ -5,7 +5,7 @@ Cherry Builds — home renovation specialists, Melbourne (Bayside, Mornington Pe
 Services: kitchens, bathrooms, decking, waterproofing. VBA Licensed. 30+ years experience.
 
 **Stack**: React SPA · Vite · Tailwind CSS · Framer Motion · Vercel  
-**Live domain**: https://cherrybuilds.com.au  
+**Live domain**: https://www.cherrybuilds.com.au (apex redirects to www)  
 **Vercel team**: ethans-projects-9ae33fde · Project ID: prj_Z2K03iTPeoA8xOKTP4fQ8nAevAwJ  
 **Repo**: https://github.com/ethancreasey01-ui/cherry-builds  
 **GitHub remote**: connected — push to `master` to deploy (once Vercel GitHub integration is linked)
@@ -17,9 +17,8 @@ Different from dsea-site — uses a pages folder:
 - `src/pages/Home.jsx` — main page content, contact form (~line 733), phone number (~line 99)
 
 ## Phone Number
-**Display**: 0438 499 146  
-**Tel href**: `tel:0438499146`  
-✅ Confirmed correct — real client number.
+**Display**: 0408 827 996 (see `src/tracking.js`)  
+**Tel href**: `tel:0408827996`
 
 ## Contact Form
 **Formspree endpoint**: `https://formspree.io/f/meewklkk` ✅ Live and tested.
@@ -35,7 +34,7 @@ Different from dsea-site — uses a pages folder:
   `ffmpeg -i in.mp4 -vcodec libx264 -crf 28 -preset fast -vf "scale='min(720,iw)':-2" -an -movflags +faststart out.mp4`
 - Gallery videos: use `loadedIndices` Set pattern — only load `src` on active ±2
 - Images below fold: `loading="lazy"`
-- Canonical URL: always `https://cherrybuilds.com.au/` — never a Vercel preview URL
+- Canonical URL: always `https://www.cherrybuilds.com.au/` — never a Vercel preview URL
 
 ## Launch Checklist
 - [x] Confirm real client phone number — ✅ 0438 499 146 confirmed
@@ -48,3 +47,13 @@ Different from dsea-site — uses a pages folder:
 - [ ] Canonical URL points to production domain
 - [ ] Connect GitHub remote for auto-deploy
 - [ ] Test Tag Assistant with ad blocker OFF
+
+## SEO prerender (build step)
+`npm run build` = `vite build` then `scripts/prerender.mjs`, which renders every public route with React (`src/entry-server.jsx`)
+into `dist/<route>/index.html` (real text, `<title>`, meta description, canonical, Open Graph, JSON-LD), writes
+`dist/sitemap.xml` from the route list, and writes `dist/app-shell.html` (empty shell, noindex, no canonical) which
+`vercel.json` serves for any URL that is not a real page. The browser hydrates the prerendered HTML (`src/main.jsx`).
+- New page/route: add it to `<Routes>` in `App.jsx` AND to `ROUTES` in `src/entry-server.jsx` (data-driven ones follow the data automatically).
+- Check: `npm run build && npm run check:seo` (title/description/canonical/OG/h1/JSON-LD per page); `npm run serve:dist` serves dist like Vercel (default :4173).
+- JSON-LD uses only facts visible on the site: do not add ratings, opening hours, geo or price range unless they are shown on the page.
+- Going live needs: owner OK, a Vercel preview check that `/services/x` serves `services/x/index.html`, then push.

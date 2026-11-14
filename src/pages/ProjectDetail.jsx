@@ -114,8 +114,8 @@ export default function ProjectDetail() {
         <meta name="description" content={metaDesc} />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDesc} />
-        <meta property="og:url" content={`https://cherrybuilds.com.au/projects/${project.slug}`} />
-        <link rel="canonical" href={`https://cherrybuilds.com.au/projects/${project.slug}`} />
+        <meta property="og:url" content={`https://www.cherrybuilds.com.au/projects/${project.slug}`} />
+        <link rel="canonical" href={`https://www.cherrybuilds.com.au/projects/${project.slug}`} />
       </Helmet>
       <ScrollProgress />
       {/* Hero banner */}

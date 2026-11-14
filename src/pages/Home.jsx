@@ -23,12 +23,12 @@ import { getClickId } from "../tracking.js";
 const schemaLocalBusiness = {
   "@context": "https://schema.org",
   "@type": ["GeneralContractor", "LocalBusiness"],
-  "@id": "https://cherrybuilds.com.au/#business",
+  "@id": "https://www.cherrybuilds.com.au/#business",
   name: "Cherry Builds",
   legalName: "Cherry Building and Construction Services",
   description:
     "VBA Licensed renovation builder in Melbourne. Kitchens, bathrooms, full home renovations, decking and waterproofing across Bayside and the Mornington Peninsula. 30+ years experience.",
-  url: "https://cherrybuilds.com.au",
+  url: "https://www.cherrybuilds.com.au",
   telephone: "+61408827996",
   email: "info@cherrybuilds.com.au",
   address: {
@@ -39,7 +39,6 @@ const schemaLocalBusiness = {
     postalCode: "3194",
     addressCountry: "AU",
   },
-  geo: { "@type": "GeoCoordinates", latitude: -37.9736, longitude: 145.0724 },
   areaServed: [
     { "@type": "City", name: "Melbourne" },
     { "@type": "AdministrativeArea", name: "Bayside, Victoria" },
@@ -61,48 +60,31 @@ const schemaLocalBusiness = {
   },
   foundingDate: "2007",
   identifier: { "@type": "PropertyValue", name: "ABN", value: "60 122 151 679" },
-  image: "https://cherrybuilds.com.au/og-image.jpg",
+  image: "https://www.cherrybuilds.com.au/og-image.jpg",
   logo: {
     "@type": "ImageObject",
-    url: "https://cherrybuilds.com.au/logos/cherry-builds-navbar.png",
+    url: "https://www.cherrybuilds.com.au/logos/cherry-builds-navbar.png",
   },
   sameAs: ["https://www.facebook.com/cherrybuilds"],
-  priceRange: "$$",
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "07:00",
-      closes: "18:00",
-    },
-  ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    bestRating: "5",
-    worstRating: "1",
-    ratingCount: "34",
-    reviewCount: "34",
-  },
 };
 
 const schemaServices = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "@id": "https://cherrybuilds.com.au/#services",
+  "@id": "https://www.cherrybuilds.com.au/#services",
   name: "Renovation Services by Cherry Builds",
-  url: "https://cherrybuilds.com.au/#services",
+  url: "https://www.cherrybuilds.com.au/#services",
   numberOfItems: SERVICES.length,
   itemListElement: SERVICES.map((svc, i) => ({
     "@type": "ListItem",
     position: i + 1,
     item: {
       "@type": "Service",
-      "@id": `https://cherrybuilds.com.au/services/${svc.slug}`,
+      "@id": `https://www.cherrybuilds.com.au/services/${svc.slug}`,
       name: svc.title,
       description: svc.desc,
-      url: `https://cherrybuilds.com.au/services/${svc.slug}`,
-      provider: { "@id": "https://cherrybuilds.com.au/#business" },
+      url: `https://www.cherrybuilds.com.au/services/${svc.slug}`,
+      provider: { "@id": "https://www.cherrybuilds.com.au/#business" },
       areaServed: "Melbourne, Victoria, Australia",
       serviceType: "Home Renovation",
     },
@@ -112,7 +94,7 @@ const schemaServices = {
 const schemaFAQ = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "@id": "https://cherrybuilds.com.au/#faq",
+  "@id": "https://www.cherrybuilds.com.au/#faq",
   mainEntity: FAQS.map((faq) => ({
     "@type": "Question",
     name: faq.q,
@@ -1232,9 +1214,9 @@ export default function Home() {
         <meta name="description" content="VBA Licensed renovation builder in Melbourne: kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
         <meta property="og:title" content="Cherry Builds | VBA Licensed Renovation Builder Melbourne" />
         <meta property="og:description" content="VBA Licensed renovation builder in Melbourne: kitchens, bathrooms, full home renovations, heritage homes, decking and waterproofing. Bayside, Mornington Peninsula and inner suburbs. Fixed prices. Free quote." />
-        <meta property="og:url" content="https://cherrybuilds.com.au/" />
+        <meta property="og:url" content="https://www.cherrybuilds.com.au/" />
         <meta property="og:locale" content="en_AU" />
-        <link rel="canonical" href="https://cherrybuilds.com.au/" />
+        <link rel="canonical" href="https://www.cherrybuilds.com.au/" />
         {/* Structured data — GeneralContractor + LocalBusiness */}
         <script type="application/ld+json">{JSON.stringify(schemaLocalBusiness)}</script>
         {/* Service ItemList — all 8 renovation services */}
