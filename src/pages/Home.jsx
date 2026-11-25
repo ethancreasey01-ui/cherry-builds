@@ -12,7 +12,7 @@ import RevealText from "../components/RevealText.jsx";
 import CountUp from "../components/CountUp.jsx";
 import TrustBar from "../components/TrustBar.jsx";
 import usePhoneNumber from "../usePhoneNumber.js";
-import { getClickId } from "../tracking.js";
+import { ENQUIRY_URL, hiddenEnquiryFields, sendEnquiry } from "../enquiry.js";
 
 // ─── Schema.org Structured Data ───────────────────────────────────────────────
 // seo-schema audit: zero structured data on live site (cherrybuilds.com.au).
@@ -928,9 +928,9 @@ function CombinedExpertise() {
               Complete renovations and waterproofing, coordinated by one team.
             </RevealText>
             <div className="flex items-center justify-center gap-4 mt-8 pt-6 border-t border-neutral-200">
-              <img src="/logos/cherry-builds-navbar.png" alt="Cherry Builds" className="h-12 w-auto flex-shrink-0" />
+              <img src="/logos/cherry-builds-navbar.png" alt="Cherry Builds" className="h-9 sm:h-12 w-auto flex-shrink-0" />
               <span className="text-neutral-300 text-lg font-light flex-shrink-0">×</span>
-              <img src="/logos/aqua-tight.png" alt="Aquatight" className="h-12 w-auto flex-shrink-0" />
+              <img src="/logos/aqua-tight.png" alt="Aquatight" className="h-9 sm:h-12 w-auto flex-shrink-0" />
             </div>
           </motion.div>
 
@@ -1050,15 +1050,9 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    const data = new FormData(e.target);
     try {
-      const res = await fetch(e.target.action, { method: "POST", body: data, headers: { Accept: "application/json" } });
-      if (!res.ok) throw new Error("Form send failed");
+      await sendEnquiry(e.target);
       setSubmitted(true);
-      // Fire Google Ads "Form Enquiry" conversion (only on a real successful send)
-      if (window.gtag) {
-        window.gtag('event', 'conversion', { send_to: 'AW-17973575816/eCcUCJqgsLQcEIiBvPpC' });
-      }
     } catch {
       alert("Sorry, your message didn't send. Please call us instead.");
     } finally {
@@ -1131,12 +1125,11 @@ function Contact() {
                 <p className="text-neutral-500 text-sm">Thanks for reaching out. We'll be in touch shortly with your obligation-free quote.</p>
               </div>
             ) : (
-              <form action="https://formspree.io/f/meewklkk" method="POST" onSubmit={handleSubmit} className="space-y-4 text-sm">
+              <form action={ENQUIRY_URL} method="POST" onSubmit={handleSubmit} className="space-y-4 text-sm">
                 <input type="text" name="_gotcha" className="hidden" />
-                <input type="hidden" name="_subject" value="New enquiry from Cherry Builds website" />
-                <input type="hidden" name="gclid" value={getClickId("gclid")} />
-                <input type="hidden" name="gbraid" value={getClickId("gbraid")} />
-                <input type="hidden" name="wbraid" value={getClickId("wbraid")} />
+                {Object.entries(hiddenEnquiryFields()).map(([name, value]) => (
+                  <input key={name} type="hidden" name={name} value={value} />
+                ))}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="cb-first" className="block text-xs font-semibold text-neutral-600 mb-1">First name</label>

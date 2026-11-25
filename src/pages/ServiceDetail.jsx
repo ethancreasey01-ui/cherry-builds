@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import { SERVICES, PROJECTS, TESTIMONIALS } from "../data/index.js";
+import QuickEnquiry from "../components/QuickEnquiry.jsx";
 import ScrollProgress from "../components/ScrollProgress.jsx";
 import RevealText from "../components/RevealText.jsx";
 import usePhoneNumber from "../usePhoneNumber.js";
@@ -162,7 +163,7 @@ export default function ServiceDetail() {
       </Helmet>
       <ScrollProgress />
       {/* Hero */}
-      <section className="relative h-[50vh] min-h-[380px] overflow-hidden" style={{ backgroundColor: "#1a1a1a" }}>
+      <section className="relative h-[50vh] min-h-[380px] max-sm:h-auto max-sm:min-h-0 overflow-hidden" style={{ backgroundColor: "#1a1a1a" }}>
         {service.heroImage ? (
           <img src={service.heroImage} alt={service.title} className="absolute inset-0 w-full h-full object-cover opacity-40" />
         ) : (
@@ -170,7 +171,7 @@ export default function ServiceDetail() {
         )}
         <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #1a1a1a 0%, rgba(26,26,26,0.65) 50%, rgba(26,26,26,0.3) 100%)" }} />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 h-full flex flex-col justify-end pb-12 pt-24">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 h-full flex flex-col justify-end pb-12 max-sm:pb-8 pt-24">
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.1 }}>
             <Link to="/#services" className="inline-flex items-center gap-1.5 text-neutral-400 hover:text-white text-sm mb-6 transition-colors">
               <ArrowLeft className="w-4 h-4" />
@@ -187,9 +188,14 @@ export default function ServiceDetail() {
         </div>
       </section>
 
+      {/* Phones: call button + short quote form straight under the headline (paid ads land here) */}
+      <section className="lg:hidden max-w-6xl mx-auto px-4 sm:px-6 pt-4">
+        <QuickEnquiry service={service} />
+      </section>
+
       {/* Body */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        <div className="grid lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* Main column */}
           <div className="lg:col-span-2 space-y-12">

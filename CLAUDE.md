@@ -22,6 +22,10 @@ Different from dsea-site — uses a pages folder:
 
 ## Contact Form
 **Formspree endpoint**: `https://formspree.io/f/meewklkk` ✅ Live and tested.
+Endpoint, hidden fields and the send + conversion event live in `src/enquiry.js`, shared by the full form (Home `Contact`)
+and `src/components/QuickEnquiry.jsx` (call button + name/phone/need form at the top of each service page on phones,
+`lg:hidden`; sends the same field names, with `last_name`/`email`/`suburb` empty). Inputs are forced to 16px under 768px in
+`index.css` so iPhone Safari doesn't zoom. Going live needs nothing new: no new endpoint, keys or env vars.
 
 ## Google Ads
 **Google Tag ID**: AW-17973575816  
