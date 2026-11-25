@@ -235,7 +235,7 @@ function About() {
           <motion.div {...fadeUp(0.1)}>
             <span className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#a3343e" }}>About Us</span>
             <h2 className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-neutral-900 leading-tight">
-              Building Melbourne homes since 2007
+              30+ years building, trading since 2007
             </h2>
             <p className="mt-5 text-neutral-600 leading-relaxed">
               We started as Cherry Properties in 2007 and rebranded to Cherry Building and Construction
